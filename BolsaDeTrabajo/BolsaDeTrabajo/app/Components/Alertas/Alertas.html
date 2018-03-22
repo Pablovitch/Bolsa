@@ -1,0 +1,136 @@
+﻿<div class="header">
+    <damsa-bar-social></damsa-bar-social>
+    <damsa-barra (ClickMenuBoton)="ShowMenu()" [CandidatoId]="CandidatoId" [Oculto]="Oculto"></damsa-barra>
+    <damsa-menu-oculto [ShowMenu]="showMenu" [CandidatoId]="CandidatoId"></damsa-menu-oculto>
+</div>
+<div class="global-container-sitio">
+    <!--<form [formGroup]="formDatosGenerales" (ngSubmit)="Save()">-->
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-10 padding-991">
+            <!-- INFORMACION GENERAL -->
+            <div class="general-information-container">
+                <div class="row general-information">
+                    <div class="col-12 color-grey">
+                        <div class="col-12">
+                            <!--<form [formGroup]="altaCorreo" (ngSubmit)="Save()">-->
+                                <div class="title color-blue text-uppercase">Alertas</div>
+                              <!--Notificaciones-->
+                                <div class="row label-data align-items-center">
+                                    <div class="col-md-12 col-sm-6 font-bold">
+                                    <input type="checkbox"  />
+                                    Estoy de acuerdo en recibir notificaciones de vacantes a mi correo electrónico.</div>                                   
+                                </div>
+                                <div [formGroup]="altaCorreo" (ngSubmit)="Save()" class="formularioCorreo">
+                                    <!--Correo-->
+                                    <div class="row label-data align-items-center">
+                                        <div class="col-md-5 col-sm-6 font-bold">Correo electrónico:<span>*</span></div>
+                                        <div class="col-md-7 col-sm-6">
+                                            <div class="tooltip-validation-error" [hidden]="!Edit">
+                                                <input formControlName="email"
+                                                       maxlength="50"
+                                                       id="email" type="text"
+                                                       #email
+                                                       class="input"
+                                                       [class.input-validation-error]="altaCorreo.controls.email.touched  && altaCorreo.controls.email.invalid" />
+
+                                                <span *ngIf="altaCorreo.controls.email.touched  && altaCorreo.controls.email.invalid &&
+                                                  altaCorreo.controls.email.errors.required"
+                                                      class="tooltip-text tooltip-validation-error-right">Campo Requerido</span>
+                                                <span *ngIf="altaCorreo.controls.email.touched  && altaCorreo.controls.email.invalid &&
+                                                  altaCorreo.controls.email.errors.ValidarCorreo"
+                                                      class="tooltip-text tooltip-validation-error-right">Debe proporcionar un cadena de correo valida.</span>
+                                            </div>
+                                            <label [hidden]="Edit">
+                                                {{email.value}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--Confirmar-->
+                                    <div class="row label-data align-items-center">
+                                        <div class="col-md-5 col-sm-6 font-bold">Confirmar correo:<span>*</span></div>
+                                        <div class="col-md-7 col-sm-6">
+                                            <div class="tooltip-validation-error" [hidden]="!Edit">
+                                                <input formControlName="confirmEmail"
+                                                       maxlength="50"
+                                                       id="confirmEmail"
+                                                       #confirmEmail
+                                                       type="text"
+                                                       class="input"
+                                                       [class.input-validation-error]="altaCorreo.controls.confirmEmail.invalid && altaCorreo.controls.confirmEmail.touched" />
+
+                                                <span *ngIf="altaCorreo.controls.confirmEmail.touched  && altaCorreo.controls.confirmEmail.invalid &&
+                                                  altaCorreo.controls.confirmEmail.errors.required"
+                                                      class="tooltip-text tooltip-validation-error-right">Confirme el correo porfavor.</span>
+                                                <span *ngIf="altaCorreo.controls.confirmEmail.touched  && altaCorreo.controls.confirmEmail.invalid &&
+                                                  altaCorreo.controls.confirmEmail.errors.ConfirmarCorreo"
+                                                      class="tooltip-text tooltip-validation-error-right">Los correos no concuerdan.</span>
+                                            </div>
+
+                                            <label [hidden]="Edit">
+                                                {{confirmEmail.value}}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row label-data align-items-center margin-top-30x">
+                                        <div class="col-md-7 col-sm-6">
+                                            <button class="btn btn-prymary clickable btn-red" type="button"
+                                                    (click)="DiscardEdit()" [hidden]="!Edit">
+                                                Cancelar
+                                            </button>
+                                            <button class="btn btn-prymary clickable btn-green" type="submit"
+                                                    [disabled]="altaCorreo.invalid"
+                                                    [class.btn-success]="altaCorreo.valid"
+                                                    [hidden]="!Edit">
+                                                Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Categorias-->
+                                <div class="row label-data align-items-center">
+                                    <div class="col-md-12 col-sm-12 font-bold">Activa la categoría de tu interés:</div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <ul>
+                                            <li *ngFor="let alerta of alertasArray">
+                                                <input type="checkbox" name="alerta.nombre" value="alerta.id"  />
+                                                {{alerta.areaInteres}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row label-data align-items-center margin-top-30x">
+                                    <div class="col-md-7 col-sm-6">
+                                        <button class="btn btn-prymary clickable btn-green" type="submit"
+                                                [disabled]="altaCorreo.invalid"
+                                                [class.btn-success]="altaCorreo.valid"
+                                                [hidden]="!Edit">
+                                            Guardar
+                                        </button>
+                                    </div>
+                                </div>
+
+                            <!--</form>-->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>   
+       
+
+        </div>
+
+        <div class="col-xs-12 col-md-12 col-lg-2 padding-991">
+            <damsa-profile-percentage></damsa-profile-percentage>
+
+        </div>
+    </div>
+
+    <!--</form>-->
+
+</div>
+
+

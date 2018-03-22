@@ -1,0 +1,15 @@
+﻿<form [formGroup]="ConocimientosArray">
+    <div formArrayName="conocimientos">
+        <div class="title color-blue text-uppercase">Conocimiento y habilidades</div>
+        <div *ngFor="let formacion of ConocimientosArray.controls.conocimientos.controls; let i=index" class="panel panel-default separator">
+            <div class="panel-body" [formGroupName]="i">
+                <conocimientos [group]="ConocimientosArray.controls.conocimientos.controls[i]" [Index]="i" (Remove)="removeConocimiento($event)"></conocimientos>
+            </div>
+        </div>
+    </div>
+    <div class="margin-20">
+        <a (click)="addConocimiento()" style="cursor: default" data-toggle="tooltip" title="Agregar conocimiento o habilidad.">
+            <i class="fa fa-plus-circle fa-2x clickable" aria-hidden="true"></i>
+        </a>
+    </div>
+</form>

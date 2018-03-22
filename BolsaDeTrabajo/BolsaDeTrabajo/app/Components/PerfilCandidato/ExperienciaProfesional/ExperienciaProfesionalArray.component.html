@@ -1,0 +1,20 @@
+﻿<form [formGroup]="ExperienciasArray">
+    <div formArrayName="experiencias">
+        <div class="title color-blue text-uppercase">Experiencia profesional</div>
+        <div *ngFor="let experiencia of ExperienciasArray.controls.experiencias.controls; let i=index" class="panel panel-default separator">
+            <div class="panel-body" [formGroupName]="i">
+                <experiencias [group]="ExperienciasArray.controls.experiencias.controls[i]"  [Index]="i"
+                              (Remove)="removeExperiencia($event)"
+                              (TrabajoActualChangue)="OnTrabajoActualChangue($event)"></experiencias>
+            </div>
+        </div>
+    </div>
+    <div class="margin-20">
+        <a (click)="addExperiencia()" style="cursor: default"  
+           pTooltip="Toda aquella experiencia que adquieres al ejercer una profesión en específico o te desempeñas en un área de trabajo determinada."
+           tooltipPosition="right"
+           tooltipStyleClass="tooltip-CV">
+            <i class="fa fa-plus-circle fa-2x clickable" aria-hidden="true"></i>
+        </a>
+    </div>
+</form>

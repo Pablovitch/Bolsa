@@ -1,0 +1,96 @@
+﻿<div class="header">
+    <damsa-bar-social></damsa-bar-social>
+    <damsa-barra (ClickMenuBoton)="ShowMenu()" [ProfileName]="ProfileName" [Oculto]="Oculto"></damsa-barra> 
+    <div class="bar-pasos">
+        <div class="title color-blue">
+            Ya casi terminamos, ayúdanos a capturar tus datos de perfil: <div class="float-right">
+                <div class="text-paso">Paso</div><div class="circle-paso circle-start">3</div><div class="text-paso">de</div><div class="circle-paso circle-end">3</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="global-container">
+    <form [formGroup]="datosBasicosPerfil" (ngSubmit)="Save()"> 
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-10 padding-991">
+                <div class="address-information-container">
+                    <div class="row address-information">
+                        <div class="col-12 color-grey">
+                            <input type="text" formControlName="candidatoId" hidden />
+                            <div class="row label-data">
+                                <div class="col-md-7 col-sm-6">
+                                    <div class="tooltip-validation-error">
+                                        <p-autoComplete formControlName="areaExperiencia"
+                                                        placeholder="Área de experiencia"
+                                                        [suggestions]="filteredAreaExperiencia"
+                                                        (completeMethod)="filterAreaExperiencia($event)"
+                                                        field="areaExperiencia"
+                                                        [size]="24"
+                                                        [minLength]="1"
+                                                        inputStyleClass="input"
+                                                        (onSelect)="SetAreaExperienciaId($event)">
+
+                                        </p-autoComplete>
+                                        <input type="text" formControlName="areaExperienciaId" hidden="hidden" />
+                                        <span *ngIf="datosBasicosPerfil.controls.areaExperiencia.touched && datosBasicosPerfil.controls.areaExperienciaId.invalid"
+                                              class="tooltip-text tooltip-validation-error-right">
+                                            Requerido, seleccione una opción.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row label-data">
+                                <div class="col-md-7 col-sm-6">
+                                    <div class="tooltip-validation-error">
+                                        <input type="text" class="input" formControlName="salarioAceptable" OnlyNumber="true" maxlength="13"
+                                               placeholder="Salario mínimo deseado"
+                                               [class.input-validation-error]="datosBasicosPerfil.controls.salarioAceptable.touched && datosBasicosPerfil.controls.salarioAceptable.invalid">
+                                        <span *ngIf="datosBasicosPerfil.controls.salarioAceptable.touched && datosBasicosPerfil.controls.salarioAceptable.invalid"
+                                              class="tooltip-text tooltip-validation-error-right">
+                                            Campo requerido.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row label-data">
+                                <div class="col-md-7 col-sm-6">
+                                    <div class="tooltip-validation-error">
+                                        <input type="text" class="input" formControlName="salarioDeseado" OnlyNumber="true" maxlength="13"
+                                               placeholder="Salario deseado"
+                                               [class.input-validation-error]="datosBasicosPerfil.controls.salarioDeseado.touched && datosBasicosPerfil.controls.salarioDeseado.invalid">
+                                        <span *ngIf="datosBasicosPerfil.controls.salarioDeseado.touched && datosBasicosPerfil.controls.salarioDeseado.invalid"
+                                              class="tooltip-text tooltip-validation-error-right">
+                                            Campo requerido.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="legal">
+                                Te sugerimos ser honesto para encontrar puesto de trabajo rápidamente
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="row label-data align-items-center margin-top-30x">
+                            <div class="col-md-5 col-sm-6 font-bold"></div>
+                            <div class="col-md-7 col-sm-6">
+                                <button class="btn btn-prymary clickable btn-green" type="submit"
+                                        [disabled]="datosBasicosPerfil.invalid "
+                                        [class.btn-success]="datosBasicosPerfil.valid">
+                                    Continuar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+          </div>
+      </div>
+    </form>
+</div> 
+
+

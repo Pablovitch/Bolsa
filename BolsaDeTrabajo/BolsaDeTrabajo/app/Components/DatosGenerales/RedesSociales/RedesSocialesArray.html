@@ -1,0 +1,48 @@
+﻿<form [formGroup]="RedesSocialessArray" novalidate (ngSubmit)="Save()">
+    <div formArrayName="redesSociales">
+        <div class="title color-blue text-uppercase">Redes Sociales</div>
+        <!--<div class="row">
+            <div class="col-12 color-grey">-->
+                <!---->
+                <!--<div class="row label-data ">-->
+                    <div class="btn btn-edit clickable">
+                        <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
+
+                    </div>
+                <!--</div>-->
+                <!---->
+                <div *ngFor="let experiencia of RedesSocialessArray.controls.redesSociales.controls; let i=index" class="panel panel-default">
+
+                    <div class="panel-body" [formGroupName]="i">
+                        <redesSociales [group]="RedesSocialessArray.controls.redesSociales.controls[i]" [Index]="i"
+                                       [Edit]="Edit"
+                                 (Remove)="removeRedSocial($event)"></redesSociales>                       
+                    </div>
+                </div>
+            </div>
+            <div class="margin-20" [hidden]="!Edit">
+                <a (click)="addRedSocial()" style="cursor: default" data-toggle="tooltip" title="Agregar Red Social.">
+                    <i class="fa fa-plus-circle fa-2x clickable pull-right" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!---->
+            <div class="row label-data align-items-center margin-top-30x">
+                <div class="col-md-7 col-sm-6">
+                    <button class="btn btn-prymary clickable btn-red" type="button"
+                             [disabled]="RedesSocialessArray.invalid"
+                            (click)="DiscardEdit()" [hidden]="!Edit">
+                        Cancelar
+                    </button>
+                    <button class="btn btn-prymary clickable btn-green" type="submit"
+                            [disabled]="RedesSocialessArray.invalid"
+                            [class.btn-success]="RedesSocialessArray.valid"
+                            [hidden]="!Edit">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+            <!---->
+            <!---->
+        <!--</div>
+    </div>-->
+</form>

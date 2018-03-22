@@ -1,0 +1,282 @@
+﻿<div class="header">
+    <damsa-bar-social></damsa-bar-social>
+    <damsa-barra (ClickMenuBoton)="ShowMenu()" [CandidatoId]="CandidatoId" [Oculto]="Oculto"></damsa-barra> 
+    <div class="bar-pasos">
+        <div class="title color-blue" >Datos de Contacto <div class="float-right">
+                <div class="text-paso">Paso</div><div class="circle-paso circle-start">1</div><div class="text-paso">de</div><div class="circle-paso circle-end">3</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="global-container">
+
+    <form [formGroup]="formDatosDeContacto" (ngSubmit)="Save()">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-10 padding-991">
+
+                <!-- INFORMACION GENERAL -->
+                <div class="general-information-container">
+                    <div class="row general-information">
+                        <div class="col-12 color-grey">
+                            <div class="col-12">
+                                <input formControlName="userId" hidden/>
+                                <div class="row label-data align-items-center">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <input formControlName="Nombre"
+                                                   OnlyLetters="true"
+                                                   type="Text" class="input"
+                                                   [class.input-validation-error]="formDatosDeContacto.controls.Nombre.touched  && formDatosDeContacto.controls.Nombre.invalid"
+                                                   id="Nombre" placeholder="Nombre"
+                                                   #Nombre
+                                                  (input)="onNombreChangue($event.target.value)"
+                                                   (blur)="ValidandoCURP()" />
+                                            <span *ngIf="formDatosDeContacto.controls.Nombre.touched  && formDatosDeContacto.controls.Nombre.invalid"
+                                                  class="tooltip-text tooltip-validation-error-right">
+                                                Campo requerido.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Paterno-->
+                                <div class="row label-data align-items-center">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <input formControlName="apellidoPaterno"
+                                                   OnlyLetters="true"
+                                                   type="Text" class="input"
+                                                   [class.input-validation-error]="formDatosDeContacto.controls.apellidoPaterno.touched  && formDatosDeContacto.controls.apellidoPaterno.invalid"
+                                                   id="Paterno" placeholder="Apellido Paterno"
+                                                   #apellidoPaterno 
+                                                    (input)="onApellidoPaternoChangue($event.target.value)"
+                                                   (blur)="ValidandoCURP($event)"/>
+                                            <span *ngIf="formDatosDeContacto.controls.apellidoPaterno.touched  && formDatosDeContacto.controls.apellidoPaterno.invalid"
+                                                  class="tooltip-text tooltip-validation-error-right">Campo Requerido.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Materno-->
+                                <div class="row label-data align-items-center">
+                                    <div class="col-md-7 col-sm-6">
+                                        <input formControlName="apellidoMaterno"
+                                               OnlyLetters="true"
+                                               type="Text" class="input" id="Materno" placeholder="Apellido Materno"
+                                               #apellidoMaterno 
+                                                (input)="onApellidoMaternoChangue($event.target.value)" 
+                                               (blur)="ValidandoCURP()"/>
+                                    </div>
+                                </div>
+
+                                <!--País de nacimiento-->
+                                <div class="row label-data margin-top-30x">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <p-autoComplete formControlName="paisNacimiento"
+                                                            #paisNacimiento
+                                                            [suggestions]="filteredCountriesSingle"
+                                                            (completeMethod)="filterCountrySingle($event)"
+                                                            field="pais"
+                                                            [size]="24"
+                                                            [minLength]="1"
+                                                            placeholder="País de nacimiento"
+                                                            (onSelect)="SetPaisNacimiento($event)"
+                                                            forceSelection="true"
+                                                            (onBlur)="onBlurPais()"
+                                                            (onClear)="onClearPais()"
+                                                            inputStyleClass="input">
+                                            </p-autoComplete>
+                                            <input type="text" formControlName="paisNacimientoId" hidden />
+                                            <span *ngIf="formDatosDeContacto.controls.paisNacimiento.touched &&
+                                                                        formDatosDeContacto.controls.paisNacimientoId.invalid"
+                                                  class="tooltip-text tooltip-validation-error-right">Seleccione un país de la lista.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Estado de nacimiento-->
+                                <div class="row label-data" *ngIf="esMexicano">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <p-autoComplete formControlName="estadoNacimiento"
+                                                            #estadoNacimiento
+                                                            placeholder="Estado de nacimiento"
+                                                            [suggestions]="filteredStatesSingle"
+                                                            (completeMethod)="filterStateSingle($event)"
+                                                            field="estado"
+                                                            [size]="24"
+                                                            [minLength]="1"
+                                                            (onSelect)="setEstadoNacimiento($event)"
+                                                            (onBlur)="onBlurEstado()"
+                                                            (onClear)="onClearEstado()"
+                                                            inputStyleClass="input">
+                                            </p-autoComplete>
+                                            <input type="text" formControlName="estadoNacimientoId" hidden />
+                                            <span *ngIf="formDatosDeContacto.controls.estadoNacimiento.touched &&
+                                                     formDatosDeContacto.controls.estadoNacimientoId.invalid"
+                                                  class="tooltip-text tooltip-validation-error-right">Seleccione un estado de la lista</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Fecha nacimiento-->
+                                <div class="row label-data">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <p-calendar formControlName="fechaNacimiento"
+                                                        placeholder="Fecha de nacimiento"
+                                                        [monthNavigator]="true"
+                                                        [yearNavigator]="true"
+                                                        yearRange="1930:2018"
+                                                        required="True"
+                                                        inputStyleClass="input"
+                                                        [locale]="es"
+                                                        dateFormat="dd/mm/yy"
+                                                        (onSelect)="ValidandoCURP()"
+                                                        (onBlur)="ValidandoCURP()">
+                                            </p-calendar>
+                                            <span *ngIf="formDatosDeContacto.controls.fechaNacimiento.touched && formDatosDeContacto.controls.fechaNacimiento.invalid"
+                                                  class="tooltip-text tooltip-validation-error-right">Campo requerido</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Género-->
+                                <div class="row label-data">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <select class="input "
+                                                    [class.input-validation-error]="!formDatosDeContacto.controls.generoId.valid && formDatosDeContacto.controls.generoId.touched"
+                                                    [class.selectPlaceholder]="!formDatosDeContacto.controls.generoId.valid"
+                                                    formControlName="generoId"
+                                                    (blur)="ValidandoCURP()">
+                                                <option selected >Género</option>
+                                                <option *ngFor="let genero of generos" [value]="genero.id">{{genero.genero}}</option>
+                                            </select>
+                                            <span *ngIf="formDatosDeContacto.controls.generoId.touched  && formDatosDeContacto.controls.generoId.invalid &&
+                                              formDatosDeContacto.controls.generoId.errors?.ListaValidator"
+                                                  class="tooltip-text tooltip-validation-error-right">Campo requerido.</span>
+                                        </div>
+                                    </div>
+                                    <div class="legal">
+                                        Este dato es requerido con fines estadísticos y validación de datos oficiales y no intenta anular las diferentes identidades sexogenéricas de la diversidad
+                                        sexual
+                                    </div>
+                                </div>
+
+                                <!--Tipos de Telefonos-->
+                                <div class="row label-data">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <select class="input"
+                                                    [class.input-validation-error]="!formDatosDeContacto.controls.tipoTelefonoId.valid && formDatosDeContacto.controls.tipoTelefonoId.touched"
+                                                    [class.selectPlaceholder]="!formDatosDeContacto.controls.generoId.valid"
+                                                    formControlName="tipoTelefonoId">
+                                                <option selected >Tipo Teléfono</option>
+                                                <option *ngFor="let tipo of tiposTelefonos" [value]="tipo.id">{{tipo.tipo}}</option>
+                                            </select>
+                                            <span *ngIf="formDatosDeContacto.controls.tipoTelefonoId.touched &&
+                                              formDatosDeContacto.controls.tipoTelefonoId.errors?.ListaValidator"
+                                                  class="tooltip-text tooltip-validation-error-right">Campo requerido.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Teléfono-->
+                                <div class="row label-data">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <div class="tooltip-validation-error">
+                                                <input type="text" id="1"
+                                                       placeholder="Teléfono"
+                                                       class="input"
+                                                       OnlyNumber="true"
+                                                       formControlName="telefono" 
+                                                       maxlength="20"/> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Curp-->
+                                <div class="row label-data">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <input type="text" class="input"
+                                                   formControlName="curp"
+                                                   placeholder="CURP"
+                                                   (blur)="ValidandoCURP()"
+                                                   #curp (input)="onCURPChangue($event.target.value)"
+                                                   [class.input-validation-error]="formDatosDeContacto.controls.curp.touched && (formDatosDeContacto.controls.curp.invalid || !curpValida)" />
+                                            <span *ngIf="formDatosDeContacto.controls.curp.touched && formDatosDeContacto.controls.curp.invalid"
+                                                  class="tooltip-text tooltip-validation-error-right">Campo requerido</span>
+                                            <span *ngIf="formDatosDeContacto.controls.curp.touched
+                                              && !curpValida"
+                                                  class="tooltip-text tooltip-validation-error-right">La CURP no concuerda con la información proporcionada.</span>
+                                            <span *ngIf="formDatosDeContacto.controls.curp.touched && ExisteCurp"
+                                                  class="tooltip-text tooltip-validation-error-right">
+                                                La CURP ya existe en otro perfil.
+                                            </span>
+                                        </div>
+                                        <div class="link-blue text-underline clickable">
+                                            <a href="https://consultas.curp.gob.mx/CurpSP/inicio2_2.jsp"
+                                               target="_blank">
+                                                Consultar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Correo-->
+                                <div class="row label-data align-items-center">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <input formControlName="email"
+                                                   placeholder="Correo" type="text" 
+                                                   class="input"
+                                                   [class.input-validation-error]="formDatosDeContacto.controls.email.touched  && formDatosDeContacto.controls.email.invalid" />
+                                              <span *ngIf="formDatosDeContacto.controls.email.touched && formDatosDeContacto.controls.email.errors?.ValidarCorreo"
+                                                  class="tooltip-text tooltip-validation-error-right">Debe proporcionar un cadena de correo valida.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Confirmar-->
+                                <div class="row label-data align-items-center">
+                                    <div class="col-md-7 col-sm-6">
+                                        <div class="tooltip-validation-error">
+                                            <input formControlName="confirmEmail"
+                                                   placeholder="Confirmar Correo"
+                                                   type="text" 
+                                                   class="input" />
+                                                   <!--[class.input-validation-error]="formDatosDeContacto.controls.confirmEmail.invalid && formDatosDeContacto.controls.confirmEmail.touched" />
+                                            <span *ngIf="formDatosDeContacto.controls.confirmEmail.touched &&
+                                                  formDatosDeContacto.controls.confirmEmail.errors.ConfirmarCorreo"
+                                                  class="tooltip-text tooltip-validation-error-right">Confirme el correo.</span>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--</fieldset>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="row label-data align-items-center margin-top-30x">
+                            <div class="col-md-5 col-sm-6 font-bold"></div>
+                            <div class="col-md-7 col-sm-6" *ngIf="!ExisteCurp && curpValida">
+                                <button class="btn btn-prymary clickable btn-green" type="submit"
+                                        [disabled]="formDatosDeContacto.invalid"
+                                        [class.btn-success]="formDatosDeContacto.valid">
+                                    Continuar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </form>
+
+</div>
+

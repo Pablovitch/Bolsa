@@ -1,0 +1,44 @@
+﻿<div class="header">
+    <damsa-bar-social></damsa-bar-social>
+    <damsa-barra (ClickMenuBoton)="ShowMenu()" [ProfileName]="ProfileName" [Oculto]="Oculto"></damsa-barra>
+    <damsa-menu-oculto [ShowMenu]="showMenu"></damsa-menu-oculto>
+</div>
+<div class="global-container" >
+    <div class="row contenido">
+        <div class="col-xs-12 col-md-12 col-lg-10 padding-991 table-responsive">
+            <h3 class="title color-blue text-uppercase">Información General</h3>
+            <a class="btn btn-primary btn-sm" (click)="NewCandidato()">Add Candidato</a>
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>ApellidoPaterno</th>
+                        <th>ApellidoMaterno</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let candidato of candidatos">
+                        <td>{{candidato.nombre}}</td>
+                        <td>{{candidato.apellidoPaterno}}</td>
+                        <td>{{candidato.apellidoMaterno}}</td>
+                        <td align="center">
+                            <!--<i class="fa fa-pencil fa-2x" aria-hidden="true"
+                               [routerLink]="['altaCandidato', {id: candidato.id}]"></i>-->
+                        </td>
+                        <td align="center">
+                            <i class="fa fa-trash-o fa-2x clickable" aria-hidden="true"
+                               (click)="DeleteCandidato(candidato)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+    </div>
+</div>
+
+
+
+

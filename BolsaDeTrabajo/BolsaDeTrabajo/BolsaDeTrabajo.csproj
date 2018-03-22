@@ -1,0 +1,1191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{70C2AD29-8BC3-4FBB-902B-AA425B62924F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BolsaDeTrabajo</RootNamespace>
+    <AssemblyName>BolsaDeTrabajo</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MappingProfile.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\AboutMeController.cs" />
+    <Compile Include="Controllers\Api\AreaExperienciaController.cs" />
+    <Compile Include="Controllers\Api\AreaInteresController.cs" />
+    <Compile Include="Controllers\Api\AreasController.cs" />
+    <Compile Include="Controllers\Api\BaseAPIController.cs" />
+    <Compile Include="Controllers\Api\CandidatosController.cs" />
+    <Compile Include="Controllers\Api\CarrerasController.cs" />
+    <Compile Include="Controllers\Api\CatalogosController.cs" />
+    <Compile Include="Controllers\Api\CertificacionController.cs" />
+    <Compile Include="Controllers\Api\ColoniasController.cs" />
+    <Compile Include="Controllers\Api\ConocimientoController.cs" />
+    <Compile Include="Controllers\Api\CursoController.cs" />
+    <Compile Include="Controllers\Api\DataValidationIdentificacionesController.cs" />
+    <Compile Include="Controllers\Api\DatosContactoController.cs" />
+    <Compile Include="Controllers\Api\DatosPersonalesController.cs" />
+    <Compile Include="Controllers\Api\DetalleVacanteController.cs" />
+    <Compile Include="Controllers\Api\DireccionController.cs" />
+    <Compile Include="Controllers\Api\DiscapacidadesController.cs" />
+    <Compile Include="Controllers\Api\DocumentosValidadoresController.cs" />
+    <Compile Include="Controllers\Api\EmailConfirmController.cs" />
+    <Compile Include="Controllers\Api\EstadosController.cs" />
+    <Compile Include="Controllers\Api\EstadosEstudioController.cs" />
+    <Compile Include="Controllers\Api\ExperienciaController.cs" />
+    <Compile Include="Controllers\Api\FiltradoVctsController.cs" />
+    <Compile Include="Controllers\Api\FiltroPostulacionesController.cs" />
+    <Compile Include="Controllers\Api\FormacionController.cs" />
+    <Compile Include="Controllers\Api\GirosEmpresaController.cs" />
+    <Compile Include="Controllers\Api\GradosEstudioController.cs" />
+    <Compile Include="Controllers\Api\IdentificacionesController.cs" />
+    <Compile Include="Controllers\Api\IdiomasController.cs" />
+    <Compile Include="Controllers\Api\InformacionGeneralController.cs" />
+    <Compile Include="Controllers\Api\InstitucionEducativaController.cs" />
+    <Compile Include="Controllers\Api\MonthsController.cs" />
+    <Compile Include="Controllers\Api\MunicipiosController.cs" />
+    <Compile Include="Controllers\Api\NivelesController.cs" />
+    <Compile Include="Controllers\Api\PaisesController.cs" />
+    <Compile Include="Controllers\Api\PerfilCandidatoController.cs" />
+    <Compile Include="Controllers\Api\PerfilExperienciaController.cs" />
+    <Compile Include="Controllers\Api\PerfilIdiomaController.cs" />
+    <Compile Include="Controllers\Api\PostulacionesController.cs" />
+    <Compile Include="Controllers\Api\ProfileImageUploaderController.cs" />
+    <Compile Include="Controllers\Api\QuickProfileController.cs" />
+    <Compile Include="Controllers\Api\RedesSocialesController.cs" />
+    <Compile Include="Controllers\Api\SexosController.cs" />
+    <Compile Include="Controllers\Api\SitioWebController.cs" />
+    <Compile Include="Controllers\Api\TipoRedSocialController.cs" />
+    <Compile Include="Controllers\Api\TiposLicenciasController.cs" />
+    <Compile Include="Controllers\Api\TiposTelefonosController.cs" />
+    <Compile Include="Controllers\Api\UsuarioController.cs" />
+    <Compile Include="Controllers\Api\VacanteController.cs" />
+    <Compile Include="Controllers\Api\YearsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Dtos\AboutMeDto.cs" />
+    <Compile Include="Dtos\CandidatoDto.cs" />
+    <Compile Include="Dtos\ColoniaDto.cs" />
+    <Compile Include="Dtos\DataValidationDto.cs" />
+    <Compile Include="Dtos\Date.cs" />
+    <Compile Include="Dtos\DatosContactoDto.cs" />
+    <Compile Include="Dtos\DatosGenerales\InformacionGeneralDto.cs" />
+    <Compile Include="Dtos\DatosPersonales.cs" />
+    <Compile Include="Dtos\DireccionDto.cs" />
+    <Compile Include="Dtos\EstadoCivilDto.cs" />
+    <Compile Include="Dtos\EstadoDto.cs" />
+    <Compile Include="Dtos\FiltroPostulaciones.cs" />
+    <Compile Include="Dtos\FiltroVacantes.cs" />
+    <Compile Include="Dtos\IdentificacionesDto.cs" />
+    <Compile Include="Dtos\MunicipioDto.cs" />
+    <Compile Include="Dtos\PaisDto.cs" />
+    <Compile Include="Dtos\PerfilCandidatoDto.cs" />
+    <Compile Include="Dtos\PostulacionesDto.cs" />
+    <Compile Include="Dtos\ResumenVacanteDto.cs" />
+    <Compile Include="Dtos\SexoDto.cs" />
+    <Compile Include="Dtos\TipoLicenciaDto.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Dtos\VacanteDto.cs" />
+    <Compile Include="Dtos\VacantesDto.cs" />
+    <Compile Include="Dtos\VctosDto.cs" />
+    <Compile Include="Dtos\VctsGralDto.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011912540_FirstMigration.cs" />
+    <Compile Include="Migrations\201712011912540_FirstMigration.Designer.cs">
+      <DependentUpon>201712011912540_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011914505_CatalogoPaises.cs" />
+    <Compile Include="Migrations\201712011914505_CatalogoPaises.Designer.cs">
+      <DependentUpon>201712011914505_CatalogoPaises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011922586_CatalogoEstados.cs" />
+    <Compile Include="Migrations\201712011922586_CatalogoEstados.Designer.cs">
+      <DependentUpon>201712011922586_CatalogoEstados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011924333_CatalogoMunicipios.cs" />
+    <Compile Include="Migrations\201712011924333_CatalogoMunicipios.Designer.cs">
+      <DependentUpon>201712011924333_CatalogoMunicipios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011927029_CatalogoVariosI.cs" />
+    <Compile Include="Migrations\201712011927029_CatalogoVariosI.Designer.cs">
+      <DependentUpon>201712011927029_CatalogoVariosI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011928083_CatalogoVariosII.cs" />
+    <Compile Include="Migrations\201712011928083_CatalogoVariosII.Designer.cs">
+      <DependentUpon>201712011928083_CatalogoVariosII.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011929346_CatalogoVariosIII.cs" />
+    <Compile Include="Migrations\201712011929346_CatalogoVariosIII.Designer.cs">
+      <DependentUpon>201712011929346_CatalogoVariosIII.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011950161_addUsuarioTable.cs" />
+    <Compile Include="Migrations\201712011950161_addUsuarioTable.Designer.cs">
+      <DependentUpon>201712011950161_addUsuarioTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712071936598_PerfilIdiomaChangue.cs" />
+    <Compile Include="Migrations\201712071936598_PerfilIdiomaChangue.Designer.cs">
+      <DependentUpon>201712071936598_PerfilIdiomaChangue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712072309215_HorasCurso.cs" />
+    <Compile Include="Migrations\201712072309215_HorasCurso.Designer.cs">
+      <DependentUpon>201712072309215_HorasCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712122034578_DireccionChangue.cs" />
+    <Compile Include="Migrations\201712122034578_DireccionChangue.Designer.cs">
+      <DependentUpon>201712122034578_DireccionChangue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712131705597_AddingSocialnetworks.cs" />
+    <Compile Include="Migrations\201712131705597_AddingSocialnetworks.Designer.cs">
+      <DependentUpon>201712131705597_AddingSocialnetworks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712131709096_SocialNetworkCatalogue.cs" />
+    <Compile Include="Migrations\201712131709096_SocialNetworkCatalogue.Designer.cs">
+      <DependentUpon>201712131709096_SocialNetworkCatalogue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141551166_urlChangueforredSocial.cs" />
+    <Compile Include="Migrations\201712141551166_urlChangueforredSocial.Designer.cs">
+      <DependentUpon>201712141551166_urlChangueforredSocial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151833264_aboutmeChangue.cs" />
+    <Compile Include="Migrations\201712151833264_aboutmeChangue.Designer.cs">
+      <DependentUpon>201712151833264_aboutmeChangue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801091656495_Postulaciones.cs" />
+    <Compile Include="Migrations\201801091656495_Postulaciones.Designer.cs">
+      <DependentUpon>201801091656495_Postulaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801091933075_DamfoYrelaciones.cs" />
+    <Compile Include="Migrations\201801091933075_DamfoYrelaciones.Designer.cs">
+      <DependentUpon>201801091933075_DamfoYrelaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801092025317_deleteBeneficiosPerfil.cs" />
+    <Compile Include="Migrations\201801092025317_deleteBeneficiosPerfil.Designer.cs">
+      <DependentUpon>201801092025317_deleteBeneficiosPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801092035070_AddNewBeneficiosPerfil.cs" />
+    <Compile Include="Migrations\201801092035070_AddNewBeneficiosPerfil.Designer.cs">
+      <DependentUpon>201801092035070_AddNewBeneficiosPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801092214544_UpdateCliente.cs" />
+    <Compile Include="Migrations\201801092214544_UpdateCliente.Designer.cs">
+      <DependentUpon>201801092214544_UpdateCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801092247224_Damfo.cs" />
+    <Compile Include="Migrations\201801092315068_newDamfo.cs" />
+    <Compile Include="Migrations\201801092336484_DeletePsicometriasdamsa.cs" />
+    <Compile Include="Migrations\201801092336484_DeletePsicometriasdamsa.Designer.cs">
+      <DependentUpon>201801092336484_DeletePsicometriasdamsa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801092339030_AddPsicometriasDamsa.cs" />
+    <Compile Include="Migrations\201801092339030_AddPsicometriasDamsa.Designer.cs">
+      <DependentUpon>201801092339030_AddPsicometriasDamsa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801092355083_foreingkeysVacantes.cs" />
+    <Compile Include="Migrations\201801092355083_foreingkeysVacantes.Designer.cs">
+      <DependentUpon>201801092355083_foreingkeysVacantes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101513207_HorarioPerfilDelete.cs" />
+    <Compile Include="Migrations\201801101513207_HorarioPerfilDelete.Designer.cs">
+      <DependentUpon>201801101513207_HorarioPerfilDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101522215_HorarioPerfil.cs" />
+    <Compile Include="Migrations\201801101522215_HorarioPerfil.Designer.cs">
+      <DependentUpon>201801101522215_HorarioPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101723314_StatusPostulaciones.cs" />
+    <Compile Include="Migrations\201801101723314_StatusPostulaciones.Designer.cs">
+      <DependentUpon>201801101723314_StatusPostulaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101803575_PostulacionEdit.cs" />
+    <Compile Include="Migrations\201801101803575_PostulacionEdit.Designer.cs">
+      <DependentUpon>201801101803575_PostulacionEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101808500_deletePostulacion.cs" />
+    <Compile Include="Migrations\201801101808500_deletePostulacion.Designer.cs">
+      <DependentUpon>201801101808500_deletePostulacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801101811106_UpdatePostulacion.cs" />
+    <Compile Include="Migrations\201801101811106_UpdatePostulacion.Designer.cs">
+      <DependentUpon>201801101811106_UpdatePostulacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801102129229_UpteVacanteDireccion.cs" />
+    <Compile Include="Migrations\201801102129229_UpteVacanteDireccion.Designer.cs">
+      <DependentUpon>201801102129229_UpteVacanteDireccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801102341568_vacantesprestacionesdeley.cs" />
+    <Compile Include="Migrations\201801102341568_vacantesprestacionesdeley.Designer.cs">
+      <DependentUpon>201801102341568_vacantesprestacionesdeley.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801102354529_deleteicollectionsvacante.cs" />
+    <Compile Include="Migrations\201801102354529_deleteicollectionsvacante.Designer.cs">
+      <DependentUpon>201801102354529_deleteicollectionsvacante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801112021079_UpdateVacanteDeleteNivel.cs" />
+    <Compile Include="Migrations\201801112021079_UpdateVacanteDeleteNivel.Designer.cs">
+      <DependentUpon>201801112021079_UpdateVacanteDeleteNivel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801112022441_UpdateVacanteSetGradoEstudio.cs" />
+    <Compile Include="Migrations\201801112022441_UpdateVacanteSetGradoEstudio.Designer.cs">
+      <DependentUpon>201801112022441_UpdateVacanteSetGradoEstudio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801112023507_addCatalogoGradoEstudios.cs" />
+    <Compile Include="Migrations\201801112023507_addCatalogoGradoEstudios.Designer.cs">
+      <DependentUpon>201801112023507_addCatalogoGradoEstudios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801112250423_updatevacantedeletecontrato.cs" />
+    <Compile Include="Migrations\201801112250423_updatevacantedeletecontrato.Designer.cs">
+      <DependentUpon>201801112250423_updatevacantedeletecontrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801112253509_updateVacanteSalarioContrato.cs" />
+    <Compile Include="Migrations\201801112253509_updateVacanteSalarioContrato.Designer.cs">
+      <DependentUpon>201801112253509_updateVacanteSalarioContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121755220_aptitudesEscolaridadPerfil.cs" />
+    <Compile Include="Migrations\201801121755220_aptitudesEscolaridadPerfil.Designer.cs">
+      <DependentUpon>201801121755220_aptitudesEscolaridadPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801151531033_EscolaridadesPerfilVacante.cs" />
+    <Compile Include="Migrations\201801151531033_EscolaridadesPerfilVacante.Designer.cs">
+      <DependentUpon>201801151531033_EscolaridadesPerfilVacante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801151703047_aptitudesVacante.cs" />
+    <Compile Include="Migrations\201801151703047_aptitudesVacante.Designer.cs">
+      <DependentUpon>201801151703047_aptitudesVacante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801151713079_dropAptitudesperfilVacante.cs" />
+    <Compile Include="Migrations\201801151713079_dropAptitudesperfilVacante.Designer.cs">
+      <DependentUpon>201801151713079_dropAptitudesperfilVacante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801231647524_AspNetUsers.cs" />
+    <Compile Include="Migrations\201801231647524_AspNetUsers.Designer.cs">
+      <DependentUpon>201801231647524_AspNetUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801231706043_formulariosInicialesChangues.cs" />
+    <Compile Include="Migrations\201801231706043_formulariosInicialesChangues.Designer.cs">
+      <DependentUpon>201801231706043_formulariosInicialesChangues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801261845259_UsuarioGuiNullable.cs" />
+    <Compile Include="Migrations\201801261845259_UsuarioGuiNullable.Designer.cs">
+      <DependentUpon>201801261845259_UsuarioGuiNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802021557273_Requisiciones.cs" />
+    <Compile Include="Migrations\201802021557273_Requisiciones.Designer.cs">
+      <DependentUpon>201802021557273_Requisiciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802022236539_dropfkcursos.cs" />
+    <Compile Include="Migrations\201802022236539_dropfkcursos.Designer.cs">
+      <DependentUpon>201802022236539_dropfkcursos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802022238061_addfkicursos.cs" />
+    <Compile Include="Migrations\201802022238061_addfkicursos.Designer.cs">
+      <DependentUpon>201802022238061_addfkicursos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802061544463_ChangeAreaSchema.cs" />
+    <Compile Include="Migrations\201802061544463_ChangeAreaSchema.Designer.cs">
+      <DependentUpon>201802061544463_ChangeAreaSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802061555179_ChangesSchemaAreas.cs" />
+    <Compile Include="Migrations\201802061555179_ChangesSchemaAreas.Designer.cs">
+      <DependentUpon>201802061555179_ChangesSchemaAreas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802071628405_SitioWebAboutMe.cs" />
+    <Compile Include="Migrations\201802071628405_SitioWebAboutMe.Designer.cs">
+      <DependentUpon>201802071628405_SitioWebAboutMe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802121735355_ASPNETUSERconfirmemail.cs" />
+    <Compile Include="Migrations\201802121735355_ASPNETUSERconfirmemail.Designer.cs">
+      <DependentUpon>201802121735355_ASPNETUSERconfirmemail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802122229233_migrationx.cs" />
+    <Compile Include="Migrations\201802122229233_migrationx.Designer.cs">
+      <DependentUpon>201802122229233_migrationx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802122328283_procesPerfilChangues.cs" />
+    <Compile Include="Migrations\201802122328283_procesPerfilChangues.Designer.cs">
+      <DependentUpon>201802122328283_procesPerfilChangues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802122332186_procesPerfilChangues2.cs" />
+    <Compile Include="Migrations\201802122332186_procesPerfilChangues2.Designer.cs">
+      <DependentUpon>201802122332186_procesPerfilChangues2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131509489_DBCOntexActualizacion.cs" />
+    <Compile Include="Migrations\201802131509489_DBCOntexActualizacion.Designer.cs">
+      <DependentUpon>201802131509489_DBCOntexActualizacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131557469_DBCOntexActualizacion1.cs" />
+    <Compile Include="Migrations\201802131557469_DBCOntexActualizacion1.Designer.cs">
+      <DependentUpon>201802131557469_DBCOntexActualizacion1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131712271_DBCOntexActualizacion2.cs" />
+    <Compile Include="Migrations\201802131712271_DBCOntexActualizacion2.Designer.cs">
+      <DependentUpon>201802131712271_DBCOntexActualizacion2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131815410_DBCOntexActualizacion3.cs" />
+    <Compile Include="Migrations\201802131815410_DBCOntexActualizacion3.Designer.cs">
+      <DependentUpon>201802131815410_DBCOntexActualizacion3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131820057_DBCOntexActualizacion4.cs" />
+    <Compile Include="Migrations\201802131820057_DBCOntexActualizacion4.Designer.cs">
+      <DependentUpon>201802131820057_DBCOntexActualizacion4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131827239_DBCOntexActualizacion5.cs" />
+    <Compile Include="Migrations\201802131827239_DBCOntexActualizacion5.Designer.cs">
+      <DependentUpon>201802131827239_DBCOntexActualizacion5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131830483_DBCOntexActualizacion6.cs" />
+    <Compile Include="Migrations\201802131830483_DBCOntexActualizacion6.Designer.cs">
+      <DependentUpon>201802131830483_DBCOntexActualizacion6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131849295_DBCOntexActualizacion7.cs" />
+    <Compile Include="Migrations\201802131849295_DBCOntexActualizacion7.Designer.cs">
+      <DependentUpon>201802131849295_DBCOntexActualizacion7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131920062_direccionCalleChangued.cs" />
+    <Compile Include="Migrations\201802131920062_direccionCalleChangued.Designer.cs">
+      <DependentUpon>201802131920062_direccionCalleChangued.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802132344501_tst.cs" />
+    <Compile Include="Migrations\201802132344501_tst.Designer.cs">
+      <DependentUpon>201802132344501_tst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803030319441_alterdamfo.cs" />
+    <Compile Include="Migrations\201803030319441_alterdamfo.Designer.cs">
+      <DependentUpon>201803030319441_alterdamfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AboutMe.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActividadEmpresa.cs" />
+    <Compile Include="Models\ActividadesPerfil.cs" />
+    <Compile Include="Models\ActividadesRequi.cs" />
+    <Compile Include="Models\Agencia.cs" />
+    <Compile Include="Models\Aptitud.cs" />
+    <Compile Include="Models\AptitudesPerfil.cs" />
+    <Compile Include="Models\AptitudesRequi.cs" />
+    <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\AreaExperiencia.cs" />
+    <Compile Include="Models\AreaInteres.cs" />
+    <Compile Include="Models\AsignacionRequi.cs" />
+    <Compile Include="Models\AspNetUsers.cs" />
+    <Compile Include="Models\BeneficiosPerfil.cs" />
+    <Compile Include="Models\BeneficiosRequi.cs" />
+    <Compile Include="Models\Candidato.cs" />
+    <Compile Include="Models\CandidatoConocimientoInformatico.cs" />
+    <Compile Include="Models\Cargo.cs" />
+    <Compile Include="Models\Carrera.cs" />
+    <Compile Include="Models\Certificacion.cs" />
+    <Compile Include="Models\ClaseReclutamiento.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Colonia.cs" />
+    <Compile Include="Models\CompetenciaArea.cs" />
+    <Compile Include="Models\CompetenciaAreaPerfil.cs" />
+    <Compile Include="Models\CompetenciaAreaRequi.cs" />
+    <Compile Include="Models\CompetenciaCardinal.cs" />
+    <Compile Include="Models\CompetenciaCardinalPerfil.cs" />
+    <Compile Include="Models\CompetenciaCardinalRequi.cs" />
+    <Compile Include="Models\CompetenciaGarencial.cs" />
+    <Compile Include="Models\CompetenciaGerencialPerfil.cs" />
+    <Compile Include="Models\CompetenciaGerencialRequi.cs" />
+    <Compile Include="Models\ConocimientoInformatico.cs" />
+    <Compile Include="Models\ConocimientoOHabilidad.cs" />
+    <Compile Include="Models\Contacto.cs" />
+    <Compile Include="Models\ContactoPerfil.cs" />
+    <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\DAMFO-290.cs" />
+    <Compile Include="Models\DiaObligatorio.cs" />
+    <Compile Include="Models\DiaSemana.cs" />
+    <Compile Include="Models\Direccion.cs" />
+    <Compile Include="Models\DisenioVacante.cs" />
+    <Compile Include="Models\DocumentosCliente.cs" />
+    <Compile Include="Models\DocumentosClienteRequi.cs" />
+    <Compile Include="Models\DocumentosDamsa.cs" />
+    <Compile Include="Models\DocumentoValidador.cs" />
+    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\EscolaridadesPerfil.cs" />
+    <Compile Include="Models\EscolaridadesRequi.cs" />
+    <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\EstadoCivil.cs" />
+    <Compile Include="Models\EstadoEstudio.cs" />
+    <Compile Include="Models\Estatus.cs" />
+    <Compile Include="Models\ExperienciaProfesional.cs" />
+    <Compile Include="Models\Formacion.cs" />
+    <Compile Include="Models\FormaContacto.cs" />
+    <Compile Include="Models\FormulariosIniciales.cs" />
+    <Compile Include="Models\Genero.cs" />
+    <Compile Include="Models\GiroEmpresa.cs" />
+    <Compile Include="Models\GradoEstudio.cs" />
+    <Compile Include="Models\Grupos.cs" />
+    <Compile Include="Models\HorarioPerfil.cs" />
+    <Compile Include="Models\HorarioRequi.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Idioma.cs" />
+    <Compile Include="Models\InstitucionEducativa.cs" />
+    <Compile Include="Models\JornadaLaboral.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Modulos.cs" />
+    <Compile Include="Models\Month.cs" />
+    <Compile Include="Models\Municipio.cs" />
+    <Compile Include="Models\Nivel.cs" />
+    <Compile Include="Models\ObservacionesPerfil.cs" />
+    <Compile Include="Models\ObservacionesRequi.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\PerfilCandidato.cs" />
+    <Compile Include="Models\PerfilExperiencia.cs" />
+    <Compile Include="Models\PerfilIdioma.cs" />
+    <Compile Include="Models\PerfilProfesional.cs" />
+    <Compile Include="Models\PeriodoPago.cs" />
+    <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\Porcentage.cs" />
+    <Compile Include="Models\Postulacion.cs" />
+    <Compile Include="Models\PrestacionesClientePerfil.cs" />
+    <Compile Include="Models\PrestacionesClienteRequi.cs" />
+    <Compile Include="Models\PrestacionLey.cs" />
+    <Compile Include="Models\Prioridad.cs" />
+    <Compile Include="Models\ProcesoPerfil.cs" />
+    <Compile Include="Models\ProcesoRequi.cs" />
+    <Compile Include="Models\PsicometriasCliente.cs" />
+    <Compile Include="Models\PsicometriasClienteRequi.cs" />
+    <Compile Include="Models\PsicometriasDamsa.cs" />
+    <Compile Include="Models\PsicometriasDamsaRequi.cs" />
+    <Compile Include="Models\RedSocial.cs" />
+    <Compile Include="Models\Referenciado.cs" />
+    <Compile Include="Models\Requisicion.cs" />
+    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\RutaCamion.cs" />
+    <Compile Include="Models\RutasPerfil.cs" />
+    <Compile Include="Models\StatusPostulacion.cs" />
+    <Compile Include="Models\TamanoEmpresa.cs" />
+    <Compile Include="Models\Telefono.cs" />
+    <Compile Include="Models\TelefonoPerfil.cs" />
+    <Compile Include="Models\TiempoContrato.cs" />
+    <Compile Include="Models\TipoBase.cs" />
+    <Compile Include="Models\TipoBeneficio.cs" />
+    <Compile Include="Models\TipoContrato.cs" />
+    <Compile Include="Models\TipodeNomina.cs" />
+    <Compile Include="Models\TipoDireccion.cs" />
+    <Compile Include="Models\TipoDiscapacidad.cs" />
+    <Compile Include="Models\TipoEmpresa.cs" />
+    <Compile Include="Models\TipoLicencia.cs" />
+    <Compile Include="Models\TipoModalidad.cs" />
+    <Compile Include="Models\TipoPsicometria.cs" />
+    <Compile Include="Models\TipoReclutamiento.cs" />
+    <Compile Include="Models\TipoRedSocial.cs" />
+    <Compile Include="Models\TipoTelefono.cs" />
+    <Compile Include="Models\TipoUsuario.cs" />
+    <Compile Include="Models\Usuarios.cs" />
+    <Compile Include="Models\Year.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\Utilerias.cs" />
+    <Compile Include="ViewModels\CandidatoViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\Components\Alertas\Alertas.html" />
+    <Content Include="app\Components\Confirmaciones\Confirmaciones.html" />
+    <Content Include="app\Components\DatosGenerales\DatosGenerales.component.html" />
+    <Content Include="app\Components\DatosGenerales\DatosPersonales\DatosPersonales.component.html" />
+    <Content Include="app\Components\DatosGenerales\Direccion\Direccion.component.html" />
+    <Content Include="app\Components\DatosGenerales\Identificaciones\Identificaciones.component.html" />
+    <Content Include="app\Components\DatosGenerales\ImageProfile\ImageProfile.Upload.html" />
+    <Content Include="app\Components\DatosGenerales\ImageProfile\ImageProfileUpload.component.css" />
+    <Content Include="app\Components\DatosGenerales\InformacionGeneral\InformacionGeneral.component.html" />
+    <Content Include="app\Components\DatosGenerales\RedesSociales\RedesSocialesArray.html" />
+    <Content Include="app\Components\DatosGenerales\RedesSociales\RedSocial.html" />
+    <Content Include="app\Components\FormulariosIniciales\DatosDeContacto.component.html" />
+    <Content Include="app\Components\FormulariosIniciales\DatosDireccion.component.html" />
+    <Content Include="app\Components\FormulariosIniciales\DatosPerfil.component.html" />
+    <Content Include="app\Components\GeneralComponents\bar-social.component.html" />
+    <Content Include="app\Components\GeneralComponents\barra.component.html" />
+    <Content Include="app\Components\GeneralComponents\menu-oculto.component.html" />
+    <Content Include="app\Components\GeneralComponents\Profile-percentage.component.html" />
+    <Content Include="app\Components\app.component.html" />
+    <Content Include="app\Components\PerfilCandidato\AboutMe\aboutme.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Certificacion\Certificacion.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Certificacion\CertificacionArray.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Conocimientos\Conocimiento.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Conocimientos\ConocimientoArray.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Curso\curso.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Curso\CursoArray.component.html" />
+    <Content Include="app\Components\PerfilCandidato\ExperienciaProfesional\ExperienciaProfesional.component.html" />
+    <Content Include="app\Components\PerfilCandidato\ExperienciaProfesional\ExperienciaProfesionalArray.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Formacion\Formacion.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Formacion\FormacionArray.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Idioma\Idioma.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Idioma\IdiomaArray.component.html" />
+    <Content Include="app\Components\PerfilCandidato\Perfil-Candidato.component.html" />
+    <Content Include="app\Components\Postulaciones\Postulaciones.html" />
+    <Content Include="app\Components\TablaCandidatos\CandidatosTable.html" />
+    <Content Include="app\Components\Vacantes\app.LayoutVcts.html" />
+    <Content Include="app\Components\Vacantes\Busqueda\busqueda.component.css" />
+    <Content Include="app\Components\Vacantes\Busqueda\busqueda.component.html" />
+    <Content Include="app\Components\Vacantes\Vacante\vacante.component.css" />
+    <Content Include="app\Components\Vacantes\Vacante\vacante.component.html" />
+    <Content Include="assets\images\facebook.png" />
+    <Content Include="assets\images\graphic-test.png" />
+    <Content Include="assets\images\icon-alerts.png" />
+    <Content Include="assets\images\icon-applications.png" />
+    <Content Include="assets\images\icon-arrow.png" />
+    <Content Include="assets\images\icon-back.png" />
+    <Content Include="assets\images\icon-calendar.png" />
+    <Content Include="assets\images\icon-category.png" />
+    <Content Include="assets\images\icon-cv.png" />
+    <Content Include="assets\images\icon-edit.png" />
+    <Content Include="assets\images\icon-education.png" />
+    <Content Include="assets\images\icon-location.png" />
+    <Content Include="assets\images\icon-money.png" />
+    <Content Include="assets\images\icon-profile.png" />
+    <Content Include="assets\images\icon-search.png" />
+    <Content Include="assets\images\icon-type.png" />
+    <Content Include="assets\images\icon-upload.png" />
+    <Content Include="assets\images\linkedin.png" />
+    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\notifications.png" />
+    <Content Include="assets\images\photo-default.png" />
+    <Content Include="assets\images\photo-profile-default.png" />
+    <Content Include="assets\images\photo-profile.png" />
+    <Content Include="assets\images\profile.png" />
+    <Content Include="assets\images\search-error.png" />
+    <Content Include="assets\images\search.png" />
+    <Content Include="assets\images\twitter.png" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\busqueda.component.css" />
+    <Content Include="Content\responsive.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Content\vacante.component.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="PerfilImagenes\error1.png.png" />
+    <Content Include="PerfilImagenes\Mulan.jpg" />
+    <Content Include="PerfilImagenes\Mulan.jpg.jpg" />
+    <Content Include="Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="package.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\BolsaDeTrabajo.pubxml" />
+    <None Include="Properties\PublishProfiles\BTra.pubxml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\functions.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="systemjs.config.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="tsconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="assets\RedesSociales\" />
+    <Folder Include="CandidatoProfilePicture\" />
+    <Folder Include="Controllers\PerfilCandidato\Api\" />
+    <Folder Include="Views\SitioWeb\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\app.routing.ts" />
+    <TypeScriptCompile Include="app\Components\Alertas\alertas.module.ts" />
+    <TypeScriptCompile Include="app\Components\Alertas\alertas.routing.ts" />
+    <TypeScriptCompile Include="app\Components\Alertas\Alertas.ts" />
+    <TypeScriptCompile Include="app\Components\alta.candidato.validators.ts" />
+    <TypeScriptCompile Include="app\Components\Confirmaciones\Confirmacion.component.ts" />
+    <TypeScriptCompile Include="app\Components\Confirmaciones\confirmation.module.ts" />
+    <TypeScriptCompile Include="app\Components\Confirmaciones\confirmation.routing.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\DatosGenerales.component.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\DatosGenerales.module.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\DatosGenerales.routing.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\DatosPersonales\DatosPersonales.component.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\Direccion\Direccion.component.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\Identificaciones\Identificaciones.component.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\ImageProfile\ImageProfileUpload.component.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\InformacionGeneral\InformacionGeneral.component.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\RedesSociales\RedesSocialesArray.ts" />
+    <TypeScriptCompile Include="app\Components\DatosGenerales\RedesSociales\RedSocial.ts" />
+    <TypeScriptCompile Include="app\Components\FormulariosIniciales\DatosDeContacto.component.ts" />
+    <TypeScriptCompile Include="app\Components\FormulariosIniciales\DatosDireccion.component.ts" />
+    <TypeScriptCompile Include="app\Components\FormulariosIniciales\DatosPerfil.component.ts" />
+    <TypeScriptCompile Include="app\Components\FormulariosIniciales\formularios.routing.ts" />
+    <TypeScriptCompile Include="app\Components\FormulariosIniciales\FormulariosIniciales.module.ts" />
+    <TypeScriptCompile Include="app\Components\GeneralComponents\bar.social.component.ts" />
+    <TypeScriptCompile Include="app\Components\GeneralComponents\barra.component.ts" />
+    <TypeScriptCompile Include="app\Components\GeneralComponents\menu-oculto.component.ts" />
+    <TypeScriptCompile Include="app\Components\GeneralComponents\profile.percent.component.ts" />
+    <TypeScriptCompile Include="app\Components\OnlyNumbers.Directive.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\AboutMe\aboutme.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Certificacion\Certificacion.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Certificacion\CertificacionArray.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Conocimientos\Conocimiento.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Conocimientos\ConocimientoArray.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Curso\curso.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Curso\CursoArray.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\ExperienciaProfesional\ExperienciaProfesional.componet.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\ExperienciaProfesional\ExperienciaProfesionalArray.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Formacion\Formacion.Component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Formacion\FormacionArray.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Idioma\idioma.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\Idioma\IdiomaArray.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\perfil-candidato.component.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\PerfilCandidato.module.ts" />
+    <TypeScriptCompile Include="app\Components\PerfilCandidato\PerfilCandidato.routing.ts" />
+    <TypeScriptCompile Include="app\Components\Postulaciones\postulaciones.module.ts" />
+    <TypeScriptCompile Include="app\Components\Postulaciones\postulaciones.routing.ts" />
+    <TypeScriptCompile Include="app\Components\Postulaciones\Postulaciones.ts" />
+    <TypeScriptCompile Include="app\Components\TablaCandidatos\CandidatosTable.component.ts" />
+    <TypeScriptCompile Include="app\Components\not-found.component.ts" />
+    <TypeScriptCompile Include="app\Components\Vacantes\app.LayoutVcts.ts" />
+    <TypeScriptCompile Include="app\Components\Vacantes\Busqueda\busqueda.component.ts" />
+    <TypeScriptCompile Include="app\Components\Vacantes\vacante.module.ts" />
+    <TypeScriptCompile Include="app\Components\Vacantes\vacante.routing.ts" />
+    <TypeScriptCompile Include="app\Components\Vacantes\Vacante\vacante.component.ts" />
+    <TypeScriptCompile Include="app\Components\Validators\CURP.validator.ts" />
+    <TypeScriptCompile Include="app\Components\Validators\CURPNombre.validator.ts" />
+    <TypeScriptCompile Include="app\Components\Validators\PerfilCandidato.validators.ts" />
+    <TypeScriptCompile Include="app\Directives\OnlyLetters.directive.ts" />
+    <TypeScriptCompile Include="app\Directives\OnlyNumbers.Directive.ts" />
+    <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\Models\Candidato.ts" />
+    <TypeScriptCompile Include="app\Models\ICandidato.ts" />
+    <TypeScriptCompile Include="app\Models\IEstado.ts" />
+    <TypeScriptCompile Include="app\Models\IEstadoCivil.ts" />
+    <TypeScriptCompile Include="app\Models\IMunicipio.ts" />
+    <TypeScriptCompile Include="app\Models\IPais.ts" />
+    <TypeScriptCompile Include="app\Models\IGenero.ts" />
+    <TypeScriptCompile Include="app\Models\ITipoDiscapacidad.ts" />
+    <TypeScriptCompile Include="app\Models\ITipoLicencia.ts" />
+    <TypeScriptCompile Include="app\Models\PerfilCandidato.ts" />
+    <TypeScriptCompile Include="app\Models\Postulaciones.ts" />
+    <TypeScriptCompile Include="app\Models\QuickProfile.ts" />
+    <TypeScriptCompile Include="app\Models\Vacantes.ts" />
+    <TypeScriptCompile Include="app\Models\ValidationCurpModel.ts" />
+    <TypeScriptCompile Include="app\Services\ApiConections.ts" />
+    <TypeScriptCompile Include="app\Services\busqueda.service.ts" />
+    <TypeScriptCompile Include="app\Services\Candidatos.Service.ts" />
+    <TypeScriptCompile Include="app\Services\Catalogo.PerfilCandidato.service.ts" />
+    <TypeScriptCompile Include="app\Services\catalogos.service.ts" />
+    <TypeScriptCompile Include="app\Services\DatosDeCandidato.Service.ts" />
+    <TypeScriptCompile Include="app\Services\DatosGenerales.service.ts" />
+    <TypeScriptCompile Include="app\Services\DatosPerfil.service.ts" />
+    <TypeScriptCompile Include="app\Services\DetalleVacante.ts" />
+    <TypeScriptCompile Include="app\Services\Direccion.Service.ts" />
+    <TypeScriptCompile Include="app\Services\PerfilCandidato.Service.ts" />
+    <TypeScriptCompile Include="app\Services\Postulaciones.ts" />
+    <TypeScriptCompile Include="app\Services\ProfileImage.service.ts" />
+    <TypeScriptCompile Include="app\Services\QuickProfile.ts" />
+    <TypeScriptCompile Include="app\Services\Usuario.ts" />
+    <TypeScriptCompile Include="app\Services\vacantes.service.ts" />
+    <TypeScriptCompile Include="app\Shared\ApiCatalogos.ts" />
+    <TypeScriptCompile Include="app\Shared\Shared.module.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712011912540_FirstMigration.resx">
+      <DependentUpon>201712011912540_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011914505_CatalogoPaises.resx">
+      <DependentUpon>201712011914505_CatalogoPaises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011922586_CatalogoEstados.resx">
+      <DependentUpon>201712011922586_CatalogoEstados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011924333_CatalogoMunicipios.resx">
+      <DependentUpon>201712011924333_CatalogoMunicipios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011927029_CatalogoVariosI.resx">
+      <DependentUpon>201712011927029_CatalogoVariosI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011928083_CatalogoVariosII.resx">
+      <DependentUpon>201712011928083_CatalogoVariosII.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011929346_CatalogoVariosIII.resx">
+      <DependentUpon>201712011929346_CatalogoVariosIII.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011950161_addUsuarioTable.resx">
+      <DependentUpon>201712011950161_addUsuarioTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071936598_PerfilIdiomaChangue.resx">
+      <DependentUpon>201712071936598_PerfilIdiomaChangue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712072309215_HorasCurso.resx">
+      <DependentUpon>201712072309215_HorasCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712122034578_DireccionChangue.resx">
+      <DependentUpon>201712122034578_DireccionChangue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131705597_AddingSocialnetworks.resx">
+      <DependentUpon>201712131705597_AddingSocialnetworks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131709096_SocialNetworkCatalogue.resx">
+      <DependentUpon>201712131709096_SocialNetworkCatalogue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141551166_urlChangueforredSocial.resx">
+      <DependentUpon>201712141551166_urlChangueforredSocial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151833264_aboutmeChangue.resx">
+      <DependentUpon>201712151833264_aboutmeChangue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801091656495_Postulaciones.resx">
+      <DependentUpon>201801091656495_Postulaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801091933075_DamfoYrelaciones.resx">
+      <DependentUpon>201801091933075_DamfoYrelaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801092025317_deleteBeneficiosPerfil.resx">
+      <DependentUpon>201801092025317_deleteBeneficiosPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801092035070_AddNewBeneficiosPerfil.resx">
+      <DependentUpon>201801092035070_AddNewBeneficiosPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801092214544_UpdateCliente.resx">
+      <DependentUpon>201801092214544_UpdateCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801092247224_Damfo.resx">
+      <DependentUpon>201801092247224_Damfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801092315068_newDamfo.resx">
+      <DependentUpon>201801092315068_newDamfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801092336484_DeletePsicometriasdamsa.resx">
+      <DependentUpon>201801092336484_DeletePsicometriasdamsa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801092339030_AddPsicometriasDamsa.resx">
+      <DependentUpon>201801092339030_AddPsicometriasDamsa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801092355083_foreingkeysVacantes.resx">
+      <DependentUpon>201801092355083_foreingkeysVacantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101513207_HorarioPerfilDelete.resx">
+      <DependentUpon>201801101513207_HorarioPerfilDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101522215_HorarioPerfil.resx">
+      <DependentUpon>201801101522215_HorarioPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101723314_StatusPostulaciones.resx">
+      <DependentUpon>201801101723314_StatusPostulaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101803575_PostulacionEdit.resx">
+      <DependentUpon>201801101803575_PostulacionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101808500_deletePostulacion.resx">
+      <DependentUpon>201801101808500_deletePostulacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801101811106_UpdatePostulacion.resx">
+      <DependentUpon>201801101811106_UpdatePostulacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801102129229_UpteVacanteDireccion.resx">
+      <DependentUpon>201801102129229_UpteVacanteDireccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801102341568_vacantesprestacionesdeley.resx">
+      <DependentUpon>201801102341568_vacantesprestacionesdeley.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801102354529_deleteicollectionsvacante.resx">
+      <DependentUpon>201801102354529_deleteicollectionsvacante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801112021079_UpdateVacanteDeleteNivel.resx">
+      <DependentUpon>201801112021079_UpdateVacanteDeleteNivel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801112022441_UpdateVacanteSetGradoEstudio.resx">
+      <DependentUpon>201801112022441_UpdateVacanteSetGradoEstudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801112023507_addCatalogoGradoEstudios.resx">
+      <DependentUpon>201801112023507_addCatalogoGradoEstudios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801112250423_updatevacantedeletecontrato.resx">
+      <DependentUpon>201801112250423_updatevacantedeletecontrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801112253509_updateVacanteSalarioContrato.resx">
+      <DependentUpon>201801112253509_updateVacanteSalarioContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121755220_aptitudesEscolaridadPerfil.resx">
+      <DependentUpon>201801121755220_aptitudesEscolaridadPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801151531033_EscolaridadesPerfilVacante.resx">
+      <DependentUpon>201801151531033_EscolaridadesPerfilVacante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801151703047_aptitudesVacante.resx">
+      <DependentUpon>201801151703047_aptitudesVacante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801151713079_dropAptitudesperfilVacante.resx">
+      <DependentUpon>201801151713079_dropAptitudesperfilVacante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231647524_AspNetUsers.resx">
+      <DependentUpon>201801231647524_AspNetUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801231706043_formulariosInicialesChangues.resx">
+      <DependentUpon>201801231706043_formulariosInicialesChangues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801261845259_UsuarioGuiNullable.resx">
+      <DependentUpon>201801261845259_UsuarioGuiNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802021557273_Requisiciones.resx">
+      <DependentUpon>201802021557273_Requisiciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802022236539_dropfkcursos.resx">
+      <DependentUpon>201802022236539_dropfkcursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802022238061_addfkicursos.resx">
+      <DependentUpon>201802022238061_addfkicursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802061544463_ChangeAreaSchema.resx">
+      <DependentUpon>201802061544463_ChangeAreaSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802061555179_ChangesSchemaAreas.resx">
+      <DependentUpon>201802061555179_ChangesSchemaAreas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802071628405_SitioWebAboutMe.resx">
+      <DependentUpon>201802071628405_SitioWebAboutMe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802121735355_ASPNETUSERconfirmemail.resx">
+      <DependentUpon>201802121735355_ASPNETUSERconfirmemail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802122229233_migrationx.resx">
+      <DependentUpon>201802122229233_migrationx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802122328283_procesPerfilChangues.resx">
+      <DependentUpon>201802122328283_procesPerfilChangues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802122332186_procesPerfilChangues2.resx">
+      <DependentUpon>201802122332186_procesPerfilChangues2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131509489_DBCOntexActualizacion.resx">
+      <DependentUpon>201802131509489_DBCOntexActualizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131557469_DBCOntexActualizacion1.resx">
+      <DependentUpon>201802131557469_DBCOntexActualizacion1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131712271_DBCOntexActualizacion2.resx">
+      <DependentUpon>201802131712271_DBCOntexActualizacion2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131815410_DBCOntexActualizacion3.resx">
+      <DependentUpon>201802131815410_DBCOntexActualizacion3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131820057_DBCOntexActualizacion4.resx">
+      <DependentUpon>201802131820057_DBCOntexActualizacion4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131827239_DBCOntexActualizacion5.resx">
+      <DependentUpon>201802131827239_DBCOntexActualizacion5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131830483_DBCOntexActualizacion6.resx">
+      <DependentUpon>201802131830483_DBCOntexActualizacion6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131849295_DBCOntexActualizacion7.resx">
+      <DependentUpon>201802131849295_DBCOntexActualizacion7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131920062_direccionCalleChangued.resx">
+      <DependentUpon>201802131920062_direccionCalleChangued.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802132344501_tst.resx">
+      <DependentUpon>201802132344501_tst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803030319441_alterdamfo.resx">
+      <DependentUpon>201803030319441_alterdamfo.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59984</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59984/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

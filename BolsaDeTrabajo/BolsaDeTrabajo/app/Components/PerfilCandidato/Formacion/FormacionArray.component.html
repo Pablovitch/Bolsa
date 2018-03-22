@@ -1,0 +1,16 @@
+﻿<form [formGroup]="FormacionesArray">
+    <div formArrayName="Formaciones">
+        <div class="title color-blue text-uppercase">Formación</div>
+        <div *ngFor="let formacion of FormacionesArray.controls.Formaciones.controls; let i=index" class="panel panel-default separator">
+            <div class="panel-body" [formGroupName]="i">
+                <Formaciones [group]="FormacionesArray.controls.Formaciones.controls[i]"  [Index]="i" 
+                             (Remove)="removeFormacion($event)" ></Formaciones>
+            </div>
+        </div>
+    </div>
+    <div class="margin-20">
+        <a (click)="addFormacion()" style="cursor: default" data-toggle="tooltip" title="Agregar formación.">
+            <i class="fa fa-plus-circle fa-2x clickable" aria-hidden="true"></i>
+        </a>
+    </div>
+</form>

@@ -1,0 +1,16 @@
+﻿<form [formGroup]="CursosArray">
+    <div formArrayName="cursos">
+        <div class="title color-blue text-uppercase">Cursos</div>
+        <div *ngFor="let formacion of CursosArray.controls.cursos.controls; let i=index" class="panel panel-default separator separator">
+           <div class="panel-body" [formGroupName]="i">
+                <cursos [group]="CursosArray.controls.cursos.controls[i]" [Index]="i"
+                        (Remove)="removeCurso($event)" ></cursos>
+            </div>
+        </div>
+    </div>
+    <div class="margin-20">
+        <a (click)="addCurso()" style="cursor: default" data-toggle="tooltip" title="Agregar curso">
+            <i class="fa fa-plus-circle fa-2x clickable" aria-hidden="true"></i>
+        </a>
+    </div>
+</form>

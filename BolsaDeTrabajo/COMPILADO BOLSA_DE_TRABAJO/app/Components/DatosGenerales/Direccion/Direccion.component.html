@@ -1,0 +1,158 @@
+﻿<form [formGroup]="formDireccion" (ngSubmit)="Save()">
+    <div class="title color-blue text-uppercase">Direccion</div>
+    <div class="btn btn-edit clickable">
+        <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" />
+    </div>
+    <!-- DIRECCION -->
+    <div class="row label-data align-items-center margin-top-30x">
+        <div class="col-md-5 col-sm-6 font-bold">País: <span>*</span></div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error" [hidden]="!Edit">
+                <input formControlName="personaId" hidden />
+                <p-autoComplete formControlName="pais"
+                                [suggestions]="filteredCountries"
+                                (completeMethod)="filterCountry($event)"
+                                field="pais"
+                                [size]="24"
+                                [minLength]="1"
+                                (onSelect)="setPais($event)"
+                                (onClear)="ValidatePais()"
+                                inputStyleClass="input">
+
+                </p-autoComplete>
+                <input type="text" formControlName="paisId" hidden />
+                <span *ngIf="formDireccion.controls.pais.touched &&
+                                                    formDireccion.controls.paisId.invalid"
+                      class="tooltip-text tooltip-validation-error-right">Seleccione un país de la lista</span>
+            </div>
+            <label [hidden]="Edit">{{Pais}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" *ngIf="viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Estado:</div>
+        <div class="col-md-7 col-sm-6">
+            <div [hidden]="!Edit">
+                <p-autoComplete formControlName="estado"
+                                [suggestions]="filteredStates"
+                                (completeMethod)="filterState($event)"
+                                field="estado"
+                                [size]="24"
+                                [minLength]="1"
+                                (onSelect)="setEstado($event)"
+                                (onClear)="ValidateEstado()"
+                                inputStyleClass="input">
+
+                </p-autoComplete>
+                <input type="text" formControlName="estadoId" hidden />
+            </div>
+            <label [hidden]="Edit">{{Estado}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" *ngIf="viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Municipio / Delegación:</div>
+        <div class="col-md-7 col-sm-6">
+            <div [hidden]="!Edit">
+                <p-autoComplete formControlName="municipio"
+                                [suggestions]="filteredTowns"
+                                (completeMethod)="filterTowns($event)"
+                                field="municipio"
+                                [size]="24"
+                                [minLength]="1"
+                                (onSelect)="setMunicipio($event)"
+                                (onClear)="ValidateMunicipio()"
+                                inputStyleClass="input">
+
+                </p-autoComplete>
+                <input type="text" formControlName="municipioId" hidden />
+            </div>
+            <label [hidden]="Edit">{{Municipio}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center">
+        <div class="col-md-5 col-sm-6 font-bold">Código Postal:</div>
+        <div class="col-md-7 col-sm-6">
+            <div [hidden]="!Edit">
+                <input type="Text" class="input" id="codigoPostal"
+                       formControlName="codigoPostal"
+                       #cp (keyup)="cp.value=$event.target.value.toUpperCase()"
+                       (blur)="buscarColonias()">
+            </div>
+            <label [hidden]="Edit">{{formDireccion.controls.codigoPostal.value}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" [hidden]="!viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Colonia:</div>
+        <div class="col-md-7 col-sm-6">
+            <div [hidden]="!Edit">
+                <p-autoComplete formControlName="colonia"
+                                [suggestions]="filteredColonias"
+                                (completeMethod)="filterColonias($event)"
+                                field="colonia"
+                                [size]="24"
+                                [minLength]="1"
+                                inputStyleClass="input"
+                                (onSelect)="setColonia($event)">
+                </p-autoComplete>
+                <input formControlName="coloniaId" value="" hidden />
+            </div>
+            <label [hidden]="Edit">{{Colonia}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" [hidden]="!viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Calle:</div>
+        <div class="col-md-7 col-sm-6">
+            <div [hidden]="!Edit">
+                <input type="Text" class="input" id="calle"
+                       formControlName="calle"
+                       #calle (keyup)="calle.value=$event.target.value.toUpperCase()" />
+            </div>
+            <label [hidden]="Edit">{{formDireccion.controls.calle.value}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" [hidden]="!viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Número Exterior:</div>
+        <div class="col-md-7 col-sm-6">
+            <div [hidden]="!Edit">
+                <input type="Text" class="input" id="numeroExterior"
+                       formControlName="numeroExterior"
+                       #numeroExterior (keyup)="numeroExterior.value=$event.target.value.toUpperCase()" />
+            </div>
+            <label [hidden]="Edit">{{formDireccion.controls.numeroExterior.value}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" [hidden]="!viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Número Interior:</div>
+        <div class="col-md-7 col-sm-6">
+            <div [hidden]="!Edit">
+                <input type="Text" class="input" id="numeroInterior"
+                       formControlName="numeroInterior"
+                       #numeroInterior (keyup)="numeroInterior.value=$event.target.value.toUpperCase()" />
+            </div>
+            <label [hidden]="Edit">{{formDireccion.controls.numeroInterior.value}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center margin-top-30x">
+        <div class="col-md-7 col-sm-6">
+            <button class="btn btn-prymary clickable btn-red" type="button"
+                    (click)="DiscardEdit()" [hidden]="!Edit">
+                Cancelar
+            </button>
+            <button class="btn btn-prymary clickable" type="submit"
+                    [disabled]="formDireccion.invalid"
+                    [class.btn-success]="formDireccion.valid"
+                    [hidden]="!Edit">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+
+</form>

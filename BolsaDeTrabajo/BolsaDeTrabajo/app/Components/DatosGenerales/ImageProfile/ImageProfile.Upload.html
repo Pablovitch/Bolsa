@@ -1,0 +1,27 @@
+﻿<label class="uploader img-circle" ondragover="return false;"
+       [class.loaded]="loaded"
+       [style.outlineColor]="dragging ? activeColor : baseColor"
+       (dragenter)="handleDragEnter()"
+       (dragleave)="handleDragLeave()"
+       (drop)="handleDrop($event)">
+
+    <i [class.fa]="!loaded"
+       [class.fa-user-o]="(imageSrc?.length> 0) ? false : true"
+       [class.fa-5x]="!loaded"
+       aria-hidden="false"
+       [style.color]="dragging
+       ? ((imageSrc?.length>
+        0) ? overlayColor : activeColor)
+        : ((imageSrc?.length > 0) ? overlayColor : baseColor)"
+        >
+    </i>
+
+    <img [src]="imageSrc"
+         (load)="handleImageLoad()"
+         [class.loaded]="imageLoaded"
+         class="img-circle" />
+
+    <input type="file" name="file" accept="image/*"
+           (change)="handleInputChange($event)">
+</label>
+

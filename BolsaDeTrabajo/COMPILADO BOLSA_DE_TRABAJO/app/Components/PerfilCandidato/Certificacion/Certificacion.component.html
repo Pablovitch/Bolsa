@@ -1,0 +1,160 @@
+﻿<form [formGroup]="Certificacion" (ngSubmit)="Save()">
+    <div class="row">
+        <div class="col-12 color-grey">
+            <!---->
+            <div class="row label-data ">
+                <div class="col-md-7 col-sm-6 font-bold"></div>
+                <div class="col-md-5 col-sm-6">
+                    <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
+                    <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
+                    <a class="fa fa-window-close fa-2x pull-right clickable" (click)="Remove(index)" [hidden]="Edit"></a>
+                    <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
+
+                </div>
+            </div>
+            <!---->
+            <div [hidden]="contraer">
+                <!---->
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6 font-bold">Nombre de la certificación:<span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <input type="text" formControlName="id" hidden />
+                            <input type="text" formControlName="perfilCandidatoId" hidden />
+                            <input type="text" formControlName="certificacion" class="input"
+                                   [class.input-validation-error]="Certificacion.controls.certificacion.touched && Certificacion.controls.certificacion.invalid" />
+                            <span *ngIf="Certificacion.controls.certificacion.touched && Certificacion.controls.certificacion.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Campo requerido.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{Certificacion.controls.certificacion.value}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Autoridad emisora: </div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <input type="text" class="input" formControlName="autoridadEmisora" />
+                        </div>
+                        <label [hidden]="Edit">{{Certificacion.controls.autoridadEmisora.value}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Número de licencia: </div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <input type="text" class="input" formControlName="licencia" />
+                        </div>
+                        <label [hidden]="Edit">{{Certificacion.controls.licencia.value}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">URL de la certificación: </div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <input type="text" class="input" formControlName="urlCertificacion" />
+                        </div>
+                        <label [hidden]="Edit">{{Certificacion.controls.urlCertificacion.value}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">
+                        Periodo:
+                        <span>*</span>
+                    </div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <div [hidden]="!Edit">
+                                <select class="input" id="select" width="30" formControlName="yearInicioId"
+                                        #t0
+                                        (change)="YearInicioOnchangue(t0.value)"
+                                        [class.selectPlaceholder]="!Certificacion.controls.yearInicioId.touched">
+                                    <option selected hidden>Año Inicio</option>
+                                    <option *ngFor="let year of years" [value]="year.id">{{year.year}}</option>
+                                </select>
+                                <select class="input" id="select" width="30" formControlName="monthInicioId"
+                                        #t1
+                                        (change)="MonthInicioOnchangue(t1.value)"
+                                        [class.selectPlaceholder]="!Certificacion.controls.monthInicioId.touched">
+                                    <option selected hidden>Mes Inicio</option>
+                                    <option *ngFor="let mes of meses" [value]="mes.id">{{mes.month}}</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <label [hidden]="Edit">{{MonthInicio}} {{YearInicio}} </label>
+
+                        a
+                        <div [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="yearTerminoId"
+                                    #t2
+                                    (change)="YearTerminoOnchangue(t2.value)"
+                                    [class.selectPlaceholder]="!Certificacion.controls.yearTerminoId.touched">
+                                <option selected hidden>Año Termino</option>
+                                <option *ngFor="let year of years" [value]="year.id">{{year.year}}</option>
+                            </select>
+                            <select class="input" id="select" width="30" formControlName="monthTerminoId"
+                                    #t3
+                                    (change)="MonthTerminoOnchangue(t3.value)"
+                                    [class.selectPlaceholder]="!Certificacion.controls.monthTerminoId.touched">
+                                <option selected hidden>Mes Termino</option>
+                                <option *ngFor="let mes of meses" [value]="mes.id">{{mes.month}}</option>
+                            </select>
+                        </div>
+                        <label [hidden]="Edit">{{MonthTermino}} {{YearTermino}} </label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Está certificación no vence:</div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <input type="checkbox" class="checkbox" formControlName="noVence">
+                        </div>
+                        <label [hidden]="Edit">{{Certificacion.controls.noVence.value? 'Si':'No'}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data align-items-center margin-top-30x">
+                    <div class="col-md-7 col-sm-6">
+                        <button class="btn btn-prymary clickable btn-red" type="button"
+                                (click)="DiscardEdit()" [hidden]="!Edit">
+                            Cancelar
+                        </button>
+                        <button class="btn btn-prymary clickable" type="submit"
+                                [disabled]="Certificacion.invalid"
+                                [class.btn-success]="Certificacion.valid"
+                                [hidden]="!Edit">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+                <!---->
+            </div>
+            <!--Ver menos-->
+            <div [hidden]="!contraer">
+                <div class="row label-data">
+
+                    <div class="col-md-5 col-sm-6">{{Certificacion.controls.certificacion.value}} </div>
+                    <div class="col-md-7 col-sm-6">
+                    </div>
+
+                    <div class="col-md-5 col-sm-6">{{Certificacion.controls.autoridadEmisora.value}} </div>
+                    <div class="col-md-7 col-sm-6">
+                        <label [hidden]="Edit">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</label>
+                    </div>
+                    
+                </div>
+            </div>
+            <!---->
+        </div>
+    </div>
+</form>
+
+
+

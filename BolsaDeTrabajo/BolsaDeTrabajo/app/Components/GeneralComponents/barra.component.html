@@ -1,0 +1,20 @@
+﻿    <div class="container-fluid">
+        <div class="row">
+            <div class="menu" [hidden]="Oculto">
+                <button id="nav-icon" type="button" class="navbar-toggle" 
+                        (click)="onClick()">
+                    <div class="nav-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+            <div class="logo"><img src="/assets/images/logo.png" /></div>
+
+            <div class="hidden-sm-down" [hidden]="Oculto" >
+                <div class="picture-profile"><img src="{{urlImageProfile}}"  /></div>
+                <div class="name-profile text-uppercase color-white">{{nombreCompleto}}</div>
+            </div>
+        </div>
+    </div>

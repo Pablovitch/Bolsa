@@ -1,0 +1,231 @@
+﻿<div class="header">
+    <damsa-bar-social></damsa-bar-social>
+    <damsa-barra (ClickMenuBoton)="ShowMenu()" [CandidatoId]="CandidatoId" [Oculto]="Oculto"></damsa-barra>
+    <damsa-menu-oculto [ShowMenu]="showMenu" [CandidatoId]="CandidatoId"></damsa-menu-oculto>
+</div>
+<div class="global-container-sitio">
+
+    <div class="row">
+
+        <div class="col-filters">
+
+            <div class="col-12">
+                <div class="color-grey float-left">MI CV</div>
+                <div class="float-right link-blue">Editar CV</div>
+
+                <div class="clearfix"></div>
+
+                <div class="info-part1">
+                    <div class="filters-graph float-left"><img src="assets/images/graphic-test.png" width="100" /></div>
+                    <div class="color-grey text-graphic float-right">¡Te falta muy poco para tener tu perfil completo!</div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+                <div class="col-100 col-lg-12 col-sm-6">
+                    <div class="top-filters color-white"><img src="assets/images/icon-search.png" width="25" /> Definir búsqueda </div>
+
+                    <div class="search-filters"  [formGroup]="filtroPostulacion" (ngSubmit)="Save()">
+                        <input class="input-search"  type="text" formControlName="palabraClave" placeholder="Palabra Clave" />
+                        <div class="btn-search" (click)="OnFiltering()" style="cursor:pointer;">Buscar</div>
+                    </div>
+                </div>
+
+                <div class="clearfix delete-991"></div>
+
+                <div class="col-100 col-lg-12 col-md-4 col-sm-6">
+                    <div class="filter-category"><img src="assets/images/icon-location.png" /> Estatus </div>
+
+                    <div class="filter-content scrollbar">
+                        <ul *ngFor="let statu of status">
+                            <li>
+                                <input type="checkbox" name="status" id="{{statu.id}}" (change)="OnCheckingStatus($event)" />{{statu.status}}
+                            </li>
+                        </ul>
+                    </div>
+
+                  <div class="clearfix"></div>
+                 </div>
+                 <div class="col-100 col-lg-12 col-md-4 col-sm-6">
+                    <div class="filter-category"><img src="assets/images/icon-category.png" /> Categoría </div>
+
+                    <div class="filter-content scrollbar">
+                        <ul *ngFor="let categoria of categorias">
+                            <li>
+                                <input type="checkbox" name="categorias" id="{{categoria.id}}" (change)="OnCheckingCategoria($event)" />{{categoria.nombre}}
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+
+            </div>
+        <div class="col-md-8">
+            <div class="col-results">
+                <div *ngFor="let postulacion of Postulaciones" class="filter-result">
+                    <div class="job-name">
+                        <img src="assets/images/icon-arrow.png" /> <span>{{postulacion?.descripcionVacante}}</span>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label>Status:<a><b>{{postulacion?.statusPostulacion}}</b></a></label>
+                    </div>
+
+                    <div class="job-date col-md-1">{{postulacion?.fechaPublicacion | date:'ddMMMM'}}</div>
+                    <div class="job-location col-md-2"><img src="assets/images/icon-location.png" />{{postulacion?.municipioVacante}}, {{postulacion?.estadoVacante}}</div>
+                    <div class="job-category col-md-3"><img src="assets/images/icon-category.png" />{{postulacion?.categoriaVacante}}</div>
+                    <div class="job-details col-md-3" style="background-color:red; color:white; cursor:pointer;" type="button" id="{{postulacion?.postulacionId}}" (click)="onClickDeclinar($event.target.id, postulacion.descripcionVacante)">Declinar</div>
+                    <div class="job-details col-md-3" style="background-color:#1ca80c; color:white; cursor:pointer;" type="button" id="{{postulacion?.vacanteId}}" (click)="showDialog($event.target.id)">+Detalle</div>
+
+                </div><!--Container-->
+                <p-paginator rows="2"
+                             [totalRecords]="TotalRecords"
+                             [rowsPerPageOptions]="[5,10,15]"
+                             (onPageChange)="paginate($event)">
+
+                </p-paginator>
+            </div>
+
+            <div class="general-information-container">
+                <!--Container-->
+                <p-dialog header="Detalle Vacante" [(visible)]="display" modal="modal" [responsive]="true" width="900" height="auto" [dismissableMask]="true">
+
+                    <label class="DV-Title">{{DetalleVacante?.vBtra}}</label><br />
+                    <label class="DV-Client">{{DetalleVacante?.cliente.nombrecomercial}}</label>
+                    <ul class="DV">
+                        <li>
+                            <label class="DV-Label">Lugar de trabajo:</label>
+                            <span class="DV-Property">{{DetalleVacante?.direccion.municipio.municipio}}, {{DetalleVacante?.direccion.estado.estado}}</span>
+                        </li>
+                        <li>
+                            <label class="DV-Label">Publicado:</label>
+                            <span class="DV-Property">{{DetalleVacante?.fechaCreacion | date:'ddMMMM'}}</span>
+                        </li>
+                        <li>
+                            <label class="DV-Label">Salario:</label>
+                            <span class="DV-Property">{{DetalleVacante?.sueldoMinimo | currency:'MXN':true:'2.2-4'}} mensual</span>
+                        </li>
+                        <li>
+                            <label class="DV-Label">Categoría:</label>
+                            <span class="DV-Property">{{DetalleVacante?.area.nombre}}</span>
+                        </li>
+                    </ul>
+                    <label class="DV-group-title">Requisitos:</label>
+                    <ul class="DV">
+                        <li *ngFor="let escolaridad of DetalleVacante?.escolaridadesRequi">
+                            <label class="DV-Label">Escolaridad:</label>
+                            <span class="DV-Property">{{escolaridad.escolaridad.gradoEstudio}}</span>
+                            <label class="DV-Label">Nivel:</label>
+                            <span class="DV-Property">{{escolaridad.estadoEstudio.estadoEstudio}}</span>
+                        </li>
+                        <li>
+                            <label class="DV-Label">Aptitudes:</label>
+                            <span class="DV-Property"
+                                  *ngFor="let aptitud of DetalleVacante?.aptitudesRequi">
+                                {{aptitud?.aptitud.aptitud}},
+                            </span>
+                        </li>
+                        <li>
+                            <label class="DV-Label">Experiencia:</label>
+                            <span class="DV-Property">{{DetalleVacante?.experiencia}}</span>
+                        </li>
+                    </ul>
+                    <label class="DV-group-title">Horarios:</label>
+                    <p class="DV-Property">
+                        {{DetalleVacante?.horario.deDia.diaSemana}}-{{DetalleVacante?.horario.aDia.diaSemana}},
+                        {{DetalleVacante?.horario.deHora}}- {{DetalleVacante?.horario.aHora}} <br />
+                        {{DetalleVacante?.horario.especificaciones}}
+                    </p><br />
+                    <label class="DV-group-title">Principales actividades a desarrollar:</label>
+                    <ul class="DV-dot">
+                        <li *ngFor="let actividad of DetalleVacante?.actividadesRequi">
+                            <span class="DV-Property">{{actividad.actividades}}</span>
+                        </li>
+                    </ul>
+                    <label class="DV-group-title">Beneficios:</label>
+                    <ul class="DV">
+                        <li *ngFor="let beneficio of DetalleVacante?.beneficiosRequi">
+                            <label class="DV-Label">{{beneficio.tipoBeneficio.tipoBeneficio}}:</label>
+                            <span class="DV-Property">{{beneficio.observaciones}}</span>
+                        </li>
+                    </ul>
+                    <label class="DV-group-title">Contrato:</label>
+                    <ul class="DV">
+                        <li>
+                            <label class="DV-Label">Contrato Inicial:</label>
+                            <span class="DV-Property">{{DetalleVacante?.contratoInicial.tipoContrato}}</span>
+                        </li>
+                        <li>
+                            <label class="DV-Label">Contrato Final:</label>
+                            <span class="DV-Property">{{DetalleVacante?.contratoFinal.tipoContrato}}</span>
+                        </li>
+                    </ul>
+                    <label class="DV-group-title">Prestaciones:</label>
+                    <ul class="DV-dot">
+                        <li *ngFor="let prestacion of DetalleVacante?.prestacionesLey">
+                            <span class="DV-Property">{{prestacion.prestacionLey}}</span>
+                        </li>
+                        <li *ngFor="let prestacion of DetalleVacante?.prestacionesClienteRequi">
+                            <span class="DV-Property">{{prestacion.prestamo}}</span>
+                        </li>
+                    </ul>
+                </p-dialog>
+                <p-dialog header="Declinar" [(visible)]="displayAlert" modal="modal" width="500" [responsive]="true">
+                    ¿Seguro que deseas declinar a la vacante de <strong>{{Descvacante | uppercase}}</strong> y abandonar el proceso?
+                    <p-footer>
+                        <button type="button" class="btn" style="background-color:#1ca80c; color:white; cursor:pointer;" (click)="Declinar()" label="Si">Aceptar</button>
+                        <button type="button" class="btn" style="background-color:red; color:white; cursor:pointer;" (click)="NoDeclinar()" label="No">Cancelar</button>
+                    </p-footer>
+                </p-dialog>
+                <!--<div *ngFor="let postulacion of Postulaciones"
+                 class="row general-information-postulaciones">
+                <div class="col-12 color-grey">
+                    <div class="row label-data">
+                        <div class="title color-blue text-uppercase col-lg-6">
+                            {{postulacion?.descripcionVacante}}
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Status:<a class="color-blue">{{postulacion?.statusPostulacion}}</a></label>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn-top clickable top btn-postulacion"
+                                    id="{{postulacion?.postulacionId}}"
+                                    (click)="onClickDeclinar($event.target.id)">
+                                Declinar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row label-data">
+                        <div class="col-lg-10 margin-top-15x">
+                            <label class="col-md-10">
+                                {{postulacion?.municipioVacante}},
+                                {{postulacion?.estadoVacante}} – {{postulacion?.fechaPublicacion | date:'ddMMMM'}}
+                            </label>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn-top clickable top btn-postulacion"
+                                    id="{{postulacion?.vacanteId}}"
+                                    (click)="showDialog($event.target.id)">
+                                Detalle
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row label-data">
+                        <div class="col-md-10">
+                            <label><small>{{postulacion?.categoriaVacante}} </small></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>-->
+                <!--Container-->
+                <!---->
+            </div>
+        </div>
+
+            <!--</form>-->
+
+        </div>
+</div>
+
+

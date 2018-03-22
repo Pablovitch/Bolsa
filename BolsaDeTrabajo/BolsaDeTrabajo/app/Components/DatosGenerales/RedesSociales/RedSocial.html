@@ -1,0 +1,42 @@
+﻿<div [formGroup]="RedSocial">
+    <!---->
+    <div class="row label-data">
+        <div class="col-md-5 col-sm-6 font-bold">
+            <div  [hidden]="!Edit">
+                <p-dropdown [options]="tiposRedesSociales" formControlName="tipoRedSocialId"
+                            placeholder="Red Social"
+                            required="true"
+                            (onChange)="SetRedSocial($event)"
+                            [style]="{'width':'150px'}">
+                    <ng-template let-tiposRedeSocial pTemplate="item">
+                        <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                            <img src="/assets/RedesSociales/{{tiposRedeSocial.label}}.png" style="width:24px;position:absolute;top:1px;left:5px" />
+                            <div style="font-size:14px;float:right;margin-top:4px">{{tiposRedeSocial.label}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <span>*</span>
+            </div>
+                <label [hidden]="Edit">{{redSocial}}</label>
+            </div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error"[hidden]="!Edit" >
+                <input type="text" formControlName="id" hidden />
+                <input type="text" formControlName="personaId" hidden />
+                <input type="text" formControlName="redSocial" class="input" style="width:94%" 
+                       placeholder="http:// URL" 
+                       [class.input-validation-error]="RedSocial.controls.redSocial.touched && RedSocial.controls.redSocial.invalid"/>
+                <a class="fa fa-times clickable pull-right" (click)="Remove(index)"></a>
+                <span *ngIf="RedSocial.controls.redSocial.touched && RedSocial.controls.redSocial.invalid"
+                      class="tooltip-text tooltip-validation-error-right">
+                    Campo requerido.
+                </span>
+            </div>
+            <label [hidden]="Edit"><a target="_blank" class="clickable" href="{{RedSocial.controls.redSocial.value}}">{{RedSocial.controls.redSocial.value}}</a></label>
+        </div>
+    </div>
+    <!---->
+</div>
+
+
+

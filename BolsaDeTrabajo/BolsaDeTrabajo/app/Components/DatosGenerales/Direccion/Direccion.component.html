@@ -1,0 +1,184 @@
+﻿<form [formGroup]="formDireccion" (ngSubmit)="Save()">
+    <div class="title color-blue text-uppercase">Direccion</div>
+    <div class="btn btn-edit clickable">
+        <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" />
+    </div>
+    <!-- DIRECCION -->
+    <div class="row label-data align-items-center margin-top-30x">
+        <div class="col-md-5 col-sm-6 font-bold">País: <span>*</span></div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error" [hidden]="!Edit">
+                <input formControlName="personaId" hidden />
+                <p-autoComplete formControlName="pais" 
+                                [suggestions]="filteredCountries"
+                                (completeMethod)="filterCountry($event)"
+                                field="pais"
+                                [size]="24"
+                                [minLength]="1"
+                                (onSelect)="setPais($event)"
+                                inputStyleClass="input"
+                                #pais
+                                (onBlur)="onBlurPais()"
+                                (onClear)="onClearPais()">
+
+                </p-autoComplete>
+                <input type="text" formControlName="paisId" hidden />
+                <span *ngIf="formDireccion.controls.pais.touched &&
+													formDireccion.controls.paisId.invalid"
+                      class="tooltip-text tooltip-validation-error-right">Seleccione un país de la lista</span>
+            </div>
+            <label [hidden]="Edit">{{Pais}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" *ngIf="viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Estado:</div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error" [hidden]="!Edit">
+                <p-autoComplete formControlName="estado" 
+                                [suggestions]="filteredStates"
+                                (completeMethod)="filterState($event)"
+                                field="estado"
+                                [size]="24"
+                                [minLength]="1"
+                                (onSelect)="setEstado($event)"
+                                inputStyleClass="input"
+                                #estado
+                                (onBlur)="onBlurEstado()"
+                                (onClear)="onClearEstado()">
+
+                </p-autoComplete>
+                <input type="text" formControlName="estadoId" hidden />
+                <span *ngIf="formDireccion.controls.estado.touched && formDireccion.controls.estadoId?.value==null"
+                      class="tooltip-text tooltip-validation-error-right">Seleccione un estado de la lista</span>
+            </div>
+            <label [hidden]="Edit">{{Estado}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" *ngIf="viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Municipio / Delegación:</div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error" [hidden]="!Edit">
+                <p-autoComplete formControlName="municipio" 
+                                [suggestions]="filteredTowns"
+                                (completeMethod)="filterTowns($event)"
+                                field="municipio"
+                                [size]="24"
+                                [minLength]="1"
+                                (onSelect)="setMunicipio($event)"
+                                inputStyleClass="input"
+                                #municipio
+                                (onBlur)="onBlurMunicipio()"
+                                (onClear)="onClearMunicipio()">
+
+                </p-autoComplete>
+                <input type="text" formControlName="municipioId" hidden />
+                <span *ngIf="formDireccion.controls.municipio.touched && formDireccion.controls.municipioId?.value==null"
+                      class="tooltip-text tooltip-validation-error-right">Seleccione un municipio de la lista</span>
+            </div>
+            <label [hidden]="Edit">{{Municipio}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center">
+        <div class="col-md-5 col-sm-6 font-bold">Código Postal:</div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error" [hidden]="!Edit">
+                <input type="Text" class="input" id="codigoPostal"
+                       formControlName="codigoPostal" 
+                       #codigoPostal (input)="onCPChangue($event.target.value)"
+                       (blur)="buscarColonias()">
+
+                <span *ngIf="formDireccion.controls.codigoPostal.touched &&
+                                              (codigoPostal?.value==null || codigoPostal?.value=='')"
+                      class="tooltip-text tooltip-validation-error-right">Campo Requerido.</span>
+            </div>
+            <label [hidden]="Edit">{{formDireccion.controls.codigoPostal.value}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" [hidden]="!viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Colonia:</div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error" [hidden]="!Edit">
+                <p-autoComplete formControlName="colonia"
+                                #colonia 
+                                [suggestions]="filteredColonias"
+                                (completeMethod)="filterColonias($event)"
+                                field="colonia"
+                                [size]="24"
+                                [minLength]="1"
+                                inputStyleClass="input"
+                                (onSelect)="setColonia($event)"
+                                (onBlur)="onBlurColonia()"
+                                (onClear)="onClearColonia()">
+                </p-autoComplete>
+                <input formControlName="coloniaId" value="" hidden />
+                <span *ngIf="formDireccion.controls.colonia.touched && formDireccion.controls.coloniaId.value==null"
+                      class="tooltip-text tooltip-validation-error-right">Seleccione una colonia de la lista.</span>
+            </div>
+            <label [hidden]="Edit">{{Colonia}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" [hidden]="!viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Calle:</div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error" [hidden]="!Edit">
+                <input type="Text" class="input" id="calle"
+                       formControlName="calle" 
+                       #calle
+                       (input)="onCalleChangue($event.target.value)" />
+                <span *ngIf="formDireccion.controls.calle.touched && (calle.value==null || calle.value=='')"
+                      class="tooltip-text tooltip-validation-error-right">Campo Requerido.</span>
+            </div>
+            <label [hidden]="Edit">{{formDireccion.controls.calle.value}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" [hidden]="!viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Número Exterior:</div>
+        <div class="col-md-7 col-sm-6">
+            <div class="tooltip-validation-error" [hidden]="!Edit">
+                <input type="Text" class="input" id="numeroExterior"
+                       formControlName="numeroExterior" 
+                       #numeroExterior
+                       (input)="onNumeroExteriorChangue($event.target.value)" />
+                <span *ngIf="formDireccion.controls.numeroExterior.touched && (numeroExterior.value==null || numeroExterior.value=='') "
+                      class="tooltip-text tooltip-validation-error-right">Campo Requerido.</span>
+            </div>
+            <label [hidden]="Edit">{{formDireccion.controls.numeroExterior.value}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center" [hidden]="!viveMexico">
+        <div class="col-md-5 col-sm-6 font-bold">Número Interior:</div>
+        <div class="col-md-7 col-sm-6">
+            <div [hidden]="!Edit">
+                <input type="Text" class="input" id="numeroInterior"
+                       formControlName="numeroInterior"
+                       #numeroInterior 
+                       (input)="onNumeroInteriorChangue($event.target.value)" />
+            </div>
+            <label [hidden]="Edit">{{formDireccion.controls.numeroInterior.value}}</label>
+        </div>
+    </div>
+    <!---->
+    <div class="row label-data align-items-center margin-top-30x">
+        <div class="col-md-7 col-sm-6">
+            <button class="btn btn-prymary clickable btn-red" type="button"
+                    (click)="DiscardEdit()" [hidden]="!Edit">
+                Cancelar
+            </button>
+            <button class="btn btn-prymary clickable btn-green" type="submit"
+                    [disabled]="formDireccion.invalid || !direccionCompleted"
+                    [class.btn-success]="formDireccion.valid && direccionCompleted"
+                    [hidden]="!Edit">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+
+</form>

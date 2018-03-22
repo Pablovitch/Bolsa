@@ -1,0 +1,191 @@
+﻿<form  [formGroup]="Formaciones" (ngSubmit)="Save()">
+    <div class="row">
+        <div class="col-12 color-grey">
+            <!---->
+            <div class="row label-data ">
+                <div class="col-md-7 col-sm-6 font-bold"></div>
+                <div class="col-md-5 col-sm-6">
+                    <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
+                    <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
+                    <a class="fa fa-window-close fa-2x pull-right clickable" (click)="Remove(index)" [hidden]="Edit"></a>
+                    <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
+
+                </div>
+            </div>
+            <!---->
+            <div [hidden]="contraer">
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Nivel de estudios: <span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="gradoEstudioId"
+                                    #t0
+                                    (change)="GradoEstudioOnchangue(t0.value)"
+                                    [class.selectPlaceholder]="!Formaciones.controls.gradoEstudioId.touched"
+                                    [class.input-validation-error]="Formaciones.controls.gradoEstudioId.touched && Formaciones.controls.gradoEstudioId.invalid">
+                                <option *ngFor="let grado of gradosEstudio" [value]="grado.id">{{grado.gradoEstudio}}</option>
+                            </select>
+                            <span *ngIf="Formaciones.controls.gradoEstudioId.touched && Formaciones.controls.gradoEstudioId.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Seleccione una opción.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{GradoEstudio}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Institución: <span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <input type="text" formControlName="id" hidden />
+                            <input type="text" formControlName="perfilCandidatoId" hidden />
+                            <p-autoComplete formControlName="institucionEducativa"
+                                            [suggestions]="filteredInstituciones"
+                                            (completeMethod)="filterInstituciones($event)"
+                                            field="institucionEducativa"
+                                            [size]="24"
+                                            [minLength]="1"
+                                            inputStyleClass="input"
+                                            (onSelect)="SetInstitucionId($event)">
+
+                            </p-autoComplete>
+                            <input type="text" formControlName="institucionEducativaId" hidden="hidden" />
+                            <span *ngIf="Formaciones.controls.institucionEducativa.touched && Formaciones.controls.institucionEducativaId.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Campo requerido.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{InstitucionEducativa}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Status: <span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="estadoEstudioId"
+                                    #t1
+                                    (change)="EstadoEstudioOnchangue(t1.value)"
+                                    [class.selectPlaceholder]="!Formaciones.controls.estadoEstudioId.touched"
+                                    [class.input-validation-error]="Formaciones.controls.estadoEstudioId.touched && Formaciones.controls.estadoEstudioId.invalid">
+                                <option *ngFor="let estatu of Estatus" [value]="estatu.id">{{estatu.estadoEstudio}}</option>
+                            </select>
+                            <span *ngIf="Formaciones.controls.estadoEstudioId.touched && Formaciones.controls.estadoEstudioId.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Seleccione una opción.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{EstadoEstudio}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Documento validador:</div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="documentoValidadorId"
+                                    #t2
+                                    (change)="DocumentoValidadorOnchangue(t2.value)"
+                                    [class.selectPlaceholder]="!Formaciones.controls.documentoValidadorId.touched">
+                                <option *ngFor="let documento of documentosValidadores" [value]="documento.id">{{documento.documentoValidador}}</option>
+                            </select>
+                        </div>
+                        <label [hidden]="Edit">{{DocumentoValidador}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Carrera: </div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <p-autoComplete formControlName="carrera"
+                                            [suggestions]="filteredCarreras"
+                                            (completeMethod)="filterCarreras($event)"
+                                            field="carrera"
+                                            [size]="24"
+                                            [minLength]="1"
+                                            inputStyleClass="input"
+                                            (onSelect)="SetCarreraId($event)">
+
+                            </p-autoComplete>
+                            <input type="text" formControlName="carreraId" hidden="hidden" />
+                        </div>
+                        <label [hidden]="Edit">{{Carrera}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6 font-bold">Periodo: </div>
+                    <div class="col-md-7 col-sm-6">
+                            <div [hidden]="!Edit">
+                                <select class="input" id="select" width="30" formControlName="yearInicioId"
+                                        #t3
+                                        (change)="YearInicioOnchangue(t3.value)"
+                                        [class.selectPlaceholder]="!Formaciones.controls.yearInicioId.touched">
+                                    <option selected hidden>Año Inicio</option>
+                                    <option *ngFor="let year of years" [value]="year.id">{{year.year}}</option>
+                                </select>
+                                <select class="input" id="select" width="30" formControlName="monthInicioId"
+                                        #t4
+                                        (change)="MonthInicioOnchangue(t4.value)"
+                                        [class.selectPlaceholder]="!Formaciones.controls.monthInicioId.touched">
+                                    <option selected hidden>Mes Inicio</option>
+                                    <option *ngFor="let mes of meses" [value]="mes.id">{{mes.month}}</option>
+                                </select>
+                            </div>
+                            <label [hidden]="Edit">{{MonthInicio}} {{YearInicio}} </label>
+                            a
+                            <div [hidden]="!Edit">
+                                <select class="input" id="select" width="30" formControlName="yearTerminoId"
+                                        #t5
+                                        (change)="YearTerminoOnchangue(t5.value)"
+                                        [class.selectPlaceholder]="!Formaciones.controls.yearTerminoId.touched">
+                                    <option selected hidden>Año Termino</option>
+                                    <option *ngFor="let year of years" [value]="year.id">{{year.year}}</option>
+                                </select>
+                                <select class="input" id="select" width="30" formControlName="monthTerminoId"
+                                        #t6
+                                        (change)="MonthTerminoOnchangue(t6.value)"
+                                        [class.selectPlaceholder]="!Formaciones.controls.monthTerminoId.touched">
+                                    <option selected hidden>Mes Termino</option>
+                                    <option *ngFor="let mes of meses" [value]="mes.id">{{mes.month}}</option>
+                                </select>
+                            </div>
+                            <label [hidden]="Edit">{{MonthTermino}} {{YearTermino}} </label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data align-items-center margin-top-30x">
+                    <div class="col-md-7 col-sm-6">
+                        <button class="btn btn-prymary clickable btn-red" type="button"
+                                (click)="DiscardEdit()" [hidden]="!Edit">
+                            Cancelar
+                        </button>
+                        <button class="btn btn-prymary clickable btn-green" type="submit"
+                                [disabled]="Formaciones.invalid"
+                                [class.btn-success]="Formaciones.valid"
+                                [hidden]="!Edit">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+                <!---->
+                </div>
+                <!--Ver menos-->
+                <div [hidden]="!contraer">
+                    <div class="row label-data">
+                        <div class="col-md-7 col-sm-6">{{InstitucionEducativa}} </div>
+                        <div class="col-md-5 col-sm-6">
+                        </div>
+                    </div>
+                    <div class="row label-data">
+                        <div class="col-md-7 col-sm-6">{{Carrera}}</div>
+                        <div class="col-md-5 col-sm-6">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</div>
+                    </div>
+                </div>
+                <!--Ver menos-->
+        </div>
+    </div>
+</form>

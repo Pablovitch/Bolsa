@@ -1,0 +1,90 @@
+﻿<div class="header">
+    <damsa-bar-social></damsa-bar-social>
+    <damsa-barra (ClickMenuBoton)="ShowMenu()" [ProfileName]="ProfileName" [Oculto]="Oculto"></damsa-barra>
+    <damsa-menu-oculto [ShowMenu]="showMenu"></damsa-menu-oculto>
+</div>
+<div class="global-container">
+    <form [formGroup]="PerfilCandidato" novalidate (ngSubmit)="save(PerfilCandidato)" class="form-inline">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-10 padding-991">
+                <!--<input type="text" value="" formControlName="CandidatoId" hidden="hidden" />
+                <input type="text" value="" formControlName="perfilCandidatoId" hidden="hidden" />-->
+                <!--Aboutme-->
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="col-12 color-grey">
+                            <aboutme [PerfilCandidatoId]="PerfilCandidatoId"></aboutme>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Experiencias Profesional-->
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="col-12 color-grey">
+                            <ExperienciasArray [PerfilCandidatoId]="PerfilCandidatoId"></ExperienciasArray>
+                        </div>
+                    </div>
+                </div>
+                <!--Formaciones-->
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="col-12 color-grey">
+
+                            <FormacionesArray [PerfilCandidatoId]="PerfilCandidatoId"> </FormacionesArray>
+
+                        </div>
+                    </div>
+                </div>
+              
+                <!--Certificaciones-->
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="col-12 color-grey">
+                            <CertificacionesArray [PerfilCandidatoId]="PerfilCandidatoId"></CertificacionesArray>
+                        </div>
+                    </div>
+                </div>
+                <!--Idiomas-->
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="col-12 color-grey">
+                            <IdiomasArray [PerfilCandidatoId]="PerfilCandidatoId"></IdiomasArray>
+                        </div>
+                    </div>
+                </div>
+                <!--cursos-->
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="col-12 color-grey">
+                            <CursosArray [PerfilCandidatoId]="PerfilCandidatoId"></CursosArray>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Conocimientos-->
+                <div class="identification-information-container">
+                    <div class="row identification-information">
+                        <div class="col-12 color-grey">
+                            <ConocimientosArray [PerfilCandidatoId]="PerfilCandidatoId"></ConocimientosArray>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="margin-20">
+                <div>myForm details:-</div>
+                <pre>Is myForm valid?: <br>{{PerfilCandidato.valid | json}}</pre>
+                <pre>form value: <br>{{PerfilCandidato.value | json}}</pre>
+            </div>-->
+
+            </div>
+
+
+            <div class="col-xs-12 col-md-12 col-lg-2 padding-991">
+                <damsa-profile-percentage></damsa-profile-percentage>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>

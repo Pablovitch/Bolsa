@@ -1,0 +1,149 @@
+﻿<form [formGroup]="Cursos" (ngSubmit)="Save()">
+    <div class="row">
+        <div class="col-12 color-grey">
+            <!---->
+            <div class="row label-data">
+                <div class="col-md-7 col-sm-6 font-bold"></div>
+                <div class="col-md-5 col-sm-6">
+                    <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
+                    <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
+                    <a class="fa fa-window-close fa-2x pull-right clickable" (click)="Remove(index)" [hidden]="Edit"></a>
+                    <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
+                </div>
+            </div>
+            <!---->
+            <div [hidden]="contraer">
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Nombre del curso: <span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <input type="text" class="input" formControlName="curso">
+                            <span *ngIf="Cursos.controls.curso.touched && Cursos.controls.curso.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Campo requerido.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{Cursos.controls.curso.value}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Lugar o institucion</div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <p-autoComplete formControlName="institucionEducativa"
+                                            [suggestions]="filteredInstituciones"
+                                            (completeMethod)="filterInstituciones($event)"
+                                            field="institucionEducativa"
+                                            [size]="24"
+                                            [minLength]="1"
+                                            inputStyleClass="input"
+                                            (onSelect)="SetInstitucionId($event)">
+
+                            </p-autoComplete>
+                            <input type="text" formControlName="institucionEducativaId" hidden="hidden" />
+                        </div>
+                        <label [hidden]="Edit">{{InstitucionEducativa}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Periodo: </div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="yearInicioId"
+                                    #t2
+                                    (change)="YearInicioOnchangue(t2.value)"
+                                    [class.selectPlaceholder]="!Cursos.controls.yearInicioId.touched">
+                                <option selected hidden>Año Inicio</option>
+                                <option *ngFor="let year of years" [value]="year.id">{{year.year}}</option>
+                            </select>
+                            <select class="input" id="select" width="30" formControlName="monthInicioId"
+                                    #t3
+                                    (change)="MonthInicioOnchangue(t3.value)"
+                                    [class.selectPlaceholder]="!Cursos.controls.monthInicioId.touched">
+                                <option selected hidden>Mes Inicio</option>
+                                <option *ngFor="let mes of meses" [value]="mes.id">{{mes.month}}</option>
+                            </select>
+                            <span *ngIf="(Cursos.controls.yearInicioId.touched && Cursos.controls.yearInicioId.invalid)
+                                         || (Cursos.controls.monthInicioId.touched && Cursos.controls.monthInicioId.invalid)"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Período requerido.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{MonthInicio}} {{YearInicio}} </label>
+                        a
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="yearTerminoId"
+                                    #t4
+                                    (change)="YearTerminoOnchangue(t4.value)"
+                                    [class.selectPlaceholder]="!Cursos.controls.yearTerminoId.touched">
+                                <option selected hidden>Año Termino</option>
+                                <option *ngFor="let year of years" [value]="year.id">{{year.year}}</option>
+                            </select>
+                            <select class="input" id="select" width="30" formControlName="monthTerminoId"
+                                    #t5
+                                    (change)="MonthTerminoOnchangue(t5.value)"
+                                    [class.selectPlaceholder]="!Cursos.controls.monthTerminoId.touched">
+                                <option selected hidden>Mes Termino</option>
+                                <option *ngFor="let mes of meses" [value]="mes.id">{{mes.month}}</option>
+                            </select>
+                            <span *ngIf="(Cursos.controls.yearTerminoId.touched && Cursos.controls.yearTerminoId.invalid)
+                                            || (Cursos.controls.monthTerminoId.touched && Cursos.controls.monthTerminoId.invalid)"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Período requerido.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{MonthTermino}} {{YearTermino}} </label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Horas:</div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <input type="text" OnlyNumber="true" formControlName="horas" class="input"
+                                   [class.input-validation-error]="Cursos.controls.horas.touched && Cursos.controls.horas.invalid" />
+                            <span *ngIf="Cursos.controls.horas.touched && Cursos.controls.horas.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Campo requerido.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{Cursos.controls.horas.value}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data align-items-center margin-top-30x">
+                    <div class="col-md-7 col-sm-6">
+                        <button class="btn btn-prymary clickable btn-red" type="button"
+                                (click)="DiscardEdit()" [hidden]="!Edit">
+                            Cancelar
+                        </button>
+                        <button class="btn btn-prymary clickable" type="submit"
+                                [disabled]="Cursos.invalid"
+                                [class.btn-success]="Cursos.valid"
+                                [hidden]="!Edit">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+                <!---->
+            </div>
+            <!--Ver menos-->
+            <div [hidden]="!contraer">
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6">{{Cursos.controls.curso.value}} </div>
+                    <div class="col-md-7 col-sm-6"></div>
+                    <div class="col-md-5 col-sm-6">
+                        <label [hidden]="Edit">{{InstitucionEducativa}}</label>
+                    </div>
+                    <div class="col-md-7 col-sm-6"></div>
+                    <!--<div class="col-md-7 col-sm-6">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</div>-->
+                    
+                </div>
+            </div>
+            <!--Ver menos-->
+        </div>
+    </div>
+</form>

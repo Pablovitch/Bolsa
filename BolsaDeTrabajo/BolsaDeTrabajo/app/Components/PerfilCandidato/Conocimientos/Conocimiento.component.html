@@ -1,0 +1,111 @@
+﻿<form [formGroup]="Conocimientos" (ngSubmit)="Save()">
+    <div class="row">
+        <div class="col-12 color-grey">
+            <!---->
+            <div class="row label-data ">
+                <div class="col-md-7 col-sm-6 font-bold"></div>
+                <div class="col-md-5 col-sm-6">
+                    <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
+                    <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
+                    <a class="fa fa-window-close fa-2x pull-right clickable" (click)="Remove(index)" [hidden]="Edit"></a>
+                    <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
+
+                </div>
+            </div>
+            <!---->
+            <div [hidden]="contraer">
+                <!---->
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6 font-bold">Conocimiento o habilidad: <span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <input type="text" class="input" formControlName="conocimiento"
+                                   maxlength="250"
+                                   [class.input-validation-error]="Conocimientos.controls.conocimiento.touched && Conocimientos.controls.conocimiento.invalid" />
+                            <span *ngIf="Conocimientos.controls.conocimiento.touched && Conocimientos.controls.conocimiento.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Campo requerido.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{Conocimientos.controls.conocimiento.value}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6 font-bold">Herramienta:</div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <input type="text" class="input" formControlName="herramienta" maxlength="50">
+                        </div>
+                        <label [hidden]="Edit">{{Conocimientos.controls.herramienta.value}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6 font-bold">Donde lo adquirió: </div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <p-autoComplete formControlName="institucionEducativa"
+                                            [suggestions]="filteredInstituciones"
+                                            (completeMethod)="filterInstituciones($event)"
+                                            field="institucionEducativa"
+                                            [size]="24"
+                                            [minLength]="1"
+                                            inputStyleClass="input"
+                                            (onSelect)="SetInstitucionId($event)">
+
+                            </p-autoComplete>
+                            <input type="text" formControlName="institucionEducativaId" hidden="hidden" />
+                        </div>
+                        <label [hidden]="Edit">{{InstitucionEducativa}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6 font-bold">Nivel: </div>
+                    <div class="col-md-7 col-sm-6">
+                        <div [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="nivelId"
+                                    #t
+                                    (change)="NivelOnchangue(t.value)"
+                                    [class.selectPlaceholder]="!Conocimientos.controls.nivelId.touched">
+                                <option *ngFor="let nivel of niveles" [value]="nivel.id">{{nivel.nivel}}</option>
+                            </select>
+                        </div>
+                        <label [hidden]="Edit">{{Nivel}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data align-items-center margin-top-30x">
+                    <div class="col-md-7 col-sm-6">
+                        <button class="btn btn-prymary clickable btn-red" type="button"
+                                (click)="DiscardEdit()" [hidden]="!Edit">
+                            Cancelar
+                        </button>
+                        <button class="btn btn-prymary clickable btn-green" type="submit"
+                                [disabled]="Conocimientos.invalid"
+                                [class.btn-success]="Conocimientos.valid"
+                                [hidden]="!Edit">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+                <!---->
+            </div>
+            <!---->
+            <div [hidden]="!contraer">
+                <div class="row label-data">
+
+                    <div class="col-md-5 col-sm-6">{{Conocimientos.controls.conocimiento.value}} </div>
+                    <div class="col-md-7 col-sm-6">
+                    </div>
+
+                    <div class="col-md-5 col-sm-6">{{Conocimientos.controls.herramienta.value}} </div>
+                    <div class="col-md-7 col-sm-6">
+                    </div>
+                </div>
+            </div>
+            <!---->
+        </div>
+    </div>
+</form>

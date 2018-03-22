@@ -1,0 +1,77 @@
+﻿<div class="header">
+    <damsa-bar-social></damsa-bar-social>
+    <damsa-barra (ClickMenuBoton)="ShowMenu()" [CandidatoId]="CandidatoId" [Oculto]="Oculto" ></damsa-barra>
+    <damsa-menu-oculto [ShowMenu]="showMenu" [CandidatoId]="CandidatoId"></damsa-menu-oculto>
+</div>
+<div class="global-container-sitio">
+    <!--<form [formGroup]="formDatosGenerales" (ngSubmit)="Save()">-->
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-10 padding-991">
+            <!-- INFORMACION GENERAL -->
+            <div class="general-information-container">
+                <div class="row general-information">
+                    <div class="col-12 color-grey">
+                        <div class="col-12">
+                            <damsa-info-gral [CandidatoId]="CandidatoId" (LoadProfileName)="OnLoadProfileName($event)" ></damsa-info-gral>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- DatosPersonales -->
+            <div class="general-information-container">
+                <div class="row general-information">
+                    <div class="col-12 color-grey">
+                        <div class="col-12">
+                            <damsa-personal-data [CandidatoId]="CandidatoId" (LoadProfileName)="OnLoadProfileName($event)" ></damsa-personal-data>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <!-- Dirección -->
+            <div class="general-information-container">
+                <div class="row general-information">
+                    <div class="col-12 color-grey">
+                        <div class="col-12">
+                            <damsa-direccion [CandidatoId]="CandidatoId"></damsa-direccion>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <!-- Identificaciones Oficiales-->
+            <div class="general-information-container">
+                <div class="row general-information">
+                    <div class="col-12 color-grey">
+                        <div class="col-12">
+                            <damsa-identificaciones [CandidatoId]="CandidatoId"></damsa-identificaciones>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <!-- Redes Sociales-->
+            <div class="general-information-container">
+                <div class="row general-information">
+                    <div class="col-12 color-grey">
+                        <div class="col-12">
+                            <damsa-redes-sociales [CandidatoId]="CandidatoId"></damsa-redes-sociales>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---->
+          
+        </div>
+
+        <div class="col-xs-12 col-md-12 col-lg-2 padding-991">
+            <damsa-profile-percentage></damsa-profile-percentage>
+
+        </div>
+    </div>
+
+    <!--</form>-->
+
+</div>
+
+

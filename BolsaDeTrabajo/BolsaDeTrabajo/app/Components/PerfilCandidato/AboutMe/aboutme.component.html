@@ -1,0 +1,160 @@
+﻿<form [formGroup]="aboutMe" (ngSubmit)="Save()">
+	<!--<div>
+		<div class="row">-->
+			<div class="title color-blue text-uppercase">Acerca de mi</div>
+			<div class="btn btn-edit clickable">
+				<img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" />
+			</div>
+
+			<div class="col-12 color-grey">
+				<div class="row label-data">
+					<div class="col-md-12 font-bold">Háblame acerca de ti:</div>
+					<div class="col-md-12 txt-about">
+						<div [hidden]="!Edit">
+							<input formControlName="perfilCandidatoId" hidden />
+							<input formControlName="candidatoId" hidden />
+                            <input formControlName="id" hidden />
+							<textarea formControlName="acercaDeMi" maxlength="200" class="textarea"></textarea>
+						</div>
+						<label [hidden]="Edit">{{aboutMe.controls.acercaDeMi.value}}</label>
+					</div>
+				</div>
+				<div class="row label-data">
+					<div class="col-md-5 col-sm-6 font-bold">Puesto de trabajo deseado:</div>
+					<div class="col-md-7 col-sm-6">
+						<div [hidden]="!Edit">
+							<input type="text" class="input"
+								   formControlName="puestoDeseado" maxlength="50">
+						</div>
+						<label [hidden]="Edit">{{aboutMe.controls.puestoDeseado.value}}</label>
+					</div>
+				</div>
+				<div class="row label-data">
+					<div class="col-md-5 col-sm-6 font-bold">Área de experiencia: <span>*</span></div>
+					<div class="col-md-7 col-sm-6">
+						<div class="tooltip-validation-error" [hidden]="!Edit">
+							<p-autoComplete formControlName="areaExperiencia"
+											[suggestions]="filteredAreaExperiencia"
+											(completeMethod)="filterAreaExperiencia($event)"
+											field="areaExperiencia"
+											[size]="24"
+											[minLength]="1"
+											inputStyleClass="input"
+											(onSelect)="SetAreaExperienciaId($event)">
+
+							</p-autoComplete>
+							<input type="text" formControlName="areaExperienciaId" hidden="hidden" />
+							<span *ngIf="aboutMe.controls.areaExperiencia.touched && aboutMe.controls.areaExperienciaId.invalid"
+								  class="tooltip-text tooltip-validation-error-right">
+								Requerido, seleccione una opción.
+							</span>
+						</div>
+						<label [hidden]="Edit">{{AreaExperiencia}}</label>
+					</div>
+				</div>
+				<div class="row label-data">
+					<div class="col-md-5 col-sm-6 font-bold">Grado de experiencia: <span>*</span></div>
+					<div class="col-md-7 col-sm-6">
+						<div class="tooltip-validation-error" [hidden]="!Edit">
+							<select class="input" id="select" width="30" 
+									#t1
+									(change)="PerfilExperienciaOnChangue(t1.value)"
+									formControlName="perfilExperienciaId"
+									[class.selectPlaceholder]="!aboutMe.controls.perfilExperienciaId.touched"
+									[class.input-validation-error]="aboutMe.controls.perfilExperienciaId.touched && aboutMe.controls.perfilExperienciaId.invalid"
+									>
+								<option *ngFor="let grado of gradosExperiencia" [value]="grado.id">{{grado?.perfilExperiencia}}</option>
+							</select>
+							<span *ngIf="aboutMe.controls.perfilExperienciaId.touched && aboutMe.controls.perfilExperienciaId.invalid"
+								  class="tooltip-text tooltip-validation-error-right">
+								Requerido, seleccione una opción.
+							</span>
+						</div>
+						<label [hidden]="Edit">{{PerfilExperiencia}}</label>
+					</div>
+				</div>
+				<div class="row label-data">
+					<div class="col-md-5 col-sm-6 font-bold">Área de interes: </div>
+					<div class="col-md-7 col-sm-6">
+						<div [hidden]="!Edit">
+							<select class="input" id="select" width="30" formControlName="areaInteresId"
+									#t2
+									(change)="AreaInteresOnChangue(t2.value)">
+								<option *ngFor="let area of areasInteres" [value]="area.id">{{area.areaInteres}}</option>
+							</select>
+						</div>
+						<label [hidden]="Edit">{{AreaInteres}}</label>
+					</div>
+				</div>
+				<div class="row label-data">
+					<div class="col-md-5 col-sm-6 font-bold">Salario mínimo deseado: <span>*</span></div>
+					<div class="col-md-7 col-sm-6">
+						<div class="tooltip-validation-error">
+							<div [hidden]="!Edit">
+								<input type="text" class="input" formControlName="salarioAceptable" OnlyNumber="true" maxlength="13"
+									   [class.input-validation-error]="aboutMe.controls.salarioAceptable.touched && aboutMe.controls.salarioAceptable.invalid">
+								<span *ngIf="aboutMe.controls.salarioAceptable.touched && aboutMe.controls.salarioAceptable.invalid"
+									  class="tooltip-text tooltip-validation-error-right">
+									Campo requerido.
+								</span>
+							</div>
+							<label [hidden]="Edit">{{aboutMe.controls.salarioAceptable.value}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="row label-data">
+					<div class="col-md-5 col-sm-6 font-bold">Salario deseado: <span>*</span></div>
+					<div class="col-md-7 col-sm-6">
+						<div class="tooltip-validation-error">
+							<div [hidden]="!Edit">
+								<input type="text" class="input" formControlName="salarioDeseado" OnlyNumber="true" maxlength="13"
+									   [class.input-validation-error]="aboutMe.controls.salarioDeseado.touched && aboutMe.controls.salarioDeseado.invalid">
+								<span *ngIf="aboutMe.controls.salarioDeseado.touched && aboutMe.controls.salarioDeseado.invalid"
+									  class="tooltip-text tooltip-validation-error-right">
+									Campo requerido.
+								</span>
+							</div>
+							<label [hidden]="Edit">{{aboutMe.controls.salarioDeseado.value}}</label>
+						</div>
+					</div>
+				</div>
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6 font-bold">Tu sitio web:</div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error">
+                            <div [hidden]="!Edit">
+                                <input type="text" class="input" formControlName="sitioWeb" maxlength="500"
+                                       [class.input-validation-error]="aboutMe.controls.sitioWeb.touched && aboutMe.controls.sitioWeb.invalid"
+                                       (blur)="SitioWebExist()">
+                                <span *ngIf="aboutMe.controls.sitioWeb.touched && !sitioWebOk"
+                                      class="tooltip-text tooltip-validation-error-right">
+                                    Tu sitio web no existe.
+                                </span>
+                            </div>
+                            <label [hidden]="Edit"><a target="_blank" href="{{aboutMe.controls.sitioWeb.value}}">{{aboutMe.controls.sitioWeb.value}}</a></label>
+                        </div>
+                    </div>
+                </div>
+
+				<!---->
+				<div class="row label-data align-items-center margin-top-30x">
+					<div class="col-md-7 col-sm-6">
+						<button class="btn btn-prymary clickable btn-red" type="button"
+								(click)="DiscardEdit()" [hidden]="!Edit">
+							Cancelar
+						</button>
+						<button class="btn btn-prymary clickable btn-green" type="submit"
+								[disabled]="aboutMe.invalid"
+								[class.btn-success]="aboutMe.valid"
+								[hidden]="!Edit">
+							Guardar
+						</button>
+					</div>
+				</div>
+
+			</div>
+		<!--</div>
+	</div>-->
+</form>
+
+

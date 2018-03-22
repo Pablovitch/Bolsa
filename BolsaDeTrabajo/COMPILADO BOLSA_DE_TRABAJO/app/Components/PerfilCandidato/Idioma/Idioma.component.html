@@ -1,0 +1,98 @@
+﻿<form [formGroup]="language" (ngSubmit)="Save()">
+    <div class="row">
+        <div class="col-12 color-grey">
+            <!---->
+            <div class="row label-data ">
+                <div class="col-md-7 col-sm-6 font-bold"></div>
+                <div class="col-md-5 col-sm-6">
+                    <a class="fa fa-window-close fa-2x pull-right clickable" (click)="Remove(index)" [hidden]="Edit"></a>
+                    <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
+
+                </div>
+            </div>
+            <!---->
+            <div [hidden]="contraer">
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Idioma:<span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <p-autoComplete formControlName="idioma"
+                                            [suggestions]="filteredIdiomas"
+                                            (completeMethod)="filterIdiomas($event)"
+                                            field="idioma"
+                                            [size]="24"
+                                            [minLength]="1"
+                                            inputStyleClass="input"
+                                            (onSelect)="SetIdiomaId($event)">
+
+                            </p-autoComplete>
+                            <input type="text" formControlName="idiomaId" hidden="hidden" />
+                            <span *ngIf="language.controls.idioma.touched && language.controls.idiomaId.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Seleccione una opción.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{Idioma}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Escrito:<span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="nivelEscritoId"
+                                    #t0
+                                    (change)="NivelEscritoOnChangue(t0.value)"
+                                    [class.selectPlaceholder]="!language.controls.nivelEscritoId.touched">
+                                <option *ngFor="let nivel of niveles" [value]="nivel.id">{{nivel.nivel}}</option>
+                            </select>
+                            <span *ngIf="language.controls.nivelEscritoId.touched && language.controls.nivelEscritoId.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Seleccione una opción.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{NivelEscrito}}</label>
+                    </div>
+                </div>
+                <!---->
+                <div class="row label-data ">
+                    <div class="col-md-5 col-sm-6 font-bold">Hablado:<span>*</span></div>
+                    <div class="col-md-7 col-sm-6">
+                        <div class="tooltip-validation-error" [hidden]="!Edit">
+                            <select class="input" id="select" width="30" formControlName="nivelHabladoId"
+                                    #t1
+                                    (change)="NivelHabladoOnChangue(t1.value)"
+                                    [class.selectPlaceholder]="!language.controls.nivelHabladoId.touched">
+                                <option *ngFor="let nivel of niveles" [value]="nivel.id">{{nivel.nivel}}</option>
+                            </select>
+                            <span *ngIf="language.controls.nivelHabladoId.touched && language.controls.nivelHabladoId.invalid"
+                                  class="tooltip-text tooltip-validation-error-right">
+                                Seleccione una opción.
+                            </span>
+                        </div>
+                        <label [hidden]="Edit">{{NivelHablado}}</label>
+                    </div>
+                </div>
+
+                <!---->
+                <div class="row label-data align-items-center margin-top-30x">
+                    <div class="col-md-7 col-sm-6">
+                        <button class="btn btn-prymary clickable btn-red" type="button"
+                                (click)="DiscardEdit()" [hidden]="!Edit">
+                            Cancelar
+                        </button>
+                        <button class="btn btn-prymary clickable" type="submit"
+                                [disabled]="language.invalid"
+                                [class.btn-success]="language.valid"
+                                [hidden]="!Edit">
+                            Guardar
+                        </button>
+                    </div>
+                </div> 
+                <!---->
+            </div>
+            <!---->
+        </div>
+    </div>
+</form>

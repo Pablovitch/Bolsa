@@ -1,0 +1,156 @@
+﻿<div class="header">
+	<damsa-bar-social></damsa-bar-social>
+	<damsa-barra (ClickMenuBoton)="ShowMenu()" [ProfileName]="ProfileName" [Oculto]="Oculto"></damsa-barra>
+	<damsa-menu-oculto [ShowMenu]="showMenu"></damsa-menu-oculto>
+	<div class="bar-pasos">
+		<div class="title color-blue" > Ayúdanos a capturar tus datos de dirección: <div class="float-right">
+				<div class="text-paso">Paso</div><div class="circle-paso circle-start">2</div><div class="text-paso">de</div><div class="circle-paso circle-end">3</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="global-container">
+	<form [formGroup]="formDireccion" (ngSubmit)="Save()">
+		<div class="row">
+			<div class="col-xs-12 col-md-12 col-lg-10 padding-991">
+
+				<!-- DIRECCION -->
+				<div class="address-information-container">
+					<div class="row address-information">
+						<div class="col-12 color-grey">
+							<input type="text" formControlName="personaId" hidden />
+								<div class="row label-data align-items-center margin-top-30x">
+									<div class="col-md-7 col-sm-6">
+										<div class="tooltip-validation-error">
+											<p-autoComplete formControlName="pais"
+															placeholder="País"
+															[suggestions]="filteredCountries"
+															(completeMethod)="filterCountry($event)"
+															field="pais"
+															[size]="24"
+															[minLength]="1"
+															(onSelect)="setPais($event)"
+															inputStyleClass="input">
+
+											</p-autoComplete>
+											<input type="text" formControlName="paisId" hidden />
+											<span *ngIf="formDireccion.controls.pais.touched &&
+													formDireccion.controls.paisId.invalid"
+												  class="tooltip-text tooltip-validation-error-right">Seleccione un país de la lista</span>
+										</div>
+									</div>
+								</div>
+								<!---->
+								<div class="row label-data align-items-center" *ngIf="viveMexico">
+									<div class="col-md-7 col-sm-6">
+										<p-autoComplete formControlName="estado"
+														placeholder="Estado"
+														[suggestions]="filteredStates"
+														(completeMethod)="filterState($event)"
+														field="estado"
+														[size]="24"
+														[minLength]="1"
+														(onSelect)="setEstado($event)"
+														inputStyleClass="input">
+
+										</p-autoComplete>
+										<input type="text" formControlName="estadoId" hidden />
+									</div>
+								</div>
+								<!---->
+								<div class="row label-data align-items-center" *ngIf="viveMexico">
+									<div class="col-md-7 col-sm-6">
+										<p-autoComplete formControlName="municipio"
+														 placeholder="Municipio / Delegación"
+														[suggestions]="filteredTowns"
+														(completeMethod)="filterTowns($event)"
+														field="municipio"
+														[size]="24"
+														[minLength]="1"
+														(onSelect)="setMunicipio($event)"
+														inputStyleClass="input">
+
+										</p-autoComplete>
+										<input type="text" formControlName="municipioId" hidden />
+									</div>
+								</div>
+								<!---->
+								<div class="row label-data align-items-center">
+									<div class="col-md-7 col-sm-6">
+										<input type="Text" class="input" id="codigoPostal"
+											   formControlName="codigoPostal"
+											   placeholder="Código Postal"
+											   #cp (keyup)="cp.value=$event.target.value.toUpperCase()"
+											   (blur)="buscarColonias()">
+									</div>
+								</div>
+								<!---->
+								<div class="row label-data align-items-center" [hidden]="!viveMexico">
+									<div class="col-md-7 col-sm-6">
+										<p-autoComplete formControlName="colonia"
+														 placeholder="Colonia"
+														[suggestions]="filteredColonias"
+														(completeMethod)="filterColonias($event)"
+														field="colonia"
+														[size]="24"
+														[minLength]="1"
+														inputStyleClass="input"
+														(onSelect)="setColonia($event)">
+										</p-autoComplete>
+										<input formControlName="coloniaId" value="" hidden />
+									</div>
+								</div>
+								<!---->
+								<div class="row label-data align-items-center" [hidden]="!viveMexico">
+									<div class="col-md-7 col-sm-6">
+										<input type="Text" class="input" id="calle"
+											   formControlName="calle"
+											   placeholder="Calle"
+											   #calle (keyup)="calle.value=$event.target.value.toUpperCase()" />
+									</div>
+								</div>
+								<!---->
+								<div class="row label-data align-items-center" [hidden]="!viveMexico">
+									<div class="col-md-7 col-sm-6">
+										<input type="Text" class="input" id="numeroExterior"
+											   formControlName="numeroExterior"
+											   placeholder="Número Exterior"
+											   #numeroExterior (keyup)="numeroExterior.value=$event.target.value.toUpperCase()" />
+									</div>
+								</div>
+								<!---->
+								<div class="row label-data align-items-center" [hidden]="!viveMexico">
+									<div class="col-md-7 col-sm-6">
+										<input type="Text" class="input" id="numeroInterior"
+											   formControlName="numeroInterior"
+											   placeholder="Número Interior"
+											   #numeroInterior (keyup)="numeroInterior.value=$event.target.value.toUpperCase()" />
+									</div>
+								</div>
+								<!---->
+						</div>
+					</div>
+				</div>
+				
+				<div class="identification-information-container">
+					<div class="row identification-information">
+						<div class="row label-data align-items-center margin-top-30x">
+							<div class="col-md-5 col-sm-6 font-bold"></div>
+							<div class="col-md-7 col-sm-6">
+								<button class="btn btn-prymary clickable" type="submit"
+										[disabled]="formDireccion.invalid "
+										[class.btn-success]="formDireccion.valid">
+									Continuar
+								</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
