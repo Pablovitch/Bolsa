@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 color-grey">
             <!---->
-            <div class="row label-data ">
+            <!--<div class="row label-data ">
                 <div class="col-md-7 col-sm-6 font-bold"></div>
                 <div class="col-md-5 col-sm-6">
                     <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
@@ -11,13 +11,32 @@
                     <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
 
                 </div>
+            </div>-->
+            <div class="row">
+                <div class="col-sm-9 font-bold" [hidden]="!contraer">{{Certificacion.controls.certificacion.value}}</div>
+                <div class="col-sm-3">
+                    <div class="link-blue float-right">
+                        <!--<a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>-->
+                        <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+            <div [hidden]="!contraer">
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6">{{Certificacion.controls.autoridadEmisora.value}} </div>
+                </div>
+                <div class="row label-data">
+                    <div class="col-md-7 col-sm-6">
+                        <label [hidden]="Edit">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</label>
+                    </div>
+                </div>
             </div>
             <!---->
             <div [hidden]="contraer">
                 <!---->
                 <div class="row label-data">
-                    <div class="col-md-5 col-sm-6 font-bold">Nombre de la certificación:<span>*</span></div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Nombre de la certificación:<span>*</span></div>
+                    <div class="col-md-5 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <input type="text" formControlName="id" hidden />
                             <input type="text" formControlName="perfilCandidatoId" hidden />
@@ -30,11 +49,16 @@
                         </div>
                         <label [hidden]="Edit">{{Certificacion.controls.certificacion.value}}</label>
                     </div>
+                    <div class="col-sm-3">
+                        <div class="link-blue float-right">
+                            <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
+                        </div>
+                    </div>
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Autoridad emisora: </div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Autoridad emisora: </div>
+                    <div class="col-md-8 col-sm-6">
                         <div [hidden]="!Edit">
                             <input type="text" class="input" formControlName="autoridadEmisora" maxlength="200" />
                         </div>
@@ -43,8 +67,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Número de licencia: </div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Número de licencia: </div>
+                    <div class="col-md-8 col-sm-6">
                         <div [hidden]="!Edit">
                             <input type="text" class="input" formControlName="licencia" maxlength="100" />
                         </div>
@@ -53,8 +77,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">URL de la certificación: </div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">URL de la certificación: </div>
+                    <div class="col-md-8 col-sm-6">
                         <div [hidden]="!Edit">
                             <input type="text" class="input" formControlName="urlCertificacion" maxlength="500"/>
                         </div>
@@ -63,11 +87,11 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">
+                    <div class="col-md-4 col-sm-6 font-bold">
                         Periodo:
                         <span>*</span>
                     </div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-8 col-sm-6">
                         <div [hidden]="!Edit">
                             <div [hidden]="!Edit">
                                 <select class="input" id="select" width="30" formControlName="yearInicioId"
@@ -111,8 +135,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Está certificación no vence:</div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Está certificación no vence:</div>
+                    <div class="col-md-8 col-sm-6">
                         <div [hidden]="!Edit">
                             <input type="checkbox" class="checkbox" formControlName="noVence">
                         </div>
@@ -135,26 +159,25 @@
                     </div>
                 </div>
                 <!---->
-            </div>
-            <!--Ver menos-->
-            <div [hidden]="!contraer">
-                <div class="row label-data">
-
-                    <div class="col-md-5 col-sm-6">{{Certificacion.controls.certificacion.value}} </div>
-                    <div class="col-md-7 col-sm-6">
-                    </div>
-
-                    <div class="col-md-5 col-sm-6">{{Certificacion.controls.autoridadEmisora.value}} </div>
-                    <div class="col-md-7 col-sm-6">
-                        <label [hidden]="Edit">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</label>
-                    </div>
-                    
+                <div class="row btn-margin" [hidden]="contraer">
+                    <div class="col-sm-2"><img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" style="cursor: pointer" /></div>
+                    <div class="col-sm-2"><img src="assets/images/icon-delete.png" (click)="Showdialog()" [hidden]="Edit" style="cursor: pointer" /></div>
                 </div>
             </div>
+            <!--Ver menos-->
             <!---->
         </div>
     </div>
 </form>
+<p-dialog styleClass="ui-widget-header ui-widget-content" header="Eliminar" [(visible)]="display" modal="modal" width="450" height="auto" [dismissableMask]="true">
+    <span style="color: #2E86C1;">
+        ¿ Confirmas eliminar la certificacion ?
+    </span>
+    <p-footer>
+        <button class="btn btn-prymary clickable btn-green" type="button" (click)="Remove(index)" label="Borrar">Borrar</button>
+        <button class="btn btn-prymary clickable btn-red" type="button" (click)="display=false" label="No, gracias">No, gracias</button>
+    </p-footer>
+</p-dialog>
 
 
 

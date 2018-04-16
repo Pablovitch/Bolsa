@@ -1,6 +1,6 @@
 ﻿import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { CalendarModule, AutoCompleteModule, CheckboxModule, TooltipModule } from 'primeng/primeng'; 
+import { CalendarModule, AutoCompleteModule, CheckboxModule, TooltipModule, DialogModule } from 'primeng/primeng';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -42,7 +42,7 @@ import { VacanteModule } from '../../Components/Vacantes/vacante.module';
 @NgModule({
     imports: [BrowserModule, ReactiveFormsModule, FormsModule, HttpModule, RouterModule,
         CalendarModule, AutoCompleteModule, BrowserAnimationsModule, CheckboxModule, TooltipModule,
-        PerfilCandidatoRoutingModule,
+        PerfilCandidatoRoutingModule, DialogModule,
         SharedModule,
         VacanteModule ],
     declarations: [
@@ -58,7 +58,7 @@ import { VacanteModule } from '../../Components/Vacantes/vacante.module';
         ExperienciasProfesionalesArray,
         FormacionComponent,
         FormacionesArray,
-        IdiomaComponent, 
+        IdiomaComponent,
         IdiomaArray
     ],
     providers: [{ provide: APP_BASE_HREF, useValue: '/' },

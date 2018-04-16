@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 color-grey">
             <!---->
-            <div class="row label-data">
+            <!--<div class="row label-data">
                 <div class="col-md-7 col-sm-6 font-bold"></div>
                 <div class="col-md-5 col-sm-6">
                     <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
@@ -10,13 +10,30 @@
                     <a class="fa fa-window-close fa-2x pull-right clickable" (click)="Remove(index)" [hidden]="Edit"></a>
                     <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
                 </div>
+            </div>-->
+            <div class="row">
+                <div class="col-sm-9 font-bold" [hidden]="!contraer">{{Cursos.controls.curso.value}}</div>
+                <div class="col-sm-3">
+                    <div class="link-blue float-right">
+                        <!--<a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>-->
+                        <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+            <div [hidden]="!contraer">
+                <div class="row label-data">
+                    <div class="col-md-5 col-sm-6"><label [hidden]="Edit">{{InstitucionEducativa}}</label></div>
+                </div>
+                <div class="row label-data">
+                    <div class="col-md-7 col-sm-6">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</div>
+                </div>
             </div>
             <!---->
             <div [hidden]="contraer">
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Nombre del curso: <span>*</span></div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Nombre del curso: <span>*</span></div>
+                    <div class="col-md-5 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <input type="text" class="input" formControlName="curso" maxlength="200">
                             <span *ngIf="Cursos.controls.curso.touched && Cursos.controls.curso.invalid"
@@ -26,11 +43,16 @@
                         </div>
                         <label [hidden]="Edit">{{Cursos.controls.curso.value}}</label>
                     </div>
+                    <div class="col-sm-3">
+                        <div class="link-blue float-right">
+                            <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
+                        </div>
+                    </div>
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Lugar o institucion</div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Lugar o institucion</div>
+                    <div class="col-md-8 col-sm-6">
                         <div [hidden]="!Edit">
                             <p-autoComplete formControlName="institucionEducativa"
                                             [suggestions]="filteredInstituciones"
@@ -49,8 +71,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Periodo: </div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Periodo: </div>
+                    <div class="col-md-8 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <select class="input" id="select" width="30" formControlName="yearInicioId"
                                     #t2
@@ -100,8 +122,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Horas:</div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Horas:</div>
+                    <div class="col-md-8 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <input type="text" OnlyNumber="true" formControlName="horas" class="input" max="5"
                                    [class.input-validation-error]="Cursos.controls.horas.touched && Cursos.controls.horas.invalid" />
@@ -129,21 +151,23 @@
                     </div>
                 </div>
                 <!---->
-            </div>
-            <!--Ver menos-->
-            <div [hidden]="!contraer">
-                <div class="row label-data">
-                    <div class="col-md-5 col-sm-6">{{Cursos.controls.curso.value}} </div>
-                    <div class="col-md-7 col-sm-6"></div>
-                    <div class="col-md-5 col-sm-6">
-                        <label [hidden]="Edit">{{InstitucionEducativa}}</label>
-                    </div>
-                    <div class="col-md-7 col-sm-6"></div>
-                    <!--<div class="col-md-7 col-sm-6">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</div>-->
-                    
+                <div class="row btn-margin" [hidden]="contraer">
+                    <div class="col-sm-2"><img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" style="cursor: pointer" /></div>
+                    <div class="col-sm-2"><img src="assets/images/icon-delete.png" (click)="Showdialog()" [hidden]="Edit" style="cursor: pointer" /></div>
                 </div>
             </div>
+            <!--Ver menos-->
             <!--Ver menos-->
         </div>
     </div>
 </form>
+ <!--Modal para confirmar el borrado del curso-->
+<p-dialog styleClass="ui-widget-header ui-widget-content" header="Eliminar" [(visible)]="display" modal="modal" width="450" height="auto" [dismissableMask]="true">
+    <span style="color: #2E86C1;">
+        ¿ Confirmas eliminar el curso ?
+    </span>
+    <p-footer>
+        <button class="btn btn-prymary clickable btn-green" type="button" (click)="Remove(index)" label="Borrar">Borrar</button>
+        <button class="btn btn-prymary clickable btn-red" type="button" (click)="display=false" label="No, gracias">No, gracias</button>
+    </p-footer>
+</p-dialog>

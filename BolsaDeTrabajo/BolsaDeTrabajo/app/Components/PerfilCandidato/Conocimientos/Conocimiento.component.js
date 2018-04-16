@@ -27,6 +27,7 @@ var ConocimientoComponent = (function () {
         this.institucion = '';
         this.institucionId = '';
         this.nivelId = 0;
+        this.display = false;
         this._Catalogos.GetNiveles()
             .subscribe(function (niveles) {
             _this.niveles = niveles;
@@ -93,6 +94,9 @@ var ConocimientoComponent = (function () {
     ConocimientoComponent.prototype.EntityAttached = function () {
         this.Conocimientos.get('institucionEducativa').setValue(this.auxInstitucion);
     };
+    ConocimientoComponent.prototype.Showdialog = function () {
+        this.display = true;
+    };
     ConocimientoComponent.prototype.Remove = function (index) {
         var idExperiencia = this.Conocimientos.get('id').value;
         if (idExperiencia != '0') {
@@ -100,6 +104,7 @@ var ConocimientoComponent = (function () {
                 .subscribe(function (data) { });
         }
         this.remove.emit(index);
+        this.display = false;
     };
     ConocimientoComponent.prototype.Save = function () {
         var _this = this;

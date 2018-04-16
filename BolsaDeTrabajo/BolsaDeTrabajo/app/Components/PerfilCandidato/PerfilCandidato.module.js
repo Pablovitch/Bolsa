@@ -48,7 +48,7 @@ PerfilCandidatoModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule,
             primeng_1.CalendarModule, primeng_1.AutoCompleteModule, animations_1.BrowserAnimationsModule, primeng_1.CheckboxModule, primeng_1.TooltipModule,
-            PerfilCandidato_routing_1.PerfilCandidatoRoutingModule,
+            PerfilCandidato_routing_1.PerfilCandidatoRoutingModule, primeng_1.DialogModule,
             Shared_module_1.SharedModule,
             vacante_module_1.VacanteModule],
         declarations: [

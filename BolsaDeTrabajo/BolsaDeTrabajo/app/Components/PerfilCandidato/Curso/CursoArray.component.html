@@ -1,5 +1,31 @@
 ﻿<form [formGroup]="CursosArray">
-    <div formArrayName="cursos">
+
+    <div class="row label-data">
+        <div class="col-md-3 col-sm-6 font-bold">
+            <div class="btn-edit">
+                <a (click)="addCurso()" style="cursor: default" data-toggle="tooltip" title="Agregar curso">
+                    <img src="assets/images/icon-more.png" />
+                </a>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-6">
+            Un curso académico carece de validez oficial, pero lo ampara un
+            documento (diploma) del conocimiento adquirido.
+        </div>
+    </div>
+
+    <div class="row label-data">
+        <div class="col-12 box-registro" *ngFor="let formacion of CursosArray.controls.cursos.controls; let i=index">
+            <div formArrayName="cursos">
+                <div class="panel-body" [formGroupName]="i">
+                    <cursos [group]="CursosArray.controls.cursos.controls[i]" [Index]="i"
+                            (Remove)="removeCurso($event)"></cursos>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div formArrayName="cursos">
         <div class="title color-blue text-uppercase">Cursos</div>
         <div *ngFor="let formacion of CursosArray.controls.cursos.controls; let i=index" class="panel panel-default separator separator">
            <div class="panel-body" [formGroupName]="i">
@@ -7,10 +33,10 @@
                         (Remove)="removeCurso($event)" ></cursos>
             </div>
         </div>
-    </div>
-    <div class="margin-20">
+    </div>-->
+    <!--<div class="margin-20">
         <a (click)="addCurso()" style="cursor: default" data-toggle="tooltip" title="Agregar curso">
             <i class="fa fa-plus-circle fa-2x clickable" aria-hidden="true"></i>
         </a>
-    </div>
+    </div>-->
 </form>

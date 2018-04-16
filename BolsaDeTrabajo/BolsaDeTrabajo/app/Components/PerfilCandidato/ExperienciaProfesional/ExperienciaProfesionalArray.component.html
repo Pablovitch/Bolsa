@@ -1,20 +1,47 @@
 ﻿<form [formGroup]="ExperienciasArray">
-    <div formArrayName="experiencias">
+
+    <div class="row label-data">
+        <div class="col-md-3 col-sm-6 font-bold">
+            <div class="btn-edit">
+                <a (click)="addExperiencia()" style="cursor: pointer">
+                    <img src="assets/images/icon-more.png" />
+                </a>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-6">
+            Toda aquella experiencia que adquieres al ejercer una profesión
+            en específico o te desempeñas en un área de trabajo determinada.
+        </div>
+    </div>
+
+    <div class="row label-data">
+        <div class="col-12 box-registro" *ngFor="let experiencia of ExperienciasArray.controls.experiencias.controls; let i=index">
+            <div formArrayName="experiencias">
+                <div [formGroupName]="i">
+                    <experiencias [group]="ExperienciasArray.controls.experiencias.controls[i]" [Index]="i"
+                    (Remove)="removeExperiencia($event)"
+                    (TrabajoActualChangue)="OnTrabajoActualChangue($event)"></experiencias>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div formArrayName="experiencias">
         <div class="title color-blue text-uppercase">Experiencia profesional</div>
         <div *ngFor="let experiencia of ExperienciasArray.controls.experiencias.controls; let i=index" class="panel panel-default separator">
             <div class="panel-body" [formGroupName]="i">
-                <experiencias [group]="ExperienciasArray.controls.experiencias.controls[i]"  [Index]="i"
+                <experiencias [group]="ExperienciasArray.controls.experiencias.controls[i]" [Index]="i"
                               (Remove)="removeExperiencia($event)"
                               (TrabajoActualChangue)="OnTrabajoActualChangue($event)"></experiencias>
             </div>
         </div>
-    </div>
-    <div class="margin-20">
-        <a (click)="addExperiencia()" style="cursor: default"  
+    </div>-->
+    <!--<div class="margin-20">
+        <a (click)="addExperiencia()" style="cursor: default"
            pTooltip="Toda aquella experiencia que adquieres al ejercer una profesión en específico o te desempeñas en un área de trabajo determinada."
            tooltipPosition="right"
            tooltipStyleClass="tooltip-CV">
             <i class="fa fa-plus-circle fa-2x clickable" aria-hidden="true"></i>
         </a>
-    </div>
+    </div>-->
 </form>

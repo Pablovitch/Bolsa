@@ -78,7 +78,7 @@
                     <div class="job-details col-md-3" style="background-color:#1ca80c; color:white; cursor:pointer;" type="button" id="{{postulacion?.vacanteId}}" (click)="showDialog($event.target.id)">+Detalle</div>
 
                 </div><!--Container-->
-                <p-paginator rows="2"
+                <p-paginator rows="5"
                              [totalRecords]="TotalRecords"
                              [rowsPerPageOptions]="[5,10,15]"
                              (onPageChange)="paginate($event)">

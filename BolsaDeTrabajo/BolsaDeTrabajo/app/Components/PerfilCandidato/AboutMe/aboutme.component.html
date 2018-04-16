@@ -1,24 +1,39 @@
 ﻿<form [formGroup]="aboutMe" (ngSubmit)="Save()">
 	<!--<div>
 		<div class="row">-->
-			<div class="title color-blue text-uppercase">Acerca de mi</div>
+			<div class="btn-edit"><img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" /></div>
+	<div class="row label-data">
+		<div class="col-md-12 font-bold">Háblame acerca de ti:</div>
+		<div class="col-md-12 txt-about">
+			<div [hidden]="!Edit">
+				<input formControlName="perfilCandidatoId" hidden />
+				<input formControlName="candidatoId" hidden />
+				<input formControlName="id" hidden />
+				<textarea formControlName="acercaDeMi" maxlength="200" class="textarea"></textarea>
+			</div>
+			<label [hidden]="Edit">{{aboutMe.controls.acercaDeMi.value}}</label>
+		</div>
+	</div>
+
+	<!--Ana-->
+			<!--<div class="title color-blue text-uppercase">Acerca de mi</div>
 			<div class="btn btn-edit clickable">
 				<img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" />
-			</div>
+			</div>-->
 
-			<div class="col-12 color-grey">
-				<div class="row label-data">
+			<!--<div class="col-12 color-grey">-->
+				<!--<div class="row label-data">
 					<div class="col-md-12 font-bold">Háblame acerca de ti:</div>
 					<div class="col-md-12 txt-about">
 						<div [hidden]="!Edit">
 							<input formControlName="perfilCandidatoId" hidden />
 							<input formControlName="candidatoId" hidden />
-                            <input formControlName="id" hidden />
+							<input formControlName="id" hidden />
 							<textarea formControlName="acercaDeMi" maxlength="200" class="textarea"></textarea>
 						</div>
 						<label [hidden]="Edit">{{aboutMe.controls.acercaDeMi.value}}</label>
 					</div>
-				</div>
+				</div>-->
 				<div class="row label-data">
 					<div class="col-md-5 col-sm-6 font-bold">Puesto de trabajo deseado:</div>
 					<div class="col-md-7 col-sm-6">
@@ -56,7 +71,7 @@
 					<div class="col-md-5 col-sm-6 font-bold">Grado de experiencia: <span>*</span></div>
 					<div class="col-md-7 col-sm-6">
 						<div class="tooltip-validation-error" [hidden]="!Edit">
-							<select class="input" id="select" width="30" 
+							<select class="input" id="select" width="30"
 									#t1
 									(change)="PerfilExperienciaOnChangue(t1.value)"
 									formControlName="perfilExperienciaId"
@@ -118,23 +133,23 @@
 						</div>
 					</div>
 				</div>
-                <div class="row label-data">
-                    <div class="col-md-5 col-sm-6 font-bold">Tu sitio web:</div>
-                    <div class="col-md-7 col-sm-6">
-                        <div class="tooltip-validation-error">
-                            <div [hidden]="!Edit">
-                                <input type="text" class="input" formControlName="sitioWeb" maxlength="500"
-                                       [class.input-validation-error]="aboutMe.controls.sitioWeb.touched && aboutMe.controls.sitioWeb.invalid"
-                                       (blur)="SitioWebExist()">
-                                <span *ngIf="aboutMe.controls.sitioWeb.touched && !sitioWebOk"
-                                      class="tooltip-text tooltip-validation-error-right">
-                                    Tu sitio web no existe.
-                                </span>
-                            </div>
-                            <label [hidden]="Edit"><a target="_blank" href="{{aboutMe.controls.sitioWeb.value}}">{{aboutMe.controls.sitioWeb.value}}</a></label>
-                        </div>
-                    </div>
-                </div>
+				<div class="row label-data">
+					<div class="col-md-5 col-sm-6 font-bold">Tu sitio web:</div>
+					<div class="col-md-7 col-sm-6">
+						<div class="tooltip-validation-error">
+							<div [hidden]="!Edit">
+								<input type="text" class="input" formControlName="sitioWeb" maxlength="500"
+									   [class.input-validation-error]="aboutMe.controls.sitioWeb.touched && aboutMe.controls.sitioWeb.invalid"
+									   (blur)="SitioWebExist()">
+								<span *ngIf="aboutMe.controls.sitioWeb.touched && !sitioWebOk"
+									  class="tooltip-text tooltip-validation-error-right">
+									Tu sitio web no existe.
+								</span>
+							</div>
+							<label [hidden]="Edit"><a target="_blank" href="{{aboutMe.controls.sitioWeb.value}}">{{aboutMe.controls.sitioWeb.value}}</a></label>
+						</div>
+					</div>
+				</div>
 
 				<!---->
 				<div class="row label-data align-items-center margin-top-30x">
@@ -152,7 +167,7 @@
 					</div>
 				</div>
 
-			</div>
+			<!--/div>-->
 		<!--</div>
 	</div>-->
 </form>

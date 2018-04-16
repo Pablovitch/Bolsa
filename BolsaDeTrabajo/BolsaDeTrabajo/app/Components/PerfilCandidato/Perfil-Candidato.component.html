@@ -2,361 +2,150 @@
 	<damsa-bar-social></damsa-bar-social>
 	<damsa-barra (ClickMenuBoton)="ShowMenu()" [Oculto]="Oculto" [CandidatoId]="CandidatoId"></damsa-barra>
 	<damsa-menu-oculto [ShowMenu]="showMenu" [CandidatoId]="CandidatoId"></damsa-menu-oculto>
-	<script>
-		$(function () {
-			$('.tab-open').on('click', function () {
-				$(this).toggleClass('opened');
-
-				if ($(this).hasClass('opened')) {
-					$(this).closest('.container-tab').find('.content-tab').show("slow");
-				} else {
-					$(this).closest('.container-tab').find('.content-tab').hide("slow");
-				}
-			});
-		});
-
-	</script>
 </div>
 	<div class="global-container">
-		<div class="row contenido">
-			<div class="col-lg-9 col-12 padding-991 col-izq">
-				<div class="cv-about-container">
-					<div class="row cv-about container-tab">
-						<div class="col-12">
-							<div class="title color-blue text-uppercase">
-								Acerca de mí
-								<div class="tab-open closed">
-									<div class="horizontal"></div>
-									<div class="vertical"></div>
+		<form [formGroup]="PerfilCandidato" novalidate (ngSubmit)="save(PerfilCandidato)">
+			<div class="row contenido">
+				<div class="col-lg-9 col-12 padding-991 col-izq">
+					<!--Panel de acerca de mi-->
+					<div class="cv-about-container">
+						<div class="row cv-about container-tab">
+
+							<div class="col-12">
+								<div class="title color-blue text-uppercase">
+									Acerca de mí
+									<div class="tab-open closed">
+										<div class="horizontal"></div>
+										<div class="vertical"></div>
+									</div>
 								</div>
 							</div>
-						</div>
 
-
-						<div class="col-12 color-grey">
-							<div class="btn-edit"><img src="assets/images/icon-edit.png" /></div>
-							<div class="row label-data">
-								<div class="col-md-12 font-bold">Háblame acerca de ti:</div>
-								<div class="col-md-12 txt-about">
-									Diez años de experiencia en Ingeniería Mecánica Industrial, graduado en la Universidad de
-									Oxford ( Inglaterra ),experto en el desarrollo de proyectos en el área de refinación de Gas y
-									Crudo. Desarrollo de proyectos de Ingenierías conceptuales, básica y de detalle.
-									Conocimientos en diseño de equipos como separadores, tanques de almacenamiento...
-								</div>
-							</div>
-							<div class="row label-data">
-								<div class="col-md-5 col-sm-6 font-bold">Puesto de trabajo deseado:</div>
-								<div class="col-md-7 col-sm-6"></div>
-							</div>
-							<div class="row label-data">
-								<div class="col-md-5 col-sm-6 font-bold">Área de experiencia:</div>
-								<div class="col-md-7 col-sm-6">Administración / Oficina</div>
-							</div>
-							<div class="row label-data">
-								<div class="col-md-5 col-sm-6 font-bold">Mi perfil es:</div>
-								<div class="col-md-7 col-sm-6"></div>
-							</div>
-							<div class="row label-data">
-								<div class="col-md-5 col-sm-6 font-bold">Salario mínimo deseado:</div>
-								<div class="col-md-7 col-sm-6">1</div>
-							</div>
-							<div class="row label-data">
-								<div class="col-md-5 col-sm-6 font-bold">Salario deseado:</div>
-								<div class="col-md-7 col-sm-6">1</div>
-							</div>
-							<div class="row label-data">
-								<div class="col-md-5 col-sm-6 font-bold">Intereses:</div>
-								<div class="col-md-7 col-sm-6"></div>
+							<div class="col-12 color-grey content-tab">
+								<aboutme [PerfilCandidatoId]="PerfilCandidatoId"></aboutme>
 							</div>
 						</div>
 					</div>
-				</div>
+					<!--Panel de experiencias-->
+					<div class="cv-experience-container">
+						<div class="row cv-experience container-tab">
 
-				<div class="cv-experience-container">
-					<div class="row cv-experience container-tab">
-
-						<div class="col-12">
-							<div class="title color-blue text-uppercase">
-								Experiencia profesional
-								<div class="tab-open closed">
-									<div class="horizontal"></div>
-									<div class="vertical"></div>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-12 color-grey content-tab">
-
-							<div class="row label-data">
-								<div class="col-md-3 col-sm-6 font-bold">
-									<div class="btn-edit"><img src="assets/images/icon-more.png" /></div>
-								</div>
-								<div class="col-md-9 col-sm-6">
-									Toda aquella experiencia que adquieres al ejercer una profesión
-									en específico o te desempeñas en un área de trabajo determinada.
+							<div class="col-12">
+								<div class="title color-blue text-uppercase">
+									Experiencia profesional
+									<div class="tab-open closed">
+										<div class="horizontal"></div>
+										<div class="vertical"></div>
+									</div>
 								</div>
 							</div>
 
-							<div class="row label-data">
-								<div class="col-12 box-registro">
-									<div class="row">
-										<div class="col-sm-9 font-bold">Jefe de Zona</div>
-										<div class="col-sm-3"><div class="link-blue float-right">Ver mas</div></div>
-									</div>
-									<div class="row">
-										<div class="col-12">RAGASA Industrias, S.A. De C.V.</div>
-									</div>
-									<div class="row">
-										<div class="col-12">Octubre 2012 – Julio 2013</div>
-									</div>
-									<div class="row">
-										<div class="col-12">
-											<img src="assets/images/icon-edit.png" />
-											<img src="assets/images/icon-delete.png" />
-										</div>
-									</div>
-								</div>
+							<div class="col-12 color-grey content-tab">
+								<ExperienciasArray [PerfilCandidatoId]="PerfilCandidatoId"></ExperienciasArray>
 							</div>
 						</div>
 					</div>
-				</div>
+					<!--Panel de formaciones-->
+					<div class="cv-formation-container">
+						<div class="row cv-formation container-tab">
 
-				<div class="cv-formation-container">
-					<div class="row cv-formation container-tab">
-						<div class="col-12">
-							<div class="title color-blue text-uppercase">
-								Formación
-								<div class="tab-open closed">
-									<div class="horizontal"></div>
-									<div class="vertical"></div>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-12 color-grey content-tab">
-							<div class="row label-data">
-								<div class="col-md-3 col-sm-6 font-bold">
-									<div class="btn-edit"><img src="assets/images/icon-more.png" /></div>
-								</div>
-								<div class="col-md-9 col-sm-6">
-									Conjunto de conocimientos adquiridos que describe la trayectoria
-									formativa del candidato.
+							<div class="col-12">
+								<div class="title color-blue text-uppercase">
+									Formación
+									<div class="tab-open closed">
+										<div class="horizontal"></div>
+										<div class="vertical"></div>
+									</div>
 								</div>
 							</div>
 
-							<div class="row label-data">
-								<div class="col-12 box-registro">
-									<div class="row">
-										<div class="col-sm-9 font-bold">Instituto Politécnico Nacional </div>
-										<div class="col-sm-3"><div class="link-blue float-right">Ver mas</div></div>
-									</div>
-									<div class="row">
-										<div class="col-12">Licenciatura - Informática</div>
-									</div>
-									<div class="row">
-										<div class="col-12">Diciembre 2006 – Julio 2009</div>
-									</div>
-									<div class="row">
-										<div class="col-12">
-											<img src="assets/images/icon-edit.png" />
-											<img src="assets/images/icon-delete.png" />
-										</div>
-									</div>
-								</div>
+
+							<div class="col-12 color-grey content-tab">
+								<FormacionesArray [PerfilCandidatoId]="PerfilCandidatoId"> </FormacionesArray>
 							</div>
 						</div>
 					</div>
-				</div>
+					<!--Panel de conocimientos-->
+					<div class="cv-knowledge-container">
+						<div class="row cv-knowledge container-tab">
 
-				<div class="cv-knowledge-container">
-					<div class="row cv-knowledge container-tab">
-						<div class="col-12">
-							<div class="title color-blue text-uppercase">
-								Conocimiento y habilidades
-								<div class="tab-open closed">
-									<div class="horizontal"></div>
-									<div class="vertical"></div>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-12 color-grey content-tab">
-							<div class="row label-data">
-								<div class="col-md-3 col-sm-6 font-bold">
-									<div class="btn-edit"><img src="assets/images/icon-more.png" /></div>
-								</div>
-								<div class="col-md-9 col-sm-6">
-									Es aquello que aprendí empíricamente y que tan solo es avalado
-									por mi experiencia.
+							<div class="col-12">
+								<div class="title color-blue text-uppercase">
+									Conocimiento y habilidades
+									<div class="tab-open closed">
+										<div class="horizontal"></div>
+										<div class="vertical"></div>
+									</div>
 								</div>
 							</div>
 
-							<div class="row label-data">
-								<div class="col-12 box-registro">
-									<div class="row">
-										<div class="col-sm-9 font-bold">Microsoft Excel </div>
-										<div class="col-sm-3"><div class="link-blue float-right">Ver mas</div></div>
-									</div>
-									<div class="row">
-										<div class="col-12">Tecnologías de la información</div>
-									</div>
-									<div class="row">
-										<div class="col-12">
-											<img src="assets/images/icon-edit.png" />
-											<img src="assets/images/icon-delete.png" />
-										</div>
-									</div>
-								</div>
+
+							<div class="col-12 color-grey content-tab">
+								<ConocimientosArray [PerfilCandidatoId]="PerfilCandidatoId"></ConocimientosArray>
 							</div>
 						</div>
 					</div>
-				</div>
+					<!--Panel de cursos-->
+					<div class="cv-cursos-container">
+						<div class="row cv-cursos container-tab">
 
-				<div class="cv-cursos-container">
-					<div class="row cv-cursos container-tab">
-						<div class="col-12">
-							<div class="title color-blue text-uppercase">
-								Cursos
-								<div class="tab-open closed">
-									<div class="horizontal"></div>
-									<div class="vertical"></div>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-12 color-grey content-tab">
-							<div class="row label-data">
-								<div class="col-md-3 col-sm-6 font-bold">
-									<div class="btn-edit"><img src="assets/images/icon-more.png" /></div>
-								</div>
-								<div class="col-md-9 col-sm-6">
-									Un curso académico carece de validez oficial, pero lo ampara un
-									documento (diploma) del conocimiento adquirido.
+							<div class="col-12">
+								<div class="title color-blue text-uppercase">
+									Cursos
+									<div class="tab-open closed">
+										<div class="horizontal"></div>
+										<div class="vertical"></div>
+									</div>
 								</div>
 							</div>
 
-							<div class="row label-data">
-								<div class="col-12 box-registro">
-									<div class="row">
-										<div class="col-sm-9 font-bold">Diplomado en impuestos </div>
-										<div class="col-sm-3"><div class="link-blue float-right">Ver mas</div></div>
-									</div>
-									<div class="row">
-										<div class="col-12">IEE Institución de Especialización para Ejecutivos</div>
-									</div>
-									<div class="row">
-										<div class="col-12">
-											<img src="assets/images/icon-edit.png" />
-											<img src="assets/images/icon-delete.png" />
-										</div>
-									</div>
-								</div>
+
+							<div class="col-12 color-grey content-tab">
+								<CursosArray [PerfilCandidatoId]="PerfilCandidatoId"></CursosArray>
 							</div>
 						</div>
 					</div>
-				</div>
+					<!--Panel de certificaciones-->
+					<div class="cv-certificaciones-container">
+						<div class="row cv-certificaciones container-tab">
 
-				<div class="cv-certificaciones-container">
-					<div class="row cv-certificaciones container-tab">
-
-						<div class="col-12">
-							<div class="title color-blue text-uppercase">
-								Certificaciones
-								<div class="tab-open closed">
-									<div class="horizontal"></div>
-									<div class="vertical"></div>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-12 color-grey content-tab">
-							<div class="row label-data">
-								<div class="col-md-3 col-sm-6 font-bold">
-									<div class="btn-edit"><img src="assets/images/icon-more.png" /></div>
-								</div>
-								<div class="col-md-9 col-sm-6">
-									Certificación en la web:<br />
-									Este solo es dada por la SEP a instituciones avaladas por la misma.
+							<div class="col-12">
+								<div class="title color-blue text-uppercase">
+									Certificaciones
+									<div class="tab-open closed">
+										<div class="horizontal"></div>
+										<div class="vertical"></div>
+									</div>
 								</div>
 							</div>
 
-							<div class="row label-data">
-								<div class="col-12 box-registro">
-									<div class="row">
-										<div class="col-sm-9 font-bold">Programación Neurolingüística </div>
-										<div class="col-sm-3"><div class="link-blue float-right">Ver mas</div></div>
-									</div>
-									<div class="row">
-										<div class="col-12">FMP Federación Mexicana de Psicología </div>
-									</div>
-									<div class="row">
-										<div class="col-12">Octubre 2003 – Julio 2006 </div>
-									</div>
-									<div class="row">
-										<div class="col-12">
-											<img src="assets/images/icon-edit.png" />
-											<img src="assets/images/icon-delete.png" />
-										</div>
-									</div>
-								</div>
+
+							<div class="col-12 color-grey content-tab">
+								<CertificacionesArray [PerfilCandidatoId]="PerfilCandidatoId"></CertificacionesArray>
 							</div>
 						</div>
 					</div>
-				</div>
+					<!--Panel de idiomas-->
+					<div class="cv-lang-container">
+						<div class="row cv-lang container-tab">
 
-				<div class="cv-lang-container">
-					<div class="row cv-lang container-tab">
-						<div class="col-12">
-							<div class="title color-blue text-uppercase">
-								Idiomas
-								<div class="tab-open closed">
-									<div class="horizontal"></div>
-									<div class="vertical"></div>
+							<div class="col-12">
+								<div class="title color-blue text-uppercase">
+									Idiomas
+									<div class="tab-open closed">
+										<div class="horizontal"></div>
+										<div class="vertical"></div>
+									</div>
 								</div>
 							</div>
-						</div>
 
-
-						<div class="col-12 color-grey content-tab">
-
-							<div class="row label-data">
-								<div class="col-md-3 col-sm-6 font-bold">
-									<div class="btn-edit"><img src="assets/images/icon-more.png" /></div>
-								</div>
-								<div class="col-md-9 col-sm-6">.</div>
-							</div>
-
-							<div class="row label-data">
-								<div class="col-12 box-registro">
-									<div class="row">
-										<div class="col-9 font-bold">Ingles </div>
-									</div>
-									<div class="row">
-										<div class="col-3">Escrito: </div>
-										<div class="col-9">Básico </div>
-									</div>
-									<div class="row">
-										<div class="col-3">Hablado: </div>
-										<div class="col-9">Avanzado </div>
-									</div>
-									<div class="row">
-										<div class="col-12">
-											<img src="assets/images/icon-edit.png" />
-											<img src="assets/images/icon-delete.png" />
-										</div>
-									</div>
-								</div>
+							<div class="col-12 color-grey content-tab">
+								<IdiomasArray [PerfilCandidatoId]="PerfilCandidatoId"></IdiomasArray>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="cv-web-container">
+					<!--Panel de mi sitio web-->
+					<!--<div class="cv-web-container">
 					<div class="row cv-web container-tab">
 
 						<div class="col-12">
@@ -375,117 +164,117 @@
 							http://www.misitioweb.com.mx
 						</div>
 					</div>
+				</div>-->
+
 				</div>
+				<div class="col-lg-3 col-12 padding-991  col-der">
+					<div class="profile-percent">
+						<div class="color-blue font-bold text-center">Mi perfil profesional está al</div>
+						<img src="assets/images/graphic-test.png" />
 
-			</div>
-			<div class="col-lg-3 col-12 padding-991  col-der">
-				<div class="profile-percent">
-					<div class="color-blue font-bold text-center">Mi perfil profesional está al</div>
-					<img src="assets/images/graphic-test.png" />
+						<ul>
+							<li class="link-blue">Agregar fotografía</li>
+							<li class="link-blue">Completar Datos Personales</li>
+							<li class="link-blue">Completar Datos Identificación Oficial</li>
+							<li class="link-blue">Agregar Redes Sociales</li>
+							<li class="link-blue">Completar Acerca de Mí</li>
+							<li class="link-blue">Agregar Experiencia Profesional</li>
+							<li class="link-blue">Agregar Formación</li>
+							<li class="link-blue">Agregar Conocimientos y Habilidades</li>
+							<li class="link-blue">Agregar Idiomas</li>
+							<li class="link-blue">Agregar tu Sitio Web</li>
+							<li class="link-blue">Activar alertas</li>
+						</ul>
 
-					<ul>
-						<li class="link-blue">Agregar fotografía</li>
-						<li class="link-blue">Completar Datos Personales</li>
-						<li class="link-blue">Completar Datos Identificación Oficial</li>
-						<li class="link-blue">Agregar Redes Sociales</li>
-						<li class="link-blue">Completar Acerca de Mí</li>
-						<li class="link-blue">Agregar Experiencia Profesional</li>
-						<li class="link-blue">Agregar Formación</li>
-						<li class="link-blue">Agregar Conocimientos y Habilidades</li>
-						<li class="link-blue">Agregar Idiomas</li>
-						<li class="link-blue">Agregar tu Sitio Web</li>
-						<li class="link-blue">Activar alertas</li>
-					</ul>
+						<div class="text-uppercase font-bold color-yellow legend">
+							Para brindarte un mejor servicio y encontrar la vacate ideal para ti, ayúdanos a llenar los siguientes datos
+						</div>
 
-					<div class="text-uppercase font-bold color-yellow legend">
-						Para brindarte un mejor servicio y encontrar la vacate ideal para ti, ayúdanos a llenar los siguientes datos
-					</div>
-
-					<div class="btn-yellow">Descarga tu CV</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!-- Ana -->
-<form [formGroup]="PerfilCandidato" novalidate (ngSubmit)="save(PerfilCandidato)" class="form-inline">
-	<div class="row">
-		<div class="col-xs-12 col-md-12 col-lg-10 padding-991">
-			<!--<input type="text" value="" formControlName="CandidatoId" hidden="hidden" />
-			<input type="text" value="" formControlName="perfilCandidatoId" hidden="hidden" />-->
-			<!--Aboutme-->
-			<div class="identification-information-container">
-				<div class="row identification-information">
-					<div class="col-12 color-grey">
-						<aboutme [PerfilCandidatoId]="PerfilCandidatoId"></aboutme>
+						<div class="btn-yellow">Descarga tu CV</div>
 					</div>
 				</div>
 			</div>
+		</form>
+</div>
 
-			<!--Experiencias Profesional-->
-			<div class="identification-information-container">
-				<div class="row identification-information">
-					<div class="col-12 color-grey">
-						<ExperienciasArray [PerfilCandidatoId]="PerfilCandidatoId"></ExperienciasArray>
+	<!-- Ana -->
+	<!--<form [formGroup]="PerfilCandidato" novalidate (ngSubmit)="save(PerfilCandidato)" class="form-inline">
+		<div class="row">
+			<div class="col-xs-12 col-md-12 col-lg-10 padding-991">-->
+				<!--<input type="text" value="" formControlName="CandidatoId" hidden="hidden" />
+				<input type="text" value="" formControlName="perfilCandidatoId" hidden="hidden" />-->
+				<!--Aboutme-->
+				<!--<div class="identification-information-container">
+					<div class="row identification-information">
+						<div class="col-12 color-grey">
+							<aboutme [PerfilCandidatoId]="PerfilCandidatoId"></aboutme>
+						</div>
 					</div>
-				</div>
-			</div>
-			<!--Formaciones-->
-			<div class="identification-information-container">
-				<div class="row identification-information">
-					<div class="col-12 color-grey">
+				</div>-->
+				<!--Experiencias Profesional-->
+				<!--<div class="identification-information-container">
+					<div class="row identification-information">
+						<div class="col-12 color-grey">
+							<ExperienciasArray [PerfilCandidatoId]="PerfilCandidatoId"></ExperienciasArray>
+						</div>
+					</div>
+				</div>-->
+				<!--Formaciones-->
+				<!--<div class="identification-information-container">
+					<div class="row identification-information">
+						<div class="col-12 color-grey">
 
-						<FormacionesArray [PerfilCandidatoId]="PerfilCandidatoId"> </FormacionesArray>
+							<FormacionesArray [PerfilCandidatoId]="PerfilCandidatoId"> </FormacionesArray>
 
+						</div>
 					</div>
-				</div>
-			</div>
-			<!--Certificaciones-->
-			<div class="identification-information-container">
-				<div class="row identification-information">
-					<div class="col-12 color-grey">
-						<CertificacionesArray [PerfilCandidatoId]="PerfilCandidatoId"></CertificacionesArray>
+				</div>-->
+				<!--Certificaciones-->
+				<!--<div class="identification-information-container">
+					<div class="row identification-information">
+						<div class="col-12 color-grey">
+							<CertificacionesArray [PerfilCandidatoId]="PerfilCandidatoId"></CertificacionesArray>
+						</div>
 					</div>
-				</div>
-			</div>
-			<!--Idiomas-->
-			<div class="identification-information-container">
-				<div class="row identification-information">
-					<div class="col-12 color-grey">
-						<IdiomasArray [PerfilCandidatoId]="PerfilCandidatoId"></IdiomasArray>
+				</div>-->
+				<!--Idiomas-->
+				<!--<div class="identification-information-container">
+					<div class="row identification-information">
+						<div class="col-12 color-grey">
+							<IdiomasArray [PerfilCandidatoId]="PerfilCandidatoId"></IdiomasArray>
+						</div>
 					</div>
-				</div>
-			</div>
-			<!--cursos-->
-			<div class="identification-information-container">
-				<div class="row identification-information">
-					<div class="col-12 color-grey">
-						<CursosArray [PerfilCandidatoId]="PerfilCandidatoId"></CursosArray>
+				</div>-->
+				<!--cursos-->
+				<!--<div class="identification-information-container">
+					<div class="row identification-information">
+						<div class="col-12 color-grey">
+							<CursosArray [PerfilCandidatoId]="PerfilCandidatoId"></CursosArray>
 
+						</div>
 					</div>
-				</div>
-			</div>
-			<!--Conocimientos-->
-			<div class="identification-information-container">
-				<div class="row identification-information">
-					<div class="col-12 color-grey">
-						<ConocimientosArray [PerfilCandidatoId]="PerfilCandidatoId"></ConocimientosArray>
+				</div>-->
+				<!--Conocimientos-->
+				<!--<div class="identification-information-container">
+					<div class="row identification-information">
+						<div class="col-12 color-grey">
+							<ConocimientosArray [PerfilCandidatoId]="PerfilCandidatoId"></ConocimientosArray>
+						</div>
 					</div>
-				</div>
-			</div>
-			<!--<div class="margin-20">
-				<div>myForm details:-</div>
-				<pre>Is myForm valid?: <br>{{PerfilCandidato.valid | json}}</pre>
-				<pre>form value: <br>{{PerfilCandidato.value | json}}</pre>
+				</div>-->
+				<!--<div class="margin-20">
+					<div>myForm details:-</div>
+					<pre>Is myForm valid?: <br>{{PerfilCandidato.valid | json}}</pre>
+					<pre>form value: <br>{{PerfilCandidato.value | json}}</pre>
+				</div>-->
+
+			<!--</div>-->
+
+			<!--<div class="col-xs-12 col-md-12 col-lg-2 padding-991">
+				<damsa-profile-percentage></damsa-profile-percentage>
 			</div>-->
-
-		</div>
-
-		<div class="col-xs-12 col-md-12 col-lg-2 padding-991">
-			<damsa-profile-percentage></damsa-profile-percentage>
-		</div>
-	</div>
-</form>
+		<!--</div>
+	</form>-->
 
 
 

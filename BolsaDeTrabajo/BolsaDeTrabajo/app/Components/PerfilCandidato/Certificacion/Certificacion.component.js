@@ -31,6 +31,7 @@ var CertificacionComponent = (function () {
         this.noYearTermino = 0;
         this.noMonthTermino = 0;
         this.vence = false;
+        this.display = false;
         this._Catalogos.GetMonths()
             .subscribe(function (resp) {
             _this.meses = resp;
@@ -117,6 +118,9 @@ var CertificacionComponent = (function () {
     CertificacionComponent.prototype.Contraer = function () {
         this.contraer = true;
     };
+    CertificacionComponent.prototype.Showdialog = function () {
+        this.display = true;
+    };
     CertificacionComponent.prototype.Remove = function (index) {
         var idCertificacion = this.Certificacion.get('id').value;
         if (idCertificacion != '0') {
@@ -124,6 +128,7 @@ var CertificacionComponent = (function () {
                 .subscribe(function (data) { });
         }
         this.remove.emit(index);
+        this.display = false;
     };
     CertificacionComponent.prototype.Save = function () {
         var _this = this;

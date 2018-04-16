@@ -25,6 +25,7 @@ var IdiomaComponent = (function () {
         this.idioma = '';
         this.nivelEscrito = 0;
         this.nivelHablado = 0;
+        this.display = false;
         this._Catalogos.GetNiveles()
             .subscribe(function (niveles) {
             _this.niveles = niveles;
@@ -91,6 +92,9 @@ var IdiomaComponent = (function () {
     IdiomaComponent.prototype.EntityAttached = function () {
         this.language.get('idioma').setValue(this.auxIdioma);
     };
+    IdiomaComponent.prototype.Showdialog = function () {
+        this.display = true;
+    };
     IdiomaComponent.prototype.Remove = function (index) {
         var idIdioma = this.language.get('id').value;
         if (idIdioma != '0') {
@@ -98,6 +102,7 @@ var IdiomaComponent = (function () {
                 .subscribe(function (data) { });
         }
         this.remove.emit(index);
+        this.display = false;
     };
     IdiomaComponent.prototype.Save = function () {
         var _this = this;

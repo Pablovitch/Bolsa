@@ -1,16 +1,41 @@
 ﻿<form [formGroup]="IdiomasArray">
-    <div formArrayName="idiomas">
+
+    <div class="row label-data">
+        <div class="col-md-3 col-sm-6 font-bold">
+            <div class="btn-edit">
+                <a (click)="addIdioma()" style="cursor: default" data-toggle="tooltip" title="Agregar idioma.">
+                    <img src="assets/images/icon-more.png" />
+                </a>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-6">
+            Conjunto de idiomas adquiridos de describe los lenguajes que sabe el candidato.
+        </div>
+    </div>
+
+    <div class="row label-data">
+        <div class="col-12 box-registro" *ngFor="let idioma of IdiomasArray.controls.idiomas.controls; let i=index">
+            <div formArrayName="idiomas">
+                <div class="panel-body" [formGroupName]="i">
+                    <idiomas [group]="IdiomasArray.controls.idiomas.controls[i]" [Index]="i"
+                             (Remove)="removeIdioma($event)"></idiomas>
+                </div>
+            </div>
+         </div>
+    </div>
+
+    <!--<div formArrayName="idiomas">
         <div class="title color-blue text-uppercase">Idiomas</div>
         <div *ngFor="let idioma of IdiomasArray.controls.idiomas.controls; let i=index" class="panel panel-default separator">
             <div class="panel-body" [formGroupName]="i">
-                <idiomas [group]="IdiomasArray.controls.idiomas.controls[i]" [Index]="i" 
+                <idiomas [group]="IdiomasArray.controls.idiomas.controls[i]" [Index]="i"
                          (Remove)="removeIdioma($event)"></idiomas>
             </div>
         </div>
-    </div>
-    <div class="margin-20">
+    </div>-->
+    <!--<div class="margin-20">
         <a (click)="addIdioma()" style="cursor: default" data-toggle="tooltip" title="Agregar idioma.">
             <i class="fa fa-plus-circle fa-2x clickable" aria-hidden="true"></i>
         </a>
-    </div>
+    </div>-->
 </form>

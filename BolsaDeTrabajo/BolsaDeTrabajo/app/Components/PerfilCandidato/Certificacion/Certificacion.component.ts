@@ -19,8 +19,8 @@ export class CertificacionComponent {
     @Output('Remove')
     public remove = new EventEmitter();
 
-   
-    
+
+
     Edit: boolean = false;
     contraer: boolean = true;
 
@@ -45,7 +45,7 @@ export class CertificacionComponent {
         private fb: FormBuilder,
         private _Catalogos: CatalogoPerfilCandidatoService,
         private _perfilCandidatoService: PerfilCandidatoService) {
-        
+
         this._Catalogos.GetMonths()
             .subscribe(resp => {
                 this.meses = resp;
@@ -68,12 +68,12 @@ export class CertificacionComponent {
                 }
                 if (yearTermino > 0) {
                     this.YearTerminoOnchangue(yearTermino);
-                } 
+                }
             });
     }
 
     ngAfterContentInit() {
-        if (this.Certificacion.get('id').value == 0) { 
+        if (this.Certificacion.get('id').value == 0) {
             this.contraer = false;
             this.Edit = true;
         }
@@ -95,9 +95,9 @@ export class CertificacionComponent {
     MonthTerminoOnchangue(id: number) {
         if (id <= 0) return;
         this.MonthTermino = this.meses.find(x => x.id == id).month;
-    } 
+    }
 
-    
+
     OnEdit() {
         this.nombreCertificacion = this.Certificacion.get('certificacion').value;
         this.autoridadEmisora = this.Certificacion.get('autoridadEmisora').value;
@@ -135,6 +135,13 @@ export class CertificacionComponent {
     {
         this.contraer = true;
     }
+
+    display: boolean = false;
+
+    Showdialog() {
+        this.display = true;
+    }
+
     Remove(index: number) {
         let idCertificacion = this.Certificacion.get('id').value
         if (idCertificacion != '0') {
@@ -142,6 +149,7 @@ export class CertificacionComponent {
                 .subscribe(data => { });
         }
         this.remove.emit(index);
+        this.display = false;
     }
     Save() {
         this.nombreCertificacion= '';

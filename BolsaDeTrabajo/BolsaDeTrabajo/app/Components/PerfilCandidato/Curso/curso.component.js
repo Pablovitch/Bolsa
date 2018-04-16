@@ -30,6 +30,7 @@ var CursoComponent = (function () {
         this.noYearTermino = 0;
         this.noMonthTermino = 0;
         this.horas = 0;
+        this.display = false;
         this._Catalogos.GetMonths()
             .subscribe(function (resp) {
             _this.meses = resp;
@@ -138,6 +139,9 @@ var CursoComponent = (function () {
     CursoComponent.prototype.EntityAttached = function () {
         this.Cursos.get('institucionEducativa').setValue(this.auxInstitucion);
     };
+    CursoComponent.prototype.Showdialog = function () {
+        this.display = true;
+    };
     CursoComponent.prototype.Remove = function (index) {
         var idCurso = this.Cursos.get('id').value;
         if (idCurso != '0') {
@@ -145,6 +149,7 @@ var CursoComponent = (function () {
                 .subscribe(function (data) { });
         }
         this.remove.emit(index);
+        this.display = false;
     };
     CursoComponent.prototype.Save = function () {
         var _this = this;

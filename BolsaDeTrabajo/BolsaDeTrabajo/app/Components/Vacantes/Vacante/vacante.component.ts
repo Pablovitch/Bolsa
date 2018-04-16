@@ -29,6 +29,10 @@ export class VacanteComponent implements OnInit {
   public datospostulacion: FormGroup;
   public FiltroVacantes: FormGroup;
   public postulacion: any[];
+  public filtroestado: any[];
+  public filtroesc: any[];
+  public filtromunicipio: any[];
+  public filtrocategorias: any[];
 
   constructor(private service: VacantesService, fb: FormBuilder, fbfinf: FormBuilder) {
       this.datospostulacion = fb.group({
@@ -52,10 +56,14 @@ export class VacanteComponent implements OnInit {
                 this.arrayvacantes = data.vacantes;
                 this.vacantes = data.vacantes;
                 this.categorias = data.categorias;
+                this.filtrocategorias = new Array(this.categorias.length);
                 this.estados = data.estados;
+                this.filtroestado = new Array(this.estados.length);
                 this.municipios = data.municipios;
+                this.filtromunicipio = new Array(this.municipios.length);
                 this.estadoestudios = data.estadoestudios;
                 this.escolaridades = data.escolaridades;
+                this.filtroesc = new Array(this.escolaridades.length);
                 //console.log(data.escolaridades);
                 this.pageCount = Math.round(this.vacantes.length / this.rows);
                 this.TotalRecords = this.vacantes.length;
@@ -148,12 +156,12 @@ export class VacanteComponent implements OnInit {
 
     OnClickCategorias(event: any) {
         if (event.target.checked) {
-            this.categorias.push(event.target.id);
+            this.filtrocategorias.push(event.target.id);
             this.buscavacantes();
         }
         else {
-            let index = this.categorias.indexOf(event.target.id);
-            this.categorias.splice(index, 1);
+            let index = this.filtrocategorias.indexOf(event.target.id);
+            this.filtrocategorias.splice(index, 1);
             this.buscavacantes();
         }
 
@@ -161,12 +169,12 @@ export class VacanteComponent implements OnInit {
 
     OnClickEstados(event: any) {
         if (event.target.checked) {
-            this.estados.push(event.target.id);
+            this.filtroestado.push(event.target.id);
             this.buscavacantes();
         }
         else {
-            let index = this.estados.indexOf(event.target.id);
-            this.estados.splice(index, 1);
+            let index = this.filtroestado.indexOf(event.target.id);
+            this.filtroestado.splice(index, 1);
             this.buscavacantes();
         }
 
@@ -174,12 +182,12 @@ export class VacanteComponent implements OnInit {
 
     OnClickMunicipios(event: any) {
         if (event.target.checked) {
-            this.municipios.push(event.target.id);
+            this.filtromunicipio.push(event.target.id);
             this.buscavacantes();
         }
         else {
-            let index = this.municipios.indexOf(event.target.id);
-            this.municipios.splice(index, 1);
+            let index = this.filtromunicipio.indexOf(event.target.id);
+            this.filtromunicipio.splice(index, 1);
             this.buscavacantes();
         }
 
@@ -187,12 +195,12 @@ export class VacanteComponent implements OnInit {
 
     OnClickEscolaridades(event: any) {
         if (event.target.checked) {
-            this.escolaridades.push(event.target.id);
+            this.filtroesc.push(event.target.id);
             this.buscavacantes();
         }
         else {
-            let index = this.escolaridades.indexOf(event.target.id);
-            this.escolaridades.splice(index, 1);
+            let index = this.filtroesc.indexOf(event.target.id);
+            this.filtroesc.splice(index, 1);
             this.buscavacantes();
         }
 
@@ -207,13 +215,12 @@ export class VacanteComponent implements OnInit {
     buscavacantes()
     {
         let filtroX: FiltroVacantes = new FiltroVacantes();
-
         filtroX.palabraClave = this.FiltroVacantes.get('palabraClave').value;
         filtroX.candidatoId = this.CandidatoId;
-        filtroX.filtroCategoria = this.categorias;
-        filtroX.filtroEstados = this.estados;
-        filtroX.filtrosmunicipio = this.municipios;
-        filtroX.filtroEscolaridades = this.escolaridades;
+        filtroX.filtroCategoria = this.filtrocategorias;
+        filtroX.filtroEstados = this.filtroestado;
+        filtroX.filtrosmunicipio = this.filtromunicipio;
+        filtroX.filtroEscolaridades = this.filtroesc;
         filtroX.SMin = this.SMin;
         filtroX.SMax = this.SMax;
         console.log(filtroX);

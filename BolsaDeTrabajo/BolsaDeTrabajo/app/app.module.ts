@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CalendarModule, AutoCompleteModule, CheckboxModule, DropdownModule, TooltipModule, SliderModule } from 'primeng/primeng';
+import { CalendarModule, AutoCompleteModule, CheckboxModule, DropdownModule, TooltipModule, SliderModule, DialogModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -27,7 +27,7 @@ import { SharedModule } from './Shared/Shared.module'
     imports: [BrowserModule, ReactiveFormsModule, FormsModule, HttpModule, BrowserAnimationsModule,
         AppRoutingModule,
         CalendarModule, AutoCompleteModule, CheckboxModule, DropdownModule, TooltipModule,
-        FormulariosInicialesModule, SharedModule, SliderModule
+        FormulariosInicialesModule, SharedModule, SliderModule, DialogModule
     ],
     declarations: [
         AppComponent, DatosDeContactoComponent

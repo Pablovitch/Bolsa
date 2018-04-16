@@ -774,6 +774,16 @@
     </Content>
     <Content Include="package.json" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\fonts\EM-Joost\OTF\Joost-Bold.otf" />
+    <Content Include="assets\fonts\EM-Joost\OTF\Joost-Light.otf" />
+    <Content Include="assets\fonts\EM-Joost\OTF\Joost-Medium.otf" />
+    <Content Include="assets\fonts\EM-Joost\OTF\Joost-Regular.otf" />
+    <Content Include="assets\fonts\EM-Joost\OTF\Joost-Stencil.otf" />
+    <Content Include="assets\fonts\EM-Joost\TTF\Joost-Bold.ttf" />
+    <Content Include="assets\fonts\EM-Joost\TTF\Joost-Light.ttf" />
+    <Content Include="assets\fonts\EM-Joost\TTF\Joost-Medium.ttf" />
+    <Content Include="assets\fonts\EM-Joost\TTF\Joost-Regular.ttf" />
+    <Content Include="assets\fonts\EM-Joost\TTF\Joost-Stencil.ttf" />
     <None Include="Properties\PublishProfiles\BolsaDeTrabajo.pubxml" />
     <None Include="Properties\PublishProfiles\BTra.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

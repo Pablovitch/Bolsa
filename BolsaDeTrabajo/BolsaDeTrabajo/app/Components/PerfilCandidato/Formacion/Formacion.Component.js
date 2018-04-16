@@ -33,6 +33,7 @@ var FormacionComponent = (function () {
         this.noMonthInicio = 0;
         this.noYearTermino = 0;
         this.noMonthTermino = 0;
+        this.display = false;
         this._Catalogos.GetEstatus()
             .subscribe(function (resp) {
             _this.Estatus = resp;
@@ -202,6 +203,9 @@ var FormacionComponent = (function () {
         this.Formaciones.get('institucionEducativa').setValue(this.auxinstitucion);
         this.Formaciones.get('carrera').setValue(this.auxCarrera);
     };
+    FormacionComponent.prototype.Showdialog = function () {
+        this.display = true;
+    };
     FormacionComponent.prototype.Remove = function (index) {
         var idFormacion = this.Formaciones.get('id').value;
         if (idFormacion != '0') {
@@ -209,6 +213,7 @@ var FormacionComponent = (function () {
                 .subscribe(function (data) { });
         }
         this.remove.emit(index);
+        this.display = false;
     };
     FormacionComponent.prototype.Save = function () {
         var _this = this;

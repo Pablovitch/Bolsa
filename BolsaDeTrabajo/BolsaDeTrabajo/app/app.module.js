@@ -35,7 +35,7 @@ AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule, forms_2.ReactiveFormsModule, forms_1.FormsModule, http_1.HttpModule, animations_1.BrowserAnimationsModule,
             app_routing_1.AppRoutingModule,
             primeng_1.CalendarModule, primeng_1.AutoCompleteModule, primeng_1.CheckboxModule, primeng_1.DropdownModule, primeng_1.TooltipModule,
-            FormulariosIniciales_module_1.FormulariosInicialesModule, Shared_module_1.SharedModule, primeng_1.SliderModule
+            FormulariosIniciales_module_1.FormulariosInicialesModule, Shared_module_1.SharedModule, primeng_1.SliderModule, primeng_1.DialogModule
         ],
         declarations: [
             app_component_1.AppComponent, DatosDeContacto_component_1.DatosDeContactoComponent

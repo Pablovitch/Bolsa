@@ -13,7 +13,7 @@ import { PerfilCandidatoService } from '../../../Services/PerfilCandidato.Servic
 export class ExperienciaProfesionalComponent implements AfterContentInit {
     @Input('group')
     public Experiencias: FormGroup;
-     
+
     @Input('Index')
     public index: number;
 
@@ -49,7 +49,7 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
                 let giroEmpresa = this.Experiencias.get('giroEmpresaId').value;
                 if (giroEmpresa > 0) {
                     this.GiroEmpresaOnchangue(giroEmpresa);
-                }             
+                }
             });
         this._Catalogos.GetMonths()
             .subscribe(resp => {
@@ -73,14 +73,14 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
                 }
                 if (yearTermino > 0) {
                     this.YearTerminoOnchangue(yearTermino);
-                } 
+                }
             });
-       
+
     }
     ngAfterContentInit() {
         if (this.Experiencias.get('id').value != 0)
         {
-            this.Area = this.Experiencias.get('area').value.nombre;               
+            this.Area = this.Experiencias.get('area').value.nombre;
         }
         else
         {
@@ -88,7 +88,7 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
             this.Edit = true;
         }
     }
-  
+
 
     filterAreas(event: any) {
         let query = event.query;
@@ -99,7 +99,7 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
     }
     SetAreaId(event: any) {
 
-        this.Experiencias.get('areaId').setValue(event.id)        
+        this.Experiencias.get('areaId').setValue(event.id)
         this.Area = event.nombre;
     }
     GiroEmpresaOnchangue(id: number)
@@ -123,7 +123,7 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
     MonthTerminoOnchangue(id: number) {
         if (id <= 0) { return; }
         this.MonthTermino = this.meses.find(x => x.id == id).month;
-    } 
+    }
     empresa: string = '';
     giroEmpresaId: number = 0;
     cargoAsignado: string = '';
@@ -150,7 +150,7 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
         this.trabajoActual = this.Experiencias.get('trabajoActual').value;
         this.descripcion = this.Experiencias.get('descripcion').value;
         this.contraer = false;
-        this.Edit = true;        
+        this.Edit = true;
     }
     DiscardEdit() {
          this.Experiencias.get('empresa').setValue(this.empresa);
@@ -178,7 +178,12 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
         this.contraer = true;
     }
 
-  
+    display: boolean = false;
+
+    Showdialog() {
+        this.display = true;
+    }
+
     Remove(index: number) {
         this.Experiencias.get('area').setValue(null);
         let idExperiencia = this.Experiencias.get('id').value
@@ -187,6 +192,7 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
                 .subscribe(data => { });
         }
         this.remove.emit(index);
+        this.display = false;
 
     }
     OnTrabajoActualChangue(event: any)
@@ -194,12 +200,12 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
         if (event.target.checked) {
             this.trabajoActualChangue.emit(this.index);
         }
-        
+
     }
-    Save() {           
+    Save() {
         let date1 = new Date(this.Experiencias.get('monthInicioId').value+'/01/' + this.YearInicio)
-        let date2 = new Date(this.Experiencias.get('monthTerminoId').value + '/01/' + this.YearTermino) 
-       
+        let date2 = new Date(this.Experiencias.get('monthTerminoId').value + '/01/' + this.YearTermino)
+
         if (date2 <= date1)
         {
             alert("La  fecha de terminación de tú experiencia \n debe ser mayor a tú fecha de inicio.")
@@ -210,7 +216,7 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
         this.Experiencias.get('area').setValue(null);
         if (this.Experiencias.get('id').value == '0') {
             this._perfilCandidatoService.AddExperiencia(this.Experiencias.value)
-                .subscribe(experiencia => { 
+                .subscribe(experiencia => {
                     this.Experiencias.get('id').setValue(experiencia.id);
                     this.Experiencias.get('area').setValue(this.auxAreaExperiencia)
                     this.Area = this.auxAreaExperiencia.areaExperiencia
@@ -219,12 +225,12 @@ export class ExperienciaProfesionalComponent implements AfterContentInit {
         else
         {
             this._perfilCandidatoService.UpdateExperiencia(this.Experiencias.value)
-                .subscribe(experiencia => { 
+                .subscribe(experiencia => {
                     this.Experiencias.get('area').setValue(this.auxAreaExperiencia)
                     this.Area = this.auxAreaExperiencia.areaExperiencia
                 });
-        }     
-        
+        }
+
     }
 
 }

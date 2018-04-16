@@ -1,35 +1,159 @@
 ﻿<div class="header">
     <damsa-bar-social></damsa-bar-social>
-    <damsa-barra (ClickMenuBoton)="ShowMenu()" [CandidatoId]="CandidatoId" [Oculto]="Oculto" ></damsa-barra>
+    <damsa-barra (ClickMenuBoton)="ShowMenu()" [CandidatoId]="CandidatoId" [Oculto]="Oculto"></damsa-barra>
     <damsa-menu-oculto [ShowMenu]="showMenu" [CandidatoId]="CandidatoId"></damsa-menu-oculto>
 </div>
 <div class="global-container-sitio">
-    <!--<form [formGroup]="formDatosGenerales" (ngSubmit)="Save()">-->
-    <div class="row">
-        <div class="col-xs-12 col-md-12 col-lg-10 padding-991">
+    <div class="row contenido">
+        <div class="col-lg-9 col-12 padding-991 col-izq">
             <!-- INFORMACION GENERAL -->
             <div class="general-information-container">
-                <div class="row general-information">
-                    <div class="col-12 color-grey">
-                        <div class="col-12">
-                            <damsa-info-gral [CandidatoId]="CandidatoId" (LoadProfileName)="OnLoadProfileName($event)" ></damsa-info-gral>
+                <div class="row general-information container-tab">
+                    <div class="col-12">
+                        <div class="title color-blue text-uppercase">
+                            Información General
+
+                            <div class="tab-open closed">
+                                <div class="horizontal"></div>
+                                <div class="vertical"></div>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="col-12 color-grey content-tab">
+                        <damsa-info-gral [CandidatoId]="CandidatoId" (LoadProfileName)="OnLoadProfileName($event)"></damsa-info-gral>
                     </div>
                 </div>
             </div>
             <!-- DatosPersonales -->
-            <div class="general-information-container">
-                <div class="row general-information">
-                    <div class="col-12 color-grey">
-                        <div class="col-12">
-                            <damsa-personal-data [CandidatoId]="CandidatoId" (LoadProfileName)="OnLoadProfileName($event)" ></damsa-personal-data>
+            <div class="personal-information-container">
+                <div class="row personal-information container-tab">
+                    <div class="col-12">
+                        <div class="title color-blue text-uppercase">
+                            Datos personales
+                            <div class="tab-open closed">
+                                <div class="horizontal"></div>
+                                <div class="vertical"></div>
+                            </div>
                         </div>
+                    </div>
+
+
+                    <div class="col-12 color-grey content-tab">
+                        <damsa-personal-data [CandidatoId]="CandidatoId" (LoadProfileName)="OnLoadProfileName($event)"></damsa-personal-data>
+                    </div>
+                 </div>
+            </div>
+            <!-- Dirección -->
+            <div class="address-information-container">
+                <div class="row address-information container-tab">
+                    <div class="col-12">
+                        <div class="title color-blue text-uppercase">
+                            Dirección
+                            <div class="tab-open closed">
+                                <div class="horizontal"></div>
+                                <div class="vertical"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 color-grey content-tab">
+                        <damsa-direccion [CandidatoId]="CandidatoId"></damsa-direccion>
                     </div>
                 </div>
             </div>
+            <!-- Identificaciones Oficiales-->
+            <div class="identification-information-container">
+                <div class="row identification-information  container-tab">
+                    <div class="col-12">
+                        <div class="title color-blue text-uppercase">
+                            Identificación oficial
+                            <div class="tab-open closed">
+                                <div class="horizontal"></div>
+                                <div class="vertical"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 color-grey content-tab">
+                        <damsa-identificaciones [CandidatoId]="CandidatoId"></damsa-identificaciones>
+                    </div>
+                </div>
+            </div>
+            <!-- Redes Sociales-->
+            <div class="social-information-container">
+                <div class="row social-information  container-tab">
+                    <div class="col-12">
+                        <div class="title color-blue text-uppercase">
+                            Redes sociales
+                            <div class="tab-open closed">
+                                <div class="horizontal"></div>
+                                <div class="vertical"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 color-grey content-tab">
+                        <damsa-redes-sociales [CandidatoId]="CandidatoId"></damsa-redes-sociales>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <div class="col-lg-3 col-12 padding-991 col-der">
+            <div class="profile-percent">
+                <div class="color-blue font-bold text-center">Mi perfil profesional está al</div>
+                <img src="assets/images/graphic-test.png" />
+
+                <ul>
+                    <li class="link-blue">Agregar fotografía</li>
+                    <li class="link-blue">Completar Datos Personales</li>
+                    <li class="link-blue">Completar Datos Identificación Oficial</li>
+                    <li class="link-blue">Agregar Redes Sociales</li>
+                    <li class="link-blue">Completar Acerca de Mí</li>
+                    <li class="link-blue">Agregar Experiencia Profesional</li>
+                    <li class="link-blue">Agregar Formación</li>
+                    <li class="link-blue">Agregar Conocimientos y Habilidades</li>
+                    <li class="link-blue">Agregar Idiomas</li>
+                    <li class="link-blue">Agregar tu Sitio Web</li>
+                    <li class="link-blue">Activar alertas</li>
+                </ul>
+
+                <div class="text-uppercase font-bold color-yellow legend">
+                    Para brindarte un mejor servicio y encontrar la vacate ideal para ti, ayúdanos a llenar los siguientes datos
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--<form [formGroup]="formDatosGenerales" (ngSubmit)="Save()">-->
+    <!--<div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-10 padding-991">-->
+            <!-- INFORMACION GENERAL -->
+            <!--<div class="general-information-container">
+                <div class="row general-information">
+                    <div class="col-12 color-grey">
+                        <div class="col-12">
+                            <damsa-info-gral [CandidatoId]="CandidatoId" (LoadProfileName)="OnLoadProfileName($event)"></damsa-info-gral>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!-- DatosPersonales -->
+            <!--<div class="general-information-container">
+                <div class="row general-information">
+                    <div class="col-12 color-grey">
+                        <div class="col-12">
+                            <damsa-personal-data [CandidatoId]="CandidatoId" (LoadProfileName)="OnLoadProfileName($event)"></damsa-personal-data>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
             <!---->
             <!-- Dirección -->
-            <div class="general-information-container">
+            <!--<div class="general-information-container">
                 <div class="row general-information">
                     <div class="col-12 color-grey">
                         <div class="col-12">
@@ -37,10 +161,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!---->
             <!-- Identificaciones Oficiales-->
-            <div class="general-information-container">
+            <!--<div class="general-information-container">
                 <div class="row general-information">
                     <div class="col-12 color-grey">
                         <div class="col-12">
@@ -48,10 +172,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!---->
             <!-- Redes Sociales-->
-            <div class="general-information-container">
+            <!--<div class="general-information-container">
                 <div class="row general-information">
                     <div class="col-12 color-grey">
                         <div class="col-12">
@@ -59,19 +183,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!---->
-          
-        </div>
+
+        <!--</div>
 
         <div class="col-xs-12 col-md-12 col-lg-2 padding-991">
             <damsa-profile-percentage></damsa-profile-percentage>
 
         </div>
-    </div>
+ </div>-->
 
     <!--</form>-->
-
-</div>
 
 

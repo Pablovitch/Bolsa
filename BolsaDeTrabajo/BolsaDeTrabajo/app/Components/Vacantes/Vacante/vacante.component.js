@@ -43,10 +43,14 @@ var VacanteComponent = (function () {
             _this.arrayvacantes = data.vacantes;
             _this.vacantes = data.vacantes;
             _this.categorias = data.categorias;
+            _this.filtrocategorias = new Array(_this.categorias.length);
             _this.estados = data.estados;
+            _this.filtroestado = new Array(_this.estados.length);
             _this.municipios = data.municipios;
+            _this.filtromunicipio = new Array(_this.municipios.length);
             _this.estadoestudios = data.estadoestudios;
             _this.escolaridades = data.escolaridades;
+            _this.filtroesc = new Array(_this.escolaridades.length);
             //console.log(data.escolaridades);
             _this.pageCount = Math.round(_this.vacantes.length / _this.rows);
             _this.TotalRecords = _this.vacantes.length;
@@ -115,45 +119,45 @@ var VacanteComponent = (function () {
     };
     VacanteComponent.prototype.OnClickCategorias = function (event) {
         if (event.target.checked) {
-            this.categorias.push(event.target.id);
+            this.filtrocategorias.push(event.target.id);
             this.buscavacantes();
         }
         else {
-            var index = this.categorias.indexOf(event.target.id);
-            this.categorias.splice(index, 1);
+            var index = this.filtrocategorias.indexOf(event.target.id);
+            this.filtrocategorias.splice(index, 1);
             this.buscavacantes();
         }
     };
     VacanteComponent.prototype.OnClickEstados = function (event) {
         if (event.target.checked) {
-            this.estados.push(event.target.id);
+            this.filtroestado.push(event.target.id);
             this.buscavacantes();
         }
         else {
-            var index = this.estados.indexOf(event.target.id);
-            this.estados.splice(index, 1);
+            var index = this.filtroestado.indexOf(event.target.id);
+            this.filtroestado.splice(index, 1);
             this.buscavacantes();
         }
     };
     VacanteComponent.prototype.OnClickMunicipios = function (event) {
         if (event.target.checked) {
-            this.municipios.push(event.target.id);
+            this.filtromunicipio.push(event.target.id);
             this.buscavacantes();
         }
         else {
-            var index = this.municipios.indexOf(event.target.id);
-            this.municipios.splice(index, 1);
+            var index = this.filtromunicipio.indexOf(event.target.id);
+            this.filtromunicipio.splice(index, 1);
             this.buscavacantes();
         }
     };
     VacanteComponent.prototype.OnClickEscolaridades = function (event) {
         if (event.target.checked) {
-            this.escolaridades.push(event.target.id);
+            this.filtroesc.push(event.target.id);
             this.buscavacantes();
         }
         else {
-            var index = this.escolaridades.indexOf(event.target.id);
-            this.escolaridades.splice(index, 1);
+            var index = this.filtroesc.indexOf(event.target.id);
+            this.filtroesc.splice(index, 1);
             this.buscavacantes();
         }
     };
@@ -167,10 +171,10 @@ var VacanteComponent = (function () {
         var filtroX = new Vacantes_1.FiltroVacantes();
         filtroX.palabraClave = this.FiltroVacantes.get('palabraClave').value;
         filtroX.candidatoId = this.CandidatoId;
-        filtroX.filtroCategoria = this.categorias;
-        filtroX.filtroEstados = this.estados;
-        filtroX.filtrosmunicipio = this.municipios;
-        filtroX.filtroEscolaridades = this.escolaridades;
+        filtroX.filtroCategoria = this.filtrocategorias;
+        filtroX.filtroEstados = this.filtroestado;
+        filtroX.filtrosmunicipio = this.filtromunicipio;
+        filtroX.filtroEscolaridades = this.filtroesc;
         filtroX.SMin = this.SMin;
         filtroX.SMax = this.SMax;
         console.log(filtroX);

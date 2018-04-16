@@ -81,9 +81,9 @@ export class ConocimientoComponent {
     NivelOnchangue(id: number) {
         if (id > 0) {
             this.Nivel = this.niveles.find(x => x.id == id).nivel;
-        }        
+        }
     }
-    
+
     OnEdit() {
         this.conocimientoHabilidad = this.Conocimientos.get('conocimiento').value;
         this.herramienta = this.Conocimientos.get('herramienta').value;
@@ -97,7 +97,7 @@ export class ConocimientoComponent {
         this.Conocimientos.get('conocimiento').setValue(this.conocimientoHabilidad);
         this.Conocimientos.get('herramienta').setValue(this.herramienta);
         this.InstitucionEducativa = this.institucion;
-        this.Conocimientos.get('institucionEducativaId').setValue(this.institucionId);        
+        this.Conocimientos.get('institucionEducativaId').setValue(this.institucionId);
         this.Conocimientos.get('nivelId').setValue(this.nivelId);
         this.NivelOnchangue(this.nivelId);
         this.Edit = false;
@@ -119,6 +119,12 @@ export class ConocimientoComponent {
         this.Conocimientos.get('institucionEducativa').setValue(this.auxInstitucion);
     }
 
+    display: boolean = false;
+
+    Showdialog() {
+        this.display = true;
+    }
+
     Remove(index: number) {
         let idExperiencia = this.Conocimientos.get('id').value
         if (idExperiencia != '0') {
@@ -126,7 +132,7 @@ export class ConocimientoComponent {
                 .subscribe(data => { });
         }
         this.remove.emit(index);
-
+        this.display = false;
     }
 
     Save() {
@@ -149,7 +155,7 @@ export class ConocimientoComponent {
                 .subscribe(conocimiento => {
                     this.EntityAttached();
                 });
-        }     
+        }
 
     }
 

@@ -1,4 +1,9 @@
-﻿@charset "utf-8";
+﻿@font-face {
+	font-family: SIXTY;
+	src: url('../assets/fonts/SIXTY.TTF') format('truetype');
+}
+
+@charset "utf-8";
 /* CSS Document */
 html,body{
 	height:auto;
@@ -234,7 +239,7 @@ img{
 	width:100%;
 }
 .label-data span {
-	color: #d63333;
+	color: white;
 }
 .title {
 	font-size: 18px;
@@ -303,6 +308,7 @@ img{
 	border:1px solid #c7cecf;
 	width: 100%;
 	margin-bottom: 8px;
+	font-family:monospace;
 }
 .textarea {
 	border-radius: 5px;
@@ -662,7 +668,7 @@ img{
 }
 /*cv*/
 .txt-about {
-	min-height: 150px;
+	min-height: 100% !important;
 }
 .box-registro {
 	padding-top: 15px;
@@ -674,9 +680,7 @@ img{
 	height: 30px;
 	margin-top: 10px;
 }
-.cv-experience-container, .cv-formation, .cv-knowledge, .cv-cursos, .cv-certificaciones, .cv-lang, .cv-web {
-	min-height: 120px;
-}
+
 .cv-lang .box-registro {
 	margin-top: 30px;
 }
@@ -925,4 +929,14 @@ label i{
 }
 .content-tab {
 	display: none;
+}
+.btn-margin {
+	margin-left: 5px;
+}
+.ui-widget-header{
+	background: #1C4477;
+}
+.ui-widget-content{
+	background-color:white;
+
 }

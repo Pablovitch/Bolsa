@@ -1,19 +1,44 @@
 ﻿<form [formGroup]="CertificacionesArray">
-    <div formArrayName="certificaciones">
+
+    <div class="row label-data">
+        <div class="col-md-3 col-sm-6 font-bold">
+            <div class="btn-edit">
+                <a (click)="addCertificacion()" style="cursor: default" data-toggle="tooltip" title="Agregar Certificación.">
+                    <img src="assets/images/icon-more.png" />
+                </a>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-6">
+            Certificación en la web:<br />
+            Este solo es dada por la SEP a instituciones avaladas por la misma.
+        </div>
+    </div>
+
+    <div class="row label-data">
+        <div class="col-12 box-registro" *ngFor="let experiencia of CertificacionesArray.controls.certificaciones.controls; let i=index">
+            <div formArrayName="certificaciones">
+                <div class="panel-body" [formGroupName]="i">
+                    <certificaciones [group]="CertificacionesArray.controls.certificaciones.controls[i]" [Index]="i"
+                                     (Remove)="removeCertificacion($event)"></certificaciones>
+                </div>
+            </div>
+         </div>
+    </div>
+
+    <!--<div formArrayName="certificaciones">
         <div class="title color-blue text-uppercase">Certificaciones</div>
 
         <div *ngFor="let experiencia of CertificacionesArray.controls.certificaciones.controls; let i=index" class="panel panel-default separator">
 
             <div class="panel-body" [formGroupName]="i">
                 <certificaciones [group]="CertificacionesArray.controls.certificaciones.controls[i]" [Index]="i"
-                                 (Remove)="removeCertificacion($event)"
-                                 ></certificaciones>
+                                 (Remove)="removeCertificacion($event)"></certificaciones>
             </div>
         </div>
-    </div>
-    <div class="margin-20">
+    </div>-->
+    <!--<div class="margin-20">
         <a (click)="addCertificacion()" style="cursor: default" data-toggle="tooltip" title="Agregar Certificación.">
             <i class="fa fa-plus-circle fa-2x clickable" aria-hidden="true"></i>
         </a>
-    </div>
+    </div>-->
 </form>

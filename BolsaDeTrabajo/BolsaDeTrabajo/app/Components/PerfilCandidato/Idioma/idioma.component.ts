@@ -1,6 +1,6 @@
 ﻿import { Component, Input, Output, EventEmitter, AfterContentInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { CalendarModule, AutoCompleteModule, CheckboxModule } from 'primeng/primeng'; 
+import { CalendarModule, AutoCompleteModule, CheckboxModule } from 'primeng/primeng';
 
 import { CatalogoPerfilCandidatoService } from '../../../Services/Catalogo.PerfilCandidato.service';
 import { PerfilCandidatoService } from '../../../Services/PerfilCandidato.Service';
@@ -13,14 +13,14 @@ export class IdiomaComponent implements AfterContentInit{
     @Input('group')
     public language: FormGroup;
 
-   
+
     @Input('Index')
     public index: number;
 
     @Output('Remove')
     public remove = new EventEmitter();
 
-    Edit: boolean = false; 
+    Edit: boolean = false;
     Idioma: string;
     NivelEscrito: string;
     NivelHablado: string;
@@ -60,19 +60,19 @@ export class IdiomaComponent implements AfterContentInit{
             this.Edit = true;
         }
     }
-     
+
     filterIdiomas(event: any)
     {
-        let query = event.query; 
+        let query = event.query;
         this._Catalogos.GetIdiomas(query)
-            .then(idiomas => {                
+            .then(idiomas => {
                 this.filteredIdiomas = idiomas;
             });
-        
+
     }
 
     SetIdiomaId(event: any) {
-        this.language.get('idiomaId').setValue(event.id);        
+        this.language.get('idiomaId').setValue(event.id);
         this.Idioma = event.idioma;
     }
 
@@ -83,10 +83,10 @@ export class IdiomaComponent implements AfterContentInit{
     }
     NivelHabladoOnChangue(id: number) {
         if (id <= 0) return;
-        this.NivelHablado = this.niveles.find(x => x.id == id).nivel;        
+        this.NivelHablado = this.niveles.find(x => x.id == id).nivel;
     }
 
-   
+
     OnEdit() {
         this.idiomaId = this.language.get('idiomaId').value;
         this.idioma = this.Idioma;
@@ -102,13 +102,19 @@ export class IdiomaComponent implements AfterContentInit{
         this.language.get('nivelHabladoId').setValue(this.nivelHablado);
         this.NivelHabladoOnChangue(this.nivelHablado);
         this.Edit = false;
-    } 
+    }
     private EntityDettached() {
         this.auxIdioma = this.language.get('idioma').value;
         this.language.get('idioma').setValue(null);
     }
-    private EntityAttached() { 
+    private EntityAttached() {
         this.language.get('idioma').setValue(this.auxIdioma);
+    }
+
+    display: boolean = false;
+
+    Showdialog() {
+        this.display = true;
     }
 
     Remove(index: number) {
@@ -118,6 +124,7 @@ export class IdiomaComponent implements AfterContentInit{
                 .subscribe(data => { });
         }
         this.remove.emit(index);
+        this.display = false;
     }
     Save() {
         this.idiomaId= 0;

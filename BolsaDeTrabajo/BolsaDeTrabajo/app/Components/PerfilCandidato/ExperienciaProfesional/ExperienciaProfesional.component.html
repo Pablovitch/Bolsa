@@ -1,22 +1,42 @@
 ﻿<form [formGroup]="Experiencias" (ngSubmit)="Save()">
     <div class="row">
-        <div class="col-12 color-grey">            
+        <div class="col-12 color-grey">
             <!---->
-            <div class="row label-data ">
-                <div class="col-md-7 col-sm-6 font-bold"></div>
-                <div class="col-md-5 col-sm-6">
-                    <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
-                    <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
-                    <a class="fa fa-window-close fa-2x pull-right clickable" (click)="Remove(index)" [hidden]="Edit"></a>
-                    <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
+            <!--<div class="row label-data ">
+                     <div class="col-md-7 col-sm-6 font-bold"></div>
+                     <div class="col-md-5 col-sm-6">
+                         <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
+                         <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
+                         <a class="fa fa-window-close fa-2x pull-right clickable" (click)="Remove(index)" [hidden]="Edit"></a>
+                         <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" class="clickable" />
 
+                     </div>
+                 </div>-->
+            <!---->
+            <!--Empieza el detalle-->
+            <div class="row">
+                <div class="col-sm-9 font-bold" [hidden]="!contraer">{{Experiencias.controls.cargoAsignado.value}} </div>
+                <div class="col-sm-3">
+                    <div class="link-blue float-right">
+                        <!--<a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>-->
+                        <a class="clickable" (click)="Expandir()" [hidden]="!contraer">Ver mas</a>
+                    </div>
                 </div>
             </div>
-            <!---->
+            <div *ngIf="contraer">
+                <div class="row">
+                    <div class="col-12">{{Experiencias.controls.empresa.value}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-12">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</div>
+                </div>
+            </div>
+            <!--hasta aqui se muestra el detalle-->
+
             <div [hidden]="contraer">
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Empresa: <span>*</span></div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Empresa: <span>*</span></div>
+                    <div class="col-md-5 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <input type="text" formControlName="id" hidden />
                             <input type="text" formControlName="perfilCandidatoId" hidden />
@@ -29,11 +49,16 @@
                         </div>
                         <label [hidden]="Edit">{{Experiencias.controls.empresa.value}}</label>
                     </div>
+                    <div class="col-sm-3">
+                        <div class="link-blue float-right">
+                            <a class="clickable" (click)="Contraer()" [hidden]="contraer || Edit">Ver menos</a>
+                        </div>
+                    </div>
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Giro de la empresa: <span>*</span></div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Giro de la empresa: <span>*</span></div>
+                    <div class="col-md-8 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <select class="input" id="select" width="30" formControlName="giroEmpresaId"
                                     #t1
@@ -52,8 +77,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Cargo Asignado: <span>*</span></div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Cargo Asignado: <span>*</span></div>
+                    <div class="col-md-8 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <input type="text" formControlName="cargoAsignado" class="input"
                                    [class.input-validation-error]="Experiencias.controls.cargoAsignado.touched && Experiencias.controls.cargoAsignado.invalid" />
@@ -67,8 +92,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Área / Departamento: <span>*</span></div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Área / Departamento: <span>*</span></div>
+                    <div class="col-md-8 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <p-autoComplete formControlName="area"
                                             [suggestions]="filteredAreas"
@@ -91,8 +116,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Salario: <span>*</span></div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Salario: <span>*</span></div>
+                    <div class="col-md-8 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <input type="text" OnlyNumber="true" formControlName="salario" class="input"
                                    [class.input-validation-error]="Experiencias.controls.salario.touched && Experiencias.controls.salario.invalid" />
@@ -106,8 +131,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Periodo: <span>*</span></div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Periodo: <span>*</span></div>
+                    <div class="col-md-8 col-sm-6">
                         <div class="tooltip-validation-error" [hidden]="!Edit">
                             <select class="input" id="select" width="30" formControlName="yearInicioId"
                                     #t2
@@ -157,8 +182,8 @@
                 </div>
                 <!---->
                 <div class="row label-data ">
-                    <div class="col-md-5 col-sm-6 font-bold">Trabaja aquí actualmente:</div>
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-4 col-sm-6 font-bold">Trabaja aquí actualmente:</div>
+                    <div class="col-md-8 col-sm-6">
                         <div [hidden]="!Edit">
                             <input type="checkbox" class="checkbox" formControlName="trabajoActual"
                                    (change)="OnTrabajoActualChangue($event)">
@@ -171,12 +196,12 @@
                     <div class="col-md-12 font-bold">Funciones y logros: </div>
                     <div class="col-md-12 txt-about">
                         <div [hidden]="!Edit">
-                            <textarea class="textarea" formControlName="descripcion" maxlength="200"></textarea>
+                            <textarea class="textarea" formControlName="descripcion" maxlength="500"></textarea>
                         </div>
                         <label [hidden]="Edit">{{Experiencias.controls.descripcion.value }} </label>
                     </div>
                 </div>
-                <!---->
+                <!--botones de accion-->
                 <div class="row label-data align-items-center margin-top-30x">
                     <div class="col-md-7 col-sm-6">
                         <button class="btn btn-prymary clickable btn-red" type="button"
@@ -191,21 +216,27 @@
                         </button>
                     </div>
                 </div>
-            </div><!--Contraer-->
-            <!--Ver menos-->
-            <div [hidden]="!contraer">
-                <div class="row label-data">
-                    <div class="col-md-7 col-sm-6" >{{Experiencias.controls.cargoAsignado.value}} </div>
-                    <div class="col-md-5 col-sm-6">
-                       
-                    </div>                    
+                <!---->
+                <div class="row btn-margin" [hidden]="contraer">
+                    <div class="col-sm-2"><img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" style="cursor: pointer" /></div>
+                    <div class="col-sm-2"><img src="assets/images/icon-delete.png" (click)="Showdialog()" [hidden]="Edit" style="cursor: pointer" /></div>
                 </div>
-                <div class="row label-data">
-                    <div class="col-md-7 col-sm-6">{{Experiencias.controls.empresa.value}}</div>
-                    <div class="col-md-5 col-sm-6">{{MonthInicio}} {{YearInicio}} - {{MonthTermino}} {{YearTermino}}</div>
-                </div>
+                <!---->
             </div>
+            <!--Contraer-->
             <!--Ver menos-->
-        </div>       
+            <!--Ver menos-->
+        </div>
     </div>
 </form>
+ <!--Modal para confirmar el borrado de la experiencia-->
+<p-dialog styleClass="ui-widget-header ui-widget-content" header="Eliminar" [(visible)]="display" modal="modal" width="450" height="auto" [dismissableMask]="true">
+    <span style="color: #2E86C1;">
+        ¿ Confirmas eliminar la experiencia ?
+    </span>
+    <p-footer>
+        <button class="btn btn-prymary clickable btn-green" type="button" (click)="Remove(index)" label="Borrar">Borrar</button>
+        <button class="btn btn-prymary clickable btn-red" type="button" (click)="display=false" label="No, gracias">No, gracias</button>
+    </p-footer>
+</p-dialog>
+

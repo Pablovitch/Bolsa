@@ -1,6 +1,6 @@
 ﻿<form [formGroup]="RedesSocialessArray" novalidate (ngSubmit)="Save()">
     <div formArrayName="redesSociales">
-        <div class="title color-blue text-uppercase">Redes Sociales</div>
+        <!--<div class="title color-blue text-uppercase">Redes Sociales</div>-->
         <!--<div class="row">
             <div class="col-12 color-grey">-->
                 <!---->
@@ -16,7 +16,7 @@
                     <div class="panel-body" [formGroupName]="i">
                         <redesSociales [group]="RedesSocialessArray.controls.redesSociales.controls[i]" [Index]="i"
                                        [Edit]="Edit"
-                                 (Remove)="removeRedSocial($event)"></redesSociales>                       
+                                 (Remove)="removeRedSocial($event)"></redesSociales>
                     </div>
                 </div>
             </div>

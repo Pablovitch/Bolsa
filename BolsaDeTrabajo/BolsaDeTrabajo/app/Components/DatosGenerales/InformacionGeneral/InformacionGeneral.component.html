@@ -1,7 +1,7 @@
 ﻿ <form [formGroup]="formInformacionGeneral" (ngSubmit)="Save()">
-     <div class="title color-blue text-uppercase">Información General</div>
-        <div class="btn btn-edit clickable" > 
-                <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" />             
+     <!--<div class="title color-blue text-uppercase">Información General</div>-->
+        <div class="btn btn-edit clickable" >
+                <img [hidden]="Edit" (click)="OnEdit()" src="/assets/images/icon-edit.png" />
         </div>
         <div class="general-information-photo" style="background-size: cover">
             <image-uploader [activeColor]="'orangered'" [baseColor]="'lightgray'" [imageSrc]="imgProfile" (imgLoaded)="OnLoadedProfileImage($event)"></image-uploader>
@@ -21,7 +21,7 @@
                            [class.input-validation-error]="formInformacionGeneral.controls.Nombre.touched  && formInformacionGeneral.controls.Nombre.invalid"
                            id="Nombre1"
                            #Nombre
-                           (input)="onNombreChangue($event.target.value)" />                  
+                           (input)="onNombreChangue($event.target.value)" />
                     <span *ngIf="formInformacionGeneral.controls.Nombre.touched  && formInformacionGeneral.controls.Nombre.invalid"
                           class="tooltip-text tooltip-validation-error-right">
                         Campo requerido.
@@ -43,8 +43,8 @@
                            type="Text" class="input"
                            [class.input-validation-error]="formInformacionGeneral.controls.apellidoPaterno.touched  && formInformacionGeneral.controls.apellidoPaterno.invalid"
                            id="Paterno"
-                           #apellidoPaterno 
-                           (input)="onApellidoPaternoChangue($event.target.value)"/>                    
+                           #apellidoPaterno
+                           (input)="onApellidoPaternoChangue($event.target.value)"/>
                     <span *ngIf="formInformacionGeneral.controls.apellidoPaterno.touched  && formInformacionGeneral.controls.apellidoPaterno.invalid"
                           class="tooltip-text tooltip-validation-error-right">Campo Requerido.</span>
                 </div>
@@ -62,7 +62,7 @@
                            maxlength="50"
                            OnlyLetters="true"
                            type="Text" class="input" id="Materno"
-                           #apellidoMaterno 
+                           #apellidoMaterno
                             (input)="onApellidoMaternoChangue($event.target.value)"/>
                 </div>
                 <label [hidden]="Edit">
@@ -81,7 +81,7 @@
                            #email
                            class="input"
                            [class.input-validation-error]="formInformacionGeneral.controls.email.touched  && formInformacionGeneral.controls.email.invalid" />
-                    
+
                     <span *ngIf="formInformacionGeneral.controls.email.touched  && formInformacionGeneral.controls.email.invalid &&
                                                   formInformacionGeneral.controls.email.errors.required"
                           class="tooltip-text tooltip-validation-error-right">Campo Requerido</span>
@@ -103,7 +103,7 @@
                            maxlength="50"
                            id="confirmEmail"
                            #confirmEmail
-                           type="text" 
+                           type="text"
                            class="input"
                            [class.input-validation-error]="formInformacionGeneral.controls.confirmEmail.invalid && formInformacionGeneral.controls.confirmEmail.touched" />
 

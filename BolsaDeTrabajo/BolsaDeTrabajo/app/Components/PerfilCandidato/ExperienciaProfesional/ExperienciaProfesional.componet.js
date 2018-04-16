@@ -35,6 +35,7 @@ var ExperienciaProfesionalComponent = (function () {
         this.noMonthTermino = 0;
         this.trabajoActual = false;
         this.descripcion = '';
+        this.display = false;
         this._Catalogos.GetGirosEmpresas()
             .subscribe(function (resp) {
             _this.girosEmpresa = resp;
@@ -160,6 +161,9 @@ var ExperienciaProfesionalComponent = (function () {
     ExperienciaProfesionalComponent.prototype.Contraer = function () {
         this.contraer = true;
     };
+    ExperienciaProfesionalComponent.prototype.Showdialog = function () {
+        this.display = true;
+    };
     ExperienciaProfesionalComponent.prototype.Remove = function (index) {
         this.Experiencias.get('area').setValue(null);
         var idExperiencia = this.Experiencias.get('id').value;
@@ -168,6 +172,7 @@ var ExperienciaProfesionalComponent = (function () {
                 .subscribe(function (data) { });
         }
         this.remove.emit(index);
+        this.display = false;
     };
     ExperienciaProfesionalComponent.prototype.OnTrabajoActualChangue = function (event) {
         if (event.target.checked) {

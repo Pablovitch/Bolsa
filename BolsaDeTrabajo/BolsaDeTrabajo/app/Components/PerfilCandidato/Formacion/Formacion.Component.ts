@@ -11,7 +11,7 @@ import { PerfilCandidatoService } from '../../../Services/PerfilCandidato.Servic
 })
 export class FormacionComponent implements AfterContentInit {
     @Input('group')
-    public Formaciones: FormGroup; 
+    public Formaciones: FormGroup;
 
     @Input('Index')
     public index: number;
@@ -58,7 +58,7 @@ export class FormacionComponent implements AfterContentInit {
         private fb: FormBuilder,
         private _Catalogos: CatalogoPerfilCandidatoService,
         private _perfilCandidatoService: PerfilCandidatoService
-    ){    
+    ){
 
         this._Catalogos.GetEstatus()
             .subscribe(resp => {
@@ -98,7 +98,7 @@ export class FormacionComponent implements AfterContentInit {
                 }
                 if (yearTermino > 0) {
                     this.YearTerminoOnchangue(yearTermino);
-                } 
+                }
             });
         this._Catalogos.GetDocumentosValidadores()
             .subscribe(resp => {
@@ -139,13 +139,13 @@ export class FormacionComponent implements AfterContentInit {
     }
     SetCarreraId(event:any)
     {
-        this.Formaciones.get('carreraId').setValue(event.id);       
+        this.Formaciones.get('carreraId').setValue(event.id);
         this.Carrera = event.carrera;
     }
 
     SetInstitucionId(event: any)
     {
-        this.Formaciones.get('institucionEducativaId').setValue(event.id)        
+        this.Formaciones.get('institucionEducativaId').setValue(event.id)
         this.InstitucionEducativa = event.institucionEducativa
     }
     DocumentoValidadorOnchangue(id: number) {
@@ -179,7 +179,7 @@ export class FormacionComponent implements AfterContentInit {
         this.MonthTermino = this.meses.find(x => x.id == id).month;
     }
 
-  
+
     OnEdit() {
         this.institucionId = this.Formaciones.get('institucionEducativaId').value;
         this.institucion = this.InstitucionEducativa;
@@ -222,7 +222,7 @@ export class FormacionComponent implements AfterContentInit {
         this.contraer = true;
     }
     EntityDettached() {
-        
+
         this.auxCarrera = this.Formaciones.get('carrera').value;
         this.auxinstitucion = this.Formaciones.get('institucionEducativa').value;
         this.Formaciones.get('carrera').setValue(null);
@@ -234,6 +234,12 @@ export class FormacionComponent implements AfterContentInit {
          this.Formaciones.get('carrera').setValue(this.auxCarrera);
     }
 
+    display: boolean = false;
+
+    Showdialog() {
+        this.display = true;
+    }
+
     Remove(index: number) {
         let idFormacion = this.Formaciones.get('id').value
         if (idFormacion != '0') {
@@ -241,6 +247,7 @@ export class FormacionComponent implements AfterContentInit {
                 .subscribe(data => { });
         }
         this.remove.emit(index);
+        this.display = false;
     }
     Save() {
         this.institucionId = '';
@@ -278,5 +285,5 @@ export class FormacionComponent implements AfterContentInit {
         }
 
     }
-      
+
 }

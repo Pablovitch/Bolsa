@@ -29,7 +29,7 @@ export class CursoComponent implements AfterContentInit{
     InstitucionEducativa: string;
     auxInstitucion: any;
 
-    filteredInstituciones: any[];   
+    filteredInstituciones: any[];
     meses: any[];
     years: any[];
 
@@ -47,7 +47,7 @@ export class CursoComponent implements AfterContentInit{
         private _Catalogos: CatalogoPerfilCandidatoService,
         private _perfilCandidatoService: PerfilCandidatoService
     ) {
-        
+
         this._Catalogos.GetMonths()
             .subscribe(resp => {
                 this.meses = resp;
@@ -71,7 +71,7 @@ export class CursoComponent implements AfterContentInit{
                 }
                 if (yearTermino > 0) {
                     this.YearTerminoOnchangue(yearTermino);
-                } 
+                }
             });
     }
 
@@ -92,10 +92,10 @@ export class CursoComponent implements AfterContentInit{
                 this.filteredInstituciones = instituciones;
             });
     }
-  
+
 
     SetInstitucionId(event: any) {
-        this.Cursos.get('institucionEducativaId').setValue(event.id)        
+        this.Cursos.get('institucionEducativaId').setValue(event.id)
         this.InstitucionEducativa = event.institucionEducativa
     }
 
@@ -115,7 +115,7 @@ export class CursoComponent implements AfterContentInit{
         if (id <= 0) return;
         this.MonthTermino = this.meses.find(x => x.id == id).month;
     }
-  
+
 
     OnEdit() {
         this.curso = this.Cursos.get('curso').value;
@@ -158,6 +158,13 @@ export class CursoComponent implements AfterContentInit{
     private EntityAttached() {
         this.Cursos.get('institucionEducativa').setValue(this.auxInstitucion);
     }
+
+    display: boolean = false;
+
+    Showdialog() {
+        this.display = true;
+    }
+
     Remove(index: number) {
         let idCurso = this.Cursos.get('id').value
         if (idCurso != '0') {
@@ -165,6 +172,7 @@ export class CursoComponent implements AfterContentInit{
                 .subscribe(data => { });
         }
         this.remove.emit(index);
+        this.display = false;
     }
     Save() {
         this.curso = '';
@@ -196,7 +204,7 @@ export class CursoComponent implements AfterContentInit{
                 .subscribe(curso => {
                     this.EntityAttached();
                 });
-        }     
+        }
 
     }
 
